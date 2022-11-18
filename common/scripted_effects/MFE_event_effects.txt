@@ -1,0 +1,61 @@
+﻿ig_approval_effect = {
+	# Scope = country or party
+	# GROUP = interest group to target
+	# MOD1 = modifier given to GROUP
+	# MOD2 = modifier given to opposing interest group
+	
+	$GROUP$ = {
+		add_modifier = {
+			name = $MOD1$
+			months = normal_modifier_time
+		}
+		save_scope_as = group_scope
+	}
+	ordered_interest_group = {
+		limit = {
+			NOT = { THIS = scope:group_scope }
+			is_marginal = no
+		}
+		order_by = leader.popularity #so it's not random if used in same event
+		max = 1
+		add_modifier = {
+			name = $MOD2$
+			months = normal_modifier_time
+		}
+	}
+}
+add_building_level_effect = {
+	# Scope = state
+	# BUILDING = building to add
+	# AMOUNT = number of building levels to add
+	# TT = Tooltip to use when adding effect
+	custom_tooltip = $TT$
+	hidden_effect = {
+		if = {
+			limit = { has_building = $BUILDING$ }
+			b:$BUILDING$ = {
+				prev = {
+					set_variable = {
+						name = level_var
+						value = prev.level
+					}
+				}
+			}
+			change_variable = {
+				name = level_var
+				add = $AMOUNT$
+			}
+			create_building = {
+				building = $BUILDING$
+				level = var:level_var
+			}
+			remove_variable = level_var
+		}
+		else = {
+			create_building = {
+				building = $BUILDING$
+				level = $AMOUNT$
+			}
+		}
+	}
+}

@@ -1,0 +1,8 @@
+﻿on_yearly_pulse_country = {
+	random_events = {
+		2980 = 0	# As more events are added this value can be decreased but total should always be around 3000
+
+
+		20 = mfe_industry_events.1
+	}
+}

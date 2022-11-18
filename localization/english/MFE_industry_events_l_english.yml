@@ -1,0 +1,26 @@
+﻿l_english:
+  mfe_industry_events.1.t:0 "Railway Company Emerges"
+  mfe_industry_events.1.d:0 ""
+  mfe_industry_events.1.f:0 ""
+  mfe_industry_events.1.a:0 "Allow [SCOPE.sCharacter('rich_dude').GetFullName] to continue business"
+  mfe_industry_events.1.b:0 "Block any further efforts"
+  mfe_industry_events.1.c:0 "Subsidize their efforts"
+
+  mfe_industry_events.2.t:0 "Thriving Railway Company"
+  mfe_industry_events.2.d:0 ""
+  mfe_industry_events.2.f:0 ""
+  mfe_industry_events.2.a:0 "This is great!"
+
+  mfe_industry_events.3.t:0 "Railway company in trouble"
+  mfe_industry_events.3.d:0 ""
+  mfe_industry_events.3.f:0 ""
+  mfe_industry_events.3.a:0 "Subsidize the Rails!"
+  mfe_industry_events.3.b:0 "They were the ones who wanted a free market..."
+  subsidize_rail_state_tt:0 " Start subsidizing the Railways in [SCOPE.sState('railway_state').GetName]"
+
+
+
+  # Tooltips
+
+  add_1_rail_level_tt:0 "Add #Y 1#! building level to Railways in [SCOPE.sState('railway_state').GetName]"
+  add_2_rail_level_tt:0 "Add #Y 2#! building levels to Railways in [SCOPE.sState('railway_state').GetName]"
