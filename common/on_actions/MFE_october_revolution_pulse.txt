@@ -1,0 +1,7 @@
+﻿on_monthly_pulse_country = {
+	events = {
+		mfe_october_revolution.1
+	}
+	effect = {
+	}
+}

@@ -1,0 +1,146 @@
+﻿namespace = mfe_october_revolution
+
+
+mfe_october_revolution.1 = {
+	type = country_event
+	title = mfe_october_revolution.1.t
+	desc = mfe_october_revolution.1.d
+	flavor = mfe_october_revolution.1.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_factory_closed.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/factory_closed"
+
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+
+	trigger = {
+		NOT = { has_variable = october_revolution_event_has_happened }
+		exists = c:RUS
+		c:RUS = ROOT
+		OR = {
+			has_law = law_type:law_autocracy
+			has_law = law_type:law_oligarchy
+		}
+		has_technology_researched = political_agitation
+		has_technology_researched = central_planning
+		any_interest_group = {
+			is_in_government = no
+			OR = {
+				leader = { has_ideology = ideology_communist }
+				leader = { has_ideology = ideology_radical }
+			}
+		}
+		any_scope_war = {
+			has_war_exhaustion = { target = ROOT value >= 75 }
+			has_war_support = { target = ROOT value <= -75 }
+		}
+	}
+
+	immediate = {
+		set_variable = october_revolution_event_has_happened
+	}
+
+	option = {
+		name = mfe_october_revolution.1.a
+
+		root.capital = {
+			add_radicals = {
+				value = -0.1
+				pop_type = laborers
+			}
+		}
+
+		custom_tooltip = mfe_october_revolution.1.a.tt
+
+		hidden_effect = {
+			trigger_event = {
+				id = mfe_october_revolution.2
+				days = { 3 7 }
+			}
+		}
+	}
+
+	option = {
+		name = mfe_october_revolution.1.b
+
+		root.capital = {
+			add_loyalists = {
+				value = 0.05
+				pop_type = laborers
+			}
+		}
+
+		trigger = {
+			OR = {
+				has_law = law_type:law_appointed_bureaucrats
+				has_law = law_type:law_elected_bureaucrats
+			}
+			OR = {
+				has_law = law_type:law_regulatory_bodies
+				has_law = law_type:law_worker_protections
+			}
+			OR = {
+				has_law = law_type:law_landed_voting
+				has_law = law_type:law_wealth_voting
+				has_law = law_type:law_census_voting
+				has_law = law_type:law_universal_suffrage
+			}
+		}
+	}
+}
+
+mfe_october_revolution.2 = {
+	type = country_event
+	title = mfe_october_revolution.2.t
+	desc = mfe_october_revolution.2.d
+	flavor = mfe_october_revolution.2.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_factory_closed.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/factory_closed"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	option = {
+		name = mfe_october_revolution.2.a
+
+		hidden_effect = {
+			set_variable = {
+				name = october_revolution_var
+				value = 0
+			}
+		}
+		add_journal_entry = {
+			type = je_russia_october_revolution_main
+		}
+
+		root.ruler = {
+			add_modifier = {
+				name = bloody_sunday_massacre_character
+				months = normal_modifier_time
+			}
+		}
+
+		add_modifier = {
+			name = bloody_sunday_massacre_country
+			months = normal_modifier_time
+		}
+
+		root.capital = {
+			add_modifier = {
+				name = bloody_sunday_massacre_state
+				months = normal_modifier_time
+			}
+		}
+	}
+}
