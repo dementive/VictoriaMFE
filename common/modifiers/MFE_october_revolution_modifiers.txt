@@ -1,17 +1,71 @@
-﻿october_revolution_active_modifier = {
+﻿october_revolution_prevention_active_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/unused/modifier_explosion_negative.dds
-	country_radicals_from_conquest_mult = 0.50
-	country_prestige_mult = -0.15
-	country_authority_mult = -0.15
-	country_influence_mult = -0.15
+	country_radicals_from_conquest_mult = 0.30
+	country_prestige_mult = -0.10
+	country_authority_mult = -0.10
+	country_influence_mult = -0.10
 }
 bloody_sunday_massacre_state_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/unused/modifier_explosion_negative.dds
-	state_radicals_from_sol_change_mult = 0.50
-	state_radicals_from_discrimination_mult = 0.50
-	state_loyalists_from_sol_change_mult = -0.50
+	state_radicals_from_sol_change_mult = 0.30
+	state_radicals_from_discrimination_mult = 0.30
+	state_loyalists_from_sol_change_mult = -0.30
 }
 bloody_sunday_massacre_character_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/unused/modifier_explosion_negative.dds
 	character_popularity_add = -15
+}
+february_revolution_active_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/unused/modifier_explosion_negative.dds
+	country_radicals_from_conquest_mult = 0.45
+	country_prestige_mult = -0.20
+	country_authority_mult = -0.20
+	country_influence_mult = -0.20
+}
+february_revolution_state_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/unused/modifier_explosion_negative.dds
+	state_radicals_from_sol_change_mult = 0.45
+	state_radicals_from_discrimination_mult = 0.45
+	state_loyalists_from_sol_change_mult = -0.45
+}
+february_revolution_character_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/unused/modifier_explosion_negative.dds
+	character_popularity_add = -30
+}
+october_revolution_active_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/unused/modifier_explosion_negative.dds
+	country_radicals_from_conquest_mult = 0.60
+	country_prestige_mult = -0.30
+	country_authority_mult = -0.30
+	country_influence_mult = -0.30
+}
+october_revolution_state_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/unused/modifier_explosion_negative.dds
+	state_radicals_from_sol_change_mult = 0.60
+	state_radicals_from_discrimination_mult = 0.60
+	state_loyalists_from_sol_change_mult = -0.60
+}
+october_revolution_character_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/unused/modifier_explosion_negative.dds
+	character_popularity_add = -45
+}
+or_bureaucratic_reforms_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+	building_paper_mills_throughput_mult = -0.2
+	building_government_administration_throughput_mult = -0.2
+}
+or_worker_rights_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+	building_minimum_wage_mult = 0.2
+}
+or_new_voting_system_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+	state_political_strength_from_wealth_mult = -0.5
+	country_voting_power_base_add = 1
+}
+or_new_government_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+	country_law_enactment_time_mult = 0.5
+	country_law_enactment_success_add = -0.2
+	country_legitimacy_base_add = -50
 }

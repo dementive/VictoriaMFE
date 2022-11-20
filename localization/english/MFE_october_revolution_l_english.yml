@@ -1,10 +1,20 @@
 ﻿l_english:
   # Journal Entries
-  je_russia_october_revolution_main:0 "The October Revolution"
-  je_russia_october_revolution_main_reason:0 "We must either crush these radical communists or fully embrace their cause."
-  je_russia_october_revolution_main_goal:0 "Complete 4 Reforms [Concept('concept_journal_entry', '$concept_journal_entries$')] or fight the rebels."
+  je_russia_october_revolution_prevention:0 "Beginnings of Revolution"
+  je_russia_october_revolution_prevention_reason:0 "With the unfortunate events during the Bloody Sunday Massacre, strikes and radical ideas have erupted throughout the nation."
+  je_russia_october_revolution_prevention_goal:0 "Appease the common people by completing 4 Reform [Concept('concept_journal_entry', '$concept_journal_entries$')] or face the consequences."
+
+  je_russia_february_revolution:0 "The February Revolution"
+  je_russia_february_revolution_reason:0 "We were to late in appeasing the common people with reforms, they are starting a revolution."
+  je_russia_february_revolution_goal:0 "Try and survive through the various demands and revolutions during the next 2 years."
+
+  je_russia_october_revolution:0 "The October Revolution"
+  je_russia_october_revolution_reason:0 "We must either crush these radical communists or fully embrace their cause."
+  je_russia_october_revolution_goal:0 "Complete 4 Reforms [Concept('concept_journal_entry', '$concept_journal_entries$')] or fight the rebels."
 
   # Events
+  mfe_october_revolution_modifier.a.tt:0 "All states within the [concept_strategic_region]#O s#! of #B Russia#!, #B Dnieper#!, the #B Baltic#! and the #B Caucasus#! will get the following modifier:"
+
   mfe_october_revolution.1.t:0 "A Peaceful Protest"
   mfe_october_revolution.1.d:0 "Crowd of petitioners, led by Father Gapon, near Narva Gate, St. Petersburg To deliver a petition to [ROOT.GetCountry.GetRuler.GetPrimaryRoleTitle] [ROOT.GetCountry.GetRuler.GetFullName], calling for reforms such as: limitations on state officials' power, improvements to working conditions and hours, and the introduction of a national parliament"
   mfe_october_revolution.1.f:0 ""
@@ -12,12 +22,77 @@
   mfe_october_revolution.1.a.tt:0 "This might lead to further protests."
   mfe_october_revolution.1.b:0 "As is their right."
 
-  mfe_october_revolution.2.t:0 "The Bloody [TimeKeeper.GetDayOfWeek] of [TimeKeeper.GetCurrentDate.GetString]"
+  mfe_october_revolution.2.t:0 "The Bloody Massacre of [TimeKeeper.GetCurrentDate.GetString]"
   mfe_october_revolution.2.d:0 "Bad reaction from the public"
   mfe_october_revolution.2.f:0 "The things that have been set in motion...\n                                                                       ...cannot be undone."
   mfe_october_revolution.2.a:0 "They were just peasants anyway..."
 
+  mfe_october_revolution.3.t:0 "The Common People Appeased"
+  mfe_october_revolution.3.d:0 "Successful appeasement"
+  mfe_october_revolution.3.f:0 ""
+  mfe_october_revolution.3.a:0 "A good day for [ROOT.GetCountry.GetName]!"
+
+  mfe_october_revolution.4.t:0 "The February Revolution"
+  mfe_october_revolution.4.d:0 "People are outraged with the current state of the country, revolution is on its way."
+  mfe_october_revolution.4.f:0 ""
+  mfe_october_revolution.4.a:0 "What will we do about this?"
+
+  mfe_october_revolution.5.t:0 "A Peaceful End"
+  mfe_october_revolution.5.d:0 "The revolution has been halted and the common people are happy with the reforms."
+  mfe_october_revolution.5.f:0 ""
+  mfe_october_revolution.5.a:0 "Finally, no more suffering..."
+
+  mfe_october_revolution.6.t:0 "The October Revolution"
+  mfe_october_revolution.6.d:0 "The newly made government during $je_russia_february_revolution$ was not able to reform the nation into a stable republic. As such have the common people started a new revolution. A very very red one..."
+  mfe_october_revolution.6.f:0 ""
+  mfe_october_revolution.6.a:0 "Here, we witness the end of a nation."
+
+  mfe_october_revolution.7.t:0 "Bureaucratic Reforms"
+  mfe_october_revolution.7.d:0 ""
+  mfe_october_revolution.7.f:0 ""
+  mfe_october_revolution.7.a:0 "Accept the demands"
+  mfe_october_revolution.7.b:0 "Decline the demands"
+  mfe_october_revolution.7.a.tt:0 "#R +10%#! of [GetPopType('aristocrats').GetName] and [GetPopType('bureaucrats').GetName] [Concept('concept_pop', '$concept_pops$')] in all states within the [concept_strategic_region]#O s#! of #B Russia#!, #B Dnieper#!, the #B Baltic#! and the #B Caucasus#! become more [concept_radical]"
+  mfe_october_revolution.7.b.tt:0 "#R +2.5%#! of [GetPopType('laborers').GetName] and [GetPopType('peasants').GetName] [Concept('concept_pop', '$concept_pops$')] in all states within the [concept_strategic_region]#O s#! of #B Russia#!, #B Dnieper#!, the #B Baltic#! and the #B Caucasus#! become more [concept_radical]"
+
+  mfe_october_revolution.8.t:0 "Worker Rights"
+  mfe_october_revolution.8.d:0 ""
+  mfe_october_revolution.8.f:0 ""
+  mfe_october_revolution.8.a:0 "Accept the demands"
+  mfe_october_revolution.8.b:0 "Decline the demands"
+  mfe_october_revolution.8.a.tt:0 "#R +10%#! of [GetPopType('aristocrats').GetName] and [GetPopType('capitalists').GetName] [Concept('concept_pop', '$concept_pops$')] in all states within the [concept_strategic_region]#O s#! of #B Russia#!, #B Dnieper#!, the #B Baltic#! and the #B Caucasus#! become more [concept_radical]"
+  mfe_october_revolution.8.b.tt:0 "#R +2.5%#! of [GetPopType('laborers').GetName] and [GetPopType('peasants').GetName] [Concept('concept_pop', '$concept_pops$')] in all states within the [concept_strategic_region]#O s#! of #B Russia#!, #B Dnieper#!, the #B Baltic#! and the #B Caucasus#! become more [concept_radical]"
+
+  mfe_october_revolution.9.t:0 "Voting System"
+  mfe_october_revolution.9.d:0 ""
+  mfe_october_revolution.9.f:0 ""
+  mfe_october_revolution.9.a:0 "Accept the demands"
+  mfe_october_revolution.9.b:0 "Decline the demands"
+  mfe_october_revolution.9.a.tt:0 "#R +15%#! of [GetPopType('aristocrats').GetName] [Concept('concept_pop', '$concept_pops$')] in all states within the [concept_strategic_region]#O s#! of #B Russia#!, #B Dnieper#!, the #B Baltic#! and the #B Caucasus#! become more [concept_radical]"
+  mfe_october_revolution.9.b.tt:0 "#R +2.5%#! of [GetPopType('laborers').GetName] and [GetPopType('peasants').GetName] [Concept('concept_pop', '$concept_pops$')] in all states within the [concept_strategic_region]#O s#! of #B Russia#!, #B Dnieper#!, the #B Baltic#! and the #B Caucasus#! become more [concept_radical]"
+
+  mfe_october_revolution.10.t:0 "Abdication of the Current Government"
+  mfe_october_revolution.10.d:0 ""
+  mfe_october_revolution.10.f:0 ""
+  mfe_october_revolution.10.a:0 "Accept the demands"
+  mfe_october_revolution.10.b:0 "Decline the demands"
+  mfe_october_revolution.10.a.tt:0 "#R +25%#! of [GetPopType('aristocrats').GetName] [Concept('concept_pop', '$concept_pops$')] in all states within the [concept_strategic_region]#O s#! of #B Russia#!, #B Dnieper#!, the #B Baltic#! and the #B Caucasus#! become more [concept_radical]"
+  mfe_october_revolution.10.b.tt:0 "#R +5%#! of [GetPopType('laborers').GetName] and [GetPopType('peasants').GetName] [Concept('concept_pop', '$concept_pops$')] in all states within the [concept_strategic_region]#O s#! of #B Russia#!, #B Dnieper#!, the #B Baltic#! and the #B Caucasus#! become more [concept_radical]"
+
   # Modifiers
-  october_revolution_active_modifier:0 "The October Revolution"
+  october_revolution_prevention_active_modifier:0 "Beginnings of Revolution"
   bloody_sunday_massacre_state_modifier:0 "Bloody Sunday Massacre"
   bloody_sunday_massacre_character_modifier:0 "Bloody Sunday Massacre"
+
+  february_revolution_active_modifier:0 "February Revolution"
+  february_revolution_state_modifier:0 "February Revolution"
+  february_revolution_character_modifier:0 "February Revolution"
+
+  october_revolution_active_modifier:0 "October Revolution"
+  october_revolution_state_modifier:0 "October Revolution"
+  october_revolution_character_modifier:0 "October Revolution"
+
+  or_bureaucratic_reforms_modifier:0 "Bureaucratic Reforms"
+  or_worker_rights_modifier:0 "Worker Rights"
+  or_new_voting_system_modifier:0 "New Voting System"
+  or_new_government_modifier:0 "New Government"

@@ -47,6 +47,7 @@ mfe_october_revolution.1 = {
 
 	option = {
 		name = mfe_october_revolution.1.a
+		default_option = yes
 
 		root.capital = {
 			add_radicals = {
@@ -85,8 +86,6 @@ mfe_october_revolution.1 = {
 				has_law = law_type:law_worker_protections
 			}
 			OR = {
-				has_law = law_type:law_landed_voting
-				has_law = law_type:law_wealth_voting
 				has_law = law_type:law_census_voting
 				has_law = law_type:law_universal_suffrage
 			}
@@ -113,6 +112,203 @@ mfe_october_revolution.2 = {
 
 	option = {
 		name = mfe_october_revolution.2.a
+		default_option = yes
+
+		hidden_effect = {
+			set_variable = {
+				name = october_revolution_prevention_var
+				value = 0
+			}
+		}
+		add_journal_entry = {
+			type = je_russia_october_revolution_prevention
+		}
+
+		hidden_effect = {
+			root.ruler = {
+				add_modifier = {
+					name = bloody_sunday_massacre_character_modifier
+					months = 121
+				}
+			}
+		}
+
+		add_modifier = {
+			name = october_revolution_prevention_active_modifier
+			months = -1
+		}
+
+		custom_tooltip = mfe_october_revolution_modifier.a.tt
+		show_as_tooltip = {
+			root.capital = {
+				add_modifier = {
+					name = bloody_sunday_massacre_state_modifier
+					months = 121
+				}
+			}
+		}
+		hidden_effect = {
+			every_scope_state = {
+				limit = {
+					owner = ROOT
+					OR = {
+						region = sr:region_russia
+						region = sr:region_dnieper
+						region = sr:region_caucasus
+						region = sr:region_baltic
+					}
+				}
+				add_modifier = {
+					name = bloody_sunday_massacre_state_modifier
+					months = 121
+				}
+			}
+		}
+	}
+}
+
+mfe_october_revolution.3 = {
+	type = country_event
+	title = mfe_october_revolution.3.t
+	desc = mfe_october_revolution.3.d
+	flavor = mfe_october_revolution.3.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_factory_closed.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/factory_closed"
+
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+
+	option = {
+		name = mfe_october_revolution.3.a
+		default_option = yes
+
+	}
+}
+
+mfe_october_revolution.4 = {
+	type = country_event
+	title = mfe_october_revolution.4.t
+	desc = mfe_october_revolution.4.d
+	flavor = mfe_october_revolution.4.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_factory_closed.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/factory_closed"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	option = {
+		name = mfe_october_revolution.4.a
+		default_option = yes
+
+		hidden_effect = {
+			set_variable = {
+				name = february_revolution_var
+				value = 0
+			}
+		}
+		add_journal_entry = {
+			type = je_russia_february_revolution
+		}
+
+		hidden_effect = {
+			root.ruler = {
+				add_modifier = {
+					name = february_revolution_character_modifier
+					months = 25
+				}
+			}
+		}
+
+		add_modifier = {
+			name = february_revolution_active_modifier
+			months = -1
+		}
+
+		custom_tooltip = mfe_october_revolution_modifier.a.tt
+		show_as_tooltip = {
+			root.capital = {
+				add_modifier = {
+					name = february_revolution_state_modifier
+					months = 25
+				}
+			}
+		}
+		hidden_effect = {
+			every_scope_state = {
+				limit = {
+					owner = ROOT
+					OR = {
+						region = sr:region_russia
+						region = sr:region_dnieper
+						region = sr:region_caucasus
+						region = sr:region_baltic
+					}
+				}
+				add_modifier = {
+					name = february_revolution_state_modifier
+					months = 25
+				}
+			}
+		}
+	}
+}
+
+mfe_october_revolution.5 = {
+	type = country_event
+	title = mfe_october_revolution.5.t
+	desc = mfe_october_revolution.5.d
+	flavor = mfe_october_revolution.5.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_factory_closed.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/factory_closed"
+
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+
+	option = {
+		name = mfe_october_revolution.5.a
+		default_option = yes
+
+	}
+}
+
+mfe_october_revolution.6 = {
+	type = country_event
+	title = mfe_october_revolution.6.t
+	desc = mfe_october_revolution.6.d
+	flavor = mfe_october_revolution.6.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_factory_closed.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/factory_closed"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	option = {
+		name = mfe_october_revolution.6.a
+		default_option = yes
 
 		hidden_effect = {
 			set_variable = {
@@ -121,25 +317,395 @@ mfe_october_revolution.2 = {
 			}
 		}
 		add_journal_entry = {
-			type = je_russia_october_revolution_main
+			type = je_russia_october_revolution
 		}
 
-		root.ruler = {
-			add_modifier = {
-				name = bloody_sunday_massacre_character
-				months = normal_modifier_time
+		hidden_effect = {
+			root.ruler = {
+				add_modifier = {
+					name = october_revolution_character_modifier
+					months = 86
+				}
 			}
 		}
 
 		add_modifier = {
-			name = bloody_sunday_massacre_country
-			months = normal_modifier_time
+			name = october_revolution_active_modifier
+			months = -1
 		}
 
-		root.capital = {
-			add_modifier = {
-				name = bloody_sunday_massacre_state
-				months = normal_modifier_time
+		custom_tooltip = mfe_october_revolution_modifier.a.tt
+		show_as_tooltip = {
+			root.capital = {
+				add_modifier = {
+					name = october_revolution_state_modifier
+					months = 86
+				}
+			}
+		}
+		hidden_effect = {
+			every_scope_state = {
+				limit = {
+					owner = ROOT
+					OR = {
+						region = sr:region_russia
+						region = sr:region_dnieper
+						region = sr:region_caucasus
+						region = sr:region_baltic
+					}
+				}
+				add_modifier = {
+					name = october_revolution_state_modifier
+					months = 86
+				}
+			}
+		}
+	}
+}
+
+mfe_october_revolution.7 = {
+	type = country_event
+	title = mfe_october_revolution.7.t
+	desc = mfe_october_revolution.7.d
+	flavor = mfe_october_revolution.7.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_factory_closed.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/factory_closed"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	trigger = {
+		Not = {
+			OR = {
+				has_law = law_type:law_appointed_bureaucrats
+				has_law = law_type:law_elected_bureaucrats
+			}
+		}
+	}
+
+	option = {
+		name = mfe_october_revolution.7.a
+
+		activate_law = law_type:law_elected_bureaucrats
+
+		add_modifier = {
+			name = or_bureaucratic_reforms_modifier
+			months = 61
+		}
+
+		custom_tooltip = mfe_october_revolution.7.a.tt
+		hidden_effect = {
+			every_scope_state = {
+				limit = {
+					owner = ROOT
+					OR = {
+						region = sr:region_russia
+						region = sr:region_dnieper
+						region = sr:region_caucasus
+						region = sr:region_baltic
+					}
+				}
+				add_radicals = {
+					value = 0.1
+					pop_type = aristocrats
+				}
+				add_radicals = {
+					value = 0.1
+					pop_type = bureaucrats
+				}
+			}
+		}
+	}
+
+	option = {
+		name = mfe_october_revolution.7.b
+		default_option = yes
+
+		custom_tooltip = mfe_october_revolution.7.b.tt
+		hidden_effect = {
+			every_scope_state = {
+				limit = {
+					owner = ROOT
+					OR = {
+						region = sr:region_russia
+						region = sr:region_dnieper
+						region = sr:region_caucasus
+						region = sr:region_baltic
+					}
+				}
+				add_radicals = {
+					value = 0.025
+					pop_type = laborers
+				}
+				add_radicals = {
+					value = 0.025
+					pop_type = peasants
+				}
+			}
+		}
+	}
+}
+
+mfe_october_revolution.8 = {
+	type = country_event
+	title = mfe_october_revolution.8.t
+	desc = mfe_october_revolution.8.d
+	flavor = mfe_october_revolution.8.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_factory_closed.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/factory_closed"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	trigger = {
+		Not = {
+			OR = {
+				has_law = law_type:law_regulatory_bodies
+				has_law = law_type:law_worker_protections
+			}
+		}
+	}
+
+	option = {
+		name = mfe_october_revolution.8.a
+
+		activate_law = law_type:law_regulatory_bodies
+
+		add_modifier = {
+			name = or_worker_rights_modifier
+			months = 61
+		}
+
+		custom_tooltip = mfe_october_revolution.8.a.tt
+		hidden_effect = {
+			every_scope_state = {
+				limit = {
+					owner = ROOT
+					OR = {
+						region = sr:region_russia
+						region = sr:region_dnieper
+						region = sr:region_caucasus
+						region = sr:region_baltic
+					}
+				}
+				add_radicals = {
+					value = 0.1
+					pop_type = aristocrats
+				}
+				add_radicals = {
+					value = 0.1
+					pop_type = capitalists
+				}
+			}
+		}
+	}
+
+	option = {
+		name = mfe_october_revolution.8.b
+		default_option = yes
+
+		custom_tooltip = mfe_october_revolution.8.b.tt
+		hidden_effect = {
+			every_scope_state = {
+				limit = {
+					owner = ROOT
+					OR = {
+						region = sr:region_russia
+						region = sr:region_dnieper
+						region = sr:region_caucasus
+						region = sr:region_baltic
+					}
+				}
+				add_radicals = {
+					value = 0.025
+					pop_type = laborers
+				}
+				add_radicals = {
+					value = 0.025
+					pop_type = peasants
+				}
+			}
+		}
+	}
+}
+
+mfe_october_revolution.9 = {
+	type = country_event
+	title = mfe_october_revolution.9.t
+	desc = mfe_october_revolution.9.d
+	flavor = mfe_october_revolution.9.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_factory_closed.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/factory_closed"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	trigger = {
+		Not = {
+			OR = {
+				has_law = law_type:law_census_voting
+				has_law = law_type:law_universal_suffrage
+			}
+		}
+	}
+
+	option = {
+		name = mfe_october_revolution.9.a
+
+		activate_law = law_type:law_census_voting
+
+		add_modifier = {
+			name = or_new_voting_system_modifier
+			months = 61
+		}
+
+		custom_tooltip = mfe_october_revolution.9.a.tt
+		hidden_effect = {
+			every_scope_state = {
+				limit = {
+					owner = ROOT
+					OR = {
+						region = sr:region_russia
+						region = sr:region_dnieper
+						region = sr:region_caucasus
+						region = sr:region_baltic
+					}
+				}
+				add_radicals = {
+					value = 0.15
+					pop_type = aristocrats
+				}
+			}
+		}
+	}
+
+	option = {
+		name = mfe_october_revolution.9.b
+		default_option = yes
+
+		custom_tooltip = mfe_october_revolution.9.b.tt
+		hidden_effect = {
+			every_scope_state = {
+				limit = {
+					owner = ROOT
+					OR = {
+						region = sr:region_russia
+						region = sr:region_dnieper
+						region = sr:region_caucasus
+						region = sr:region_baltic
+					}
+				}
+				add_radicals = {
+					value = 0.025
+					pop_type = laborers
+				}
+				add_radicals = {
+					value = 0.025
+					pop_type = peasants
+				}
+			}
+		}
+	}
+}
+
+mfe_october_revolution.10 = {
+	type = country_event
+	title = mfe_october_revolution.10.t
+	desc = mfe_october_revolution.10.d
+	flavor = mfe_october_revolution.10.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_factory_closed.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/factory_closed"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	trigger = {
+		Not = {
+			OR = {
+				has_law = law_type:law_parliamentary_republic
+				has_law = law_type:law_council_republic
+			}
+		}
+	}
+
+	option = {
+		name = mfe_october_revolution.10.a
+
+		activate_law = law_type:law_parliamentary_republic
+
+		add_modifier = {
+			name = or_new_government_modifier
+			months = 61
+		}
+
+		custom_tooltip = mfe_october_revolution.10.a.tt
+		hidden_effect = {
+			every_scope_state = {
+				limit = {
+					owner = ROOT
+					OR = {
+						region = sr:region_russia
+						region = sr:region_dnieper
+						region = sr:region_caucasus
+						region = sr:region_baltic
+					}
+				}
+				add_radicals = {
+					value = 0.25
+					pop_type = aristocrats
+				}
+			}
+		}
+	}
+
+	option = {
+		name = mfe_october_revolution.10.b
+		default_option = yes
+
+		custom_tooltip = mfe_october_revolution.10.b.tt
+		hidden_effect = {
+			every_scope_state = {
+				limit = {
+					owner = ROOT
+					OR = {
+						region = sr:region_russia
+						region = sr:region_dnieper
+						region = sr:region_caucasus
+						region = sr:region_baltic
+					}
+				}
+				add_radicals = {
+					value = 0.05
+					pop_type = laborers
+				}
+				add_radicals = {
+					value = 0.05
+					pop_type = peasants
+				}
 			}
 		}
 	}
