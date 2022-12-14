@@ -1,6 +1,5 @@
 ﻿namespace = mfe_industry_events
 
-
 mfe_industry_events.1 = {	#Rich industrialist Founds a railway company
 	type = country_event
 	placement = scope:railway_state
@@ -12,7 +11,8 @@ mfe_industry_events.1 = {	#Rich industrialist Founds a railway company
 
 	gui_window = event_window_1char_tabloid
 
-	left_icon = scope:rich_dude
+	#left_icon = scope:rich_dude
+	left_icon = ruler
 
 	icon = "gfx/interface/icons/event_icons/event_industry.dds"
 
@@ -51,17 +51,20 @@ mfe_industry_events.1 = {	#Rich industrialist Founds a railway company
 			max = 1
 			save_scope_as = railway_state
 		}
-		create_character = {
-			interest_group = ig_industrialists
-			ideology = ideology_market_liberal
-			save_scope_as = rich_dude
-		}
+		# Commented out until crash fix
+		#create_character = {
+		#	interest_group = ig_industrialists
+		#	ideology = ideology_market_liberal
+		#	save_scope_as = rich_dude
+		#}
 		save_scope_as = root_c
 	}
 
 	option = {	# Allow scope:rich_dude to do as he pleases
 		name = mfe_industry_events.1.a
-
+		trigger = {
+			exists = scope:rich_dude
+		}
 		default_option = yes
 		scope:railway_state = {
 			add_building_level_effect = {
@@ -127,7 +130,7 @@ mfe_industry_events.2 = { #Railway company is thriving
     duration = 3
 
     event_image = {
-        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+        video = "gfx/event_pictures/unspecific_trains.bk2"
     }
 
     icon = "gfx/interface/icons/event_icons/event_industry.dds"

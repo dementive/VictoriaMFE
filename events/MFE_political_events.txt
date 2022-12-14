@@ -1,0 +1,1704 @@
+﻿namespace = MFE_political_events
+
+# Based on https://github.com/Historical-Expansion-Mod/Greater-Flavor-Mod/blob/master/GFM/events/PoliticalEvents.txt
+
+# Newspaper Publishes Slander
+MFE_political_events.1 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.1.t
+    desc = MFE_political_events.1.d
+    flavor = MFE_political_events.1.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+    	OR = {
+    		has_law = law_type:law_right_of_assembly
+    		has_law = law_type:law_protected_speech
+    	}
+    	NOT = { has_variable = slander_cooldown }
+    }
+
+    immediate = {
+    	set_variable = {
+    		name = slander_cooldown
+    		days = long_cooldown
+    	}
+    }
+
+    option = {      
+        name = MFE_political_events.1.a
+        default_option = yes
+        # Suppress it, gain radicals and make integelsentia mad
+    }
+    option = {      
+        name = MFE_political_events.1.b
+        # Gain radicals but also gain some innovation modifier
+    }
+}
+
+# Harassment in Local Election
+MFE_political_events.2 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.2.t
+    desc = MFE_political_events.2.d
+    flavor = MFE_political_events.2.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_vandalized_storefront.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+	    in_election_campaign = yes
+        any_interest_group = {
+            has_party = yes
+        }
+	    any_active_party = {
+	    	OR = {
+	    		is_party_type = communist_party
+	    		is_party_type = conservative_party
+	    	}
+	    }
+	    any_active_party = {
+	    	OR = {
+	    		is_party_type = liberal_party
+	    		is_party_type = social_democrat_party
+	    	}
+	    }
+        NOT = { has_variable = harassment_cooldown }
+    }
+    cancellation_trigger = {
+        in_election_campaign = no
+    }
+    immediate = {
+        set_variable = {
+            name = harassment_cooldown
+            days = long_cooldown
+        }
+    	random_active_party = {
+    		limit = {
+    			OR = {
+    				is_party_type = communist_party
+    				is_party_type = conservative_party
+    			}
+    		}
+    		save_scope_as = harassing_party
+    	}
+    	random_active_party = {
+    		limit = {
+    			OR = {
+    				is_party_type = liberal_party
+    				is_party_type = social_democrat_party
+    			}
+    		}
+    		save_scope_as = harassed_party
+    	}
+    }
+
+    option = {      
+        name = MFE_political_events.2.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.2.b
+    }
+}
+
+# Voting Fraud
+MFE_political_events.3 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.3.t
+    desc = MFE_political_events.3.d
+    flavor = MFE_political_events.3.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/europenorthamerica_political_extremism.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+    	in_election_campaign = yes
+    	OR = {
+    		has_law = law_type:law_census_voting
+    		has_law = law_type:law_universal_suffrage
+    	}
+        any_active_party = {
+            OR = {
+                is_party_type = communist_party
+                is_party_type = conservative_party
+                is_party_type = liberal_party
+                is_party_type = social_democrat_party
+            }
+        }
+        NOT = { has_variable = fraud_cooldown }
+    }
+    cancellation_trigger = {
+        in_election_campaign = no
+    }
+    immediate = {
+        set_variable = {
+            name = fraud_cooldown
+            days = long_cooldown
+        }
+    	random_active_party = {
+    		save_scope_as = party_1
+    	}
+    	random_active_party = {
+    		limit = {
+    			exists = scope:party_1
+    			NOT = { this = scope:party_1 }
+    		}
+    		save_scope_as = party_2
+    	}
+    }
+
+    option = {      
+        name = MFE_political_events.3.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.3.b
+    }
+}
+
+#### Trade Unions ####
+
+# Worker's Committee
+
+MFE_political_events.4 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.4.t
+    desc = MFE_political_events.4.d
+    flavor = MFE_political_events.4.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        has_worker_rights_and_powerful_trade_unions = yes
+        NOT = { has_variable = workers_committee_cooldown }
+    }
+
+    immediate = {
+        set_variable = {
+            name = workers_committee_cooldown
+            days = long_cooldown
+        }
+    }
+
+    option = {      
+        name = MFE_political_events.4.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.4.b
+    }
+}
+
+# Local Management Conflict
+
+MFE_political_events.5 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.5.t
+    desc = MFE_political_events.5.d
+    flavor = MFE_political_events.5.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        has_worker_rights_and_powerful_trade_unions = yes
+        any_scope_state = {
+            any_scope_building = {
+                OR = {
+                    is_building_type = building_urban_center
+                    is_building_type = building_trade_center
+                }
+                cash_reserves_ratio > 0.5
+                weekly_profit > 0
+                occupancy >= 0.75
+                level >= 5
+            }
+        }
+        NOT = { has_variable = management_cooldown }
+    }
+
+    immediate = {
+        set_variable = {
+            name = management_cooldown
+            days = long_cooldown
+        }
+    }
+
+    option = {      
+        name = MFE_political_events.5.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.5.b
+    }
+}
+
+#Public Meeting Held!
+
+MFE_political_events.6 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.6.t
+    desc = MFE_political_events.6.d
+    flavor = MFE_political_events.6.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        has_worker_rights_and_powerful_trade_unions = yes
+        NOT = { has_variable = meeting_cooldown }
+    }
+
+    immediate = {
+        set_variable = {
+            name = meeting_cooldown
+            days = long_cooldown
+        }
+    }
+
+    option = {      
+        name = MFE_political_events.6.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.6.b
+    }
+}
+
+#Attack on The Workhouse
+
+MFE_political_events.7 = {
+    type = country_event
+    placement = scope:attacked_warehouse
+    title = MFE_political_events.7.t
+    desc = MFE_political_events.7.d
+    flavor = MFE_political_events.7.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_vandalized_storefront.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        any_scope_state = {
+            average_sol < 8
+            any_scope_building = {
+                is_rich_manufacturing_building = { LEVEL = 3 }
+            }   
+        }
+        NOT = { has_variable = warhouse_attacked_cooldown }
+    }
+
+    immediate = {
+        set_variable = {
+            name = warhouse_attacked_cooldown
+            days = long_cooldown
+        }
+        random_scope_state = {
+            limit = { 
+                average_sol < 8 
+                any_scope_building = {
+                    is_rich_manufacturing_building = { LEVEL = 3 }
+                }
+            }
+            random_scope_building = {
+                limit = {
+                    is_rich_manufacturing_building = { LEVEL = 3 }
+                }
+                save_scope_as = attacked_warehouse
+            }
+        }
+    }
+
+    option = {      
+        name = MFE_political_events.7.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.7.b
+    }
+}
+
+#Workhouse Strike
+
+MFE_political_events.8 = {
+    type = country_event
+    placement = scope:striking_warehouse
+    title = MFE_political_events.8.t
+    desc = MFE_political_events.8.d
+    flavor = MFE_political_events.8.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/europenorthamerica_political_extremism.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        any_scope_state = {
+            average_sol < 8
+            any_scope_building = {
+                is_rich_manufacturing_building = { LEVEL = 5 }
+            }   
+        }
+        OR = {
+            has_law = law_type:law_regulatory_bodies
+            has_law = law_type:law_worker_protections
+        }
+        NOT = { has_variable = warhouse_strike_cooldown }
+    }
+
+    immediate = {
+        set_variable = {
+            name = warhouse_attacked_cooldown
+            days = long_cooldown
+        }
+        random_scope_state = {
+            limit = { 
+                average_sol < 8 
+                any_scope_building = {
+                    is_rich_manufacturing_building = { LEVEL = 5 }
+                }
+            }
+            random_scope_building = {
+                limit = {
+                    is_rich_manufacturing_building = { LEVEL = 5 }
+                }
+                save_scope_as = striking_warehouse
+            }
+        }
+    }
+
+    option = {      
+        name = MFE_political_events.8.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.8.b
+    }
+}
+
+
+#### Voting System ####
+
+# Professor Criticizes Voting Systems
+
+MFE_political_events.9 = {
+    type = country_event
+    placement = scope:university_state
+    title = MFE_political_events.9.t
+    desc = MFE_political_events.9.d
+    flavor = MFE_political_events.9.f
+    
+    duration = 3
+
+    gui_window = event_window_1char_tabloid
+
+    #left_icon = scope:professor
+    left_icon = ruler
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+    trigger = {
+        any_scope_state = {
+            any_scope_building = {
+                is_building_type = building_university
+                level >= 5
+            }   
+        }
+        OR = {
+            has_law = law_type:law_landed_voting
+            has_law = law_type:law_wealth_voting
+            has_law = law_type:law_census_voting
+        }
+        NOT = { has_variable = prof_university_cooldown }
+    }
+
+    immediate = {
+        set_variable = {
+            name = prof_university_cooldown
+            days = long_cooldown
+        }
+        random_scope_state = {
+            limit = {
+                any_scope_building = {
+                    is_building_type = building_university
+                    level >= 5
+                } 
+            }
+            random_scope_building = {
+                limit = {
+                    is_building_type = building_university
+                    level >= 5
+                }
+                save_scope_as = bad_university
+            }
+            save_scope_as = university_state
+        }
+        #create_character = {
+        #    interest_group = ig_intelligentsia
+        #    ideology = ideology_reformer
+        #    save_scope_as = professor
+        #}
+    }
+
+    option = {      
+        name = MFE_political_events.9.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.9.b
+    }
+}
+
+#### Policies ####
+
+# Trade Policy - has free trade law
+
+MFE_political_events.10 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.10.t
+    desc = MFE_political_events.10.d
+    flavor = MFE_political_events.10.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/southamerica_factory_opening.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        has_law = law_type:law_free_trade
+        exists = ig:ig_industrialists
+        NOT = { has_variable = trade_boon_cooldown }
+    }
+
+    immediate = {
+        set_variable = {
+            name = trade_boon_cooldown
+            days = very_long_cooldown
+        }
+        add_treasury = 5_percent_of_credit
+    }
+
+    option = {  # This is thanks to the Industrialists
+        name = MFE_political_events.10.a
+        default_option = yes
+        ig:ig_industrialists = {
+            add_modifier = {
+                name = industrialists_trade_policy_approval
+                months = normal_modifier_time
+            }
+        }
+    }
+    option = {  # The current ruler is to thank for this!
+        name = MFE_political_events.10.b
+        ig:ig_industrialists = {
+            add_modifier = {
+                name = industrialists_trade_policy_disapproval
+                months = normal_modifier_time
+            }
+        }
+        ruler = {
+            add_trait = expert_political_operator
+        }
+    }
+}
+
+# Bread Riots - has protectionism trade law
+
+MFE_political_events.11 = {
+    type = country_event
+    placement = scope:bread_riot_state
+    title = MFE_political_events.11.t
+    desc = MFE_political_events.11.d
+    flavor = MFE_political_events.11.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/europenorthamerica_rich_and_poor.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        market_capital.market = {
+            mg:grain = { market_goods_pricier > 0.25 }
+        }
+        has_law = law_type:law_protectionism
+        any_scope_state = {
+            average_sol < 8
+            is_incorporated = yes
+        }
+        NOT = { has_variable = bread_riot_cooldown }
+    }
+
+    immediate = {
+        random_scope_state = {
+            limit = {
+                average_sol < 8
+                is_incorporated = yes
+            }
+            save_scope_as = bread_riot_state
+        }
+        set_variable = {
+            name = bread_riot_cooldown
+            days = long_cooldown
+        }
+    }
+
+    option = {      
+        name = MFE_political_events.11.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.11.b
+    }
+}
+
+# Bread Queues - has law_command_economy
+
+MFE_political_events.12 = {
+    type = country_event
+    placement = scope:bread_queue_state
+    title = MFE_political_events.12.t
+    desc = MFE_political_events.12.d
+    flavor = MFE_political_events.12.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/asia_dead_cattle_poor_harvest.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        market_capital.market = {
+            mg:grain = { market_goods_pricier > 0.25 }
+        }
+        has_law = law_type:law_command_economy
+        any_scope_state = {
+            average_sol < 8
+            is_incorporated = yes
+        }
+        NOT = { has_variable = bread_queue_cooldown }
+    }
+
+    immediate = {
+        random_scope_state = {
+            limit = {
+                average_sol < 8
+                is_incorporated = yes
+            }
+            save_scope_as = bread_queue_state
+        }
+        set_variable = {
+            name = bread_queue_cooldown
+            days = long_cooldown
+        }
+    }
+
+    option = {      
+        name = MFE_political_events.12.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.12.b
+    }
+}
+
+#Guns Cross The Border - has free trade law, will radacalize a bunch of pops because they have guns
+
+MFE_political_events.13 = {
+    type = country_event
+    placement = scope:neighbor_neighbor_state
+    title = MFE_political_events.13.t
+    desc = MFE_political_events.13.d
+    flavor = MFE_political_events.13.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/europenorthamerica_political_extremism.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        has_law = law_type:law_free_trade
+        any_neighbouring_state = {
+            owner = {
+                religion = root.religion
+                market_capital.market = {
+                    mg:small_arms = {
+                        market_goods_delta >= 10
+                    }
+                }
+                NOT = { is_country_type = decentralized }
+            }
+        }
+        NOT = { has_variable = guns_across_border }
+    }
+
+    immediate = {
+        random_neighbouring_state = {
+            limit = {
+                owner = {
+                    religion = root.religion
+                    market_capital.market = {
+                        mg:small_arms = {
+                            market_goods_delta >= 10
+                        }
+                    }
+                    NOT = { is_country_type = decentralized }
+                }
+            }
+            save_scope_as = neighbor_state
+            owner = {
+                save_scope_as = neighbor_country
+            }
+
+            random_neighbouring_state = {
+                limit = {
+                    owner = ROOT
+                }
+                save_scope_as = neighbor_neighbor_state
+            }
+        }
+        set_variable = guns_across_border # Only happens once
+    }
+
+    option = {      
+        name = MFE_political_events.13.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.13.b
+    }
+}
+# Local Business Fails - has interventionalism law
+
+MFE_political_events.14 = {
+    type = country_event
+    placement = scope:failing_state
+    title = MFE_political_events.14.t
+    desc = MFE_political_events.14.d
+    flavor = MFE_political_events.14.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/asia_factory_accident.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        has_law = law_type:law_interventionism
+        any_scope_state = {
+            any_scope_building = {
+                is_poor_manufacturing_building = { LEVEL = 4 }
+            }
+        }
+        NOT = { has_variable = buissness_failed_var }
+    }
+
+    immediate = {
+        set_variable = buissness_failed_var # Only happens once
+        random_scope_state = {
+            limit = {
+                any_scope_building = {
+                    is_poor_manufacturing_building = { LEVEL = 4 }
+                }
+            }
+            random_scope_building = {
+                limit = {
+                    is_poor_manufacturing_building = { LEVEL = 4 }
+                }
+                save_scope_as = failing_building
+            }
+            save_scope_as = failing_state
+        }
+    }
+
+    option = {      
+        name = MFE_political_events.14.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.14.b
+    }
+}
+
+# Recruitment Drive - is at war and has natioal militia law, increase conscription
+
+MFE_political_events.15 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.15.t
+    desc = MFE_political_events.15.d
+    flavor = MFE_political_events.15.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_military_parade.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        is_at_war = yes
+        any_scope_war = {
+            is_warleader = root
+            num_country_dead = {
+                target = root
+                value >= 0
+            }
+        }
+        has_law = law_type:law_national_militia
+        NOT = { has_variable = recruitment_drive_cooldown }
+    }
+
+    immediate = {
+        set_variable = {
+            name = recruitment_drive_cooldown
+            days = long_cooldown
+        }
+    }
+
+    option = { # Go through with the recruitment drive  
+        name = MFE_political_events.15.a
+        default_option = yes
+    }
+    option = { # We don't need the extra soldiers
+        name = MFE_political_events.15.b
+    }
+}
+
+# Secular Policies - has law_freedom_of_conscience or law_total_separation, make clergy pops radical
+
+MFE_political_events.16 = {
+    type = country_event
+    placement = scope:religious_state
+    title = MFE_political_events.16.t
+    desc = MFE_political_events.16.d
+    flavor = MFE_political_events.16.f
+    
+    duration = 3
+
+    gui_window = event_window_1char_tabloid
+
+    left_icon = scope:ig_leader
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        OR = {
+            has_law = law_type:law_freedom_of_conscience
+            has_law = law_type:law_total_separation
+        }
+        pop_type_percent_country = {
+            pop_type = clergymen
+            percent > 0.05
+        }
+        exists = ig:ig_devout
+        ig:ig_devout = { 
+            is_marginal = no
+            exists = leader
+        }
+    }
+
+    immediate = {
+        ig:ig_devout.leader = {
+            save_scope_as = ig_leader
+        }
+        random_scope_state = {
+            limit = {
+                any_scope_pop = {
+                    is_pop_type = clergymen
+                }
+            }
+            save_scope_as = religious_state
+        }
+    }
+
+    option = {      
+        name = MFE_political_events.16.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.16.b
+    }
+}
+
+# Protectionist Lobby - has law_free_trade, pops advocate for protectionism
+
+MFE_political_events.17 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.17.t
+    desc = MFE_political_events.17.d
+    flavor = MFE_political_events.17.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        has_law = law_type:law_free_trade
+        any_active_party = {
+            is_party_type = conservative_party
+        }
+        exists = py:conservative_party
+        any_interest_group = {
+            is_member_of_party = owner.py:conservative_party
+            is_in_government = yes
+            law_stance = {
+                law = law_type:law_protectionism
+                value > neutral
+            }
+        }
+        NOT = { has_variable = protectionist_lobby_var }
+    }
+
+    immediate = {
+        set_variable = protectionist_lobby_var
+        random_interest_group = {
+            limit = {
+               is_member_of_party = owner.py:conservative_party
+               is_in_government = yes
+               law_stance = {
+                   law = law_type:law_protectionism
+                   value > neutral
+               }
+            }
+            save_scope_as = conservative_ig
+        }
+    }
+
+    option = {      
+        name = MFE_political_events.17.a
+        default_option = yes
+        every_active_party = {
+            limit = {
+                is_party_type = conservative_party
+            }
+            add_momentum = momentum_small
+        }
+    }
+    option = {      
+        name = MFE_political_events.17.b
+        every_active_party = {
+            limit = {
+                is_party_type = conservative_party
+            }
+            add_momentum = momentum_small_decrease
+        }
+    }
+}
+
+# Free Trade & Repeal Society - has law_protectionism, pops advocate for free trade
+
+MFE_political_events.18 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.18.t
+    desc = MFE_political_events.18.d
+    flavor = MFE_political_events.18.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        has_law = law_type:law_protectionism
+        any_active_party = {
+            is_party_type = liberal_party
+        }
+        exists = py:liberal_party
+        any_interest_group = {
+            is_member_of_party = owner.py:liberal_party
+            is_in_government = yes
+            law_stance = {
+                law = law_type:law_free_trade
+                value > neutral
+            }
+        }
+        NOT = { has_variable = freetrade_lobby_var }
+    }
+
+    immediate = {
+        set_variable = freetrade_lobby_var
+        random_interest_group = {
+            limit = {
+               is_member_of_party = owner.py:liberal_party
+               is_in_government = yes
+               law_stance = {
+                   law = law_type:law_free_trade
+                   value > neutral
+               }
+            }
+            save_scope_as = liberal_ig
+        }
+    }
+
+    option = {      
+        name = MFE_political_events.18.a
+        default_option = yes
+        every_active_party = {
+            limit = {
+                is_party_type = liberal_party
+            }
+            add_momentum = momentum_small
+        }
+    }
+    option = {      
+        name = MFE_political_events.18.b
+        every_active_party = {
+            limit = {
+                is_party_type = liberal_party
+            }
+            add_momentum = momentum_small_decrease
+        }
+    }
+}
+
+# Free Trade & Morals- has law_laissez_faire
+
+MFE_political_events.19 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.19.t
+    desc = MFE_political_events.19.d
+    flavor = MFE_political_events.19.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        has_law = law_type:law_laissez_faire
+        exists = ig:ig_industrialists
+        ig:ig_industrialists = { is_powerful = yes }
+        NOT = { has_variable = freetrade_morals_var }
+    }
+
+    immediate = {
+        set_variable = freetrade_morals_var
+
+    }
+
+    option = {      
+        name = MFE_political_events.19.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.19.b
+    }
+}
+
+# Trade Union Reform - has law_worker_protections
+
+MFE_political_events.20 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.20.t
+    desc = MFE_political_events.20.d
+    flavor = MFE_political_events.20.f
+    
+    duration = 3
+
+    gui_window = event_window_2char
+
+    left_icon = ruler
+    right_icon = scope:trade_leader
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/misc/2Characters"
+
+    icon = "gfx/interface/icons/event_icons/event_trade.dds"
+
+    trigger = {
+        has_law = law_type:law_worker_protections
+        exists = ig:ig_trade_unions
+        ig:ig_trade_unions = {
+            is_marginal = no
+            is_in_government = yes
+            exists = leader
+        }
+        NOT = { has_variable = unions_reform_var }
+    }
+
+    immediate = {
+        set_variable = unions_reform_var
+        ig:ig_trade_unions.leader = {
+            save_scope_as = trade_leader
+        }
+    }
+
+    option = {      
+        name = MFE_political_events.20.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.20.b
+    }
+}
+
+# Censorship Bureau Overworked has law_outlawed_dissent or law_censorship
+
+MFE_political_events.21 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.21.t
+    desc = MFE_political_events.21.d
+    flavor = MFE_political_events.21.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/southamerica_aristocrats.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        OR = {
+            has_law = law_type:law_outlawed_dissent
+            has_law = law_type:law_censorship
+        }
+        NOT = { has_variable = censorship_bureau_var }
+    }
+
+    immediate = {
+        set_variable = censorship_bureau_var
+    }
+
+    option = {      
+        name = MFE_political_events.21.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.21.b
+    }
+}
+
+# Freemarketeering Criticized - has law_laissez_faire
+
+MFE_political_events.22 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.22.t
+    desc = MFE_political_events.22.d
+    flavor = MFE_political_events.22.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/middleeast_courtroom_upheaval.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        any_active_party = {
+            is_party_type = conservative_party
+        }
+        exists = py:conservative_party
+        any_interest_group = {
+            is_member_of_party = owner.py:conservative_party
+            is_in_government = yes
+            law_stance = {
+                law = law_type:law_laissez_faire
+                value < neutral
+            }
+        }
+        has_law = law_type:law_laissez_faire
+    }
+
+    immediate = {
+
+    }
+
+    option = {      
+        name = MFE_political_events.22.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.22.b
+    }
+}
+
+#### Suffrage ####
+
+# based on https://github.com/Historical-Expansion-Mod/Greater-Flavor-Mod/blob/master/GFM/events/SuffragetteMovements.txt
+
+# Anti-Slavery Convention - has law_slave_trade or law_legacy_slavery
+
+MFE_political_events.23 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.23.t
+    desc = MFE_political_events.23.d
+    flavor = MFE_political_events.23.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/middleeast_courtroom_upheaval.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        OR = {
+            has_law = law_type:law_slave_trade
+            has_law = law_type:law_legacy_slavery
+        }
+        any_interest_group = {
+            is_in_government = yes
+            law_stance = {
+                law = law_type:law_slavery_banned
+                value > neutral
+            }
+        }
+        NOT = { has_variable = anti_slavery_convention_cooldown }
+    }
+
+    immediate = {
+        set_variable = {
+            name = anti_slavery_convention_cooldown
+            days = long_cooldown
+        }
+        random_interest_group = {
+            limit = {
+                is_in_government = yes
+                law_stance = {
+                    law = law_type:law_slavery_banned
+                    value > neutral
+                }
+            }
+            save_scope_as = anti_slavery_ig
+        }
+    }
+
+    option = {      
+        name = MFE_political_events.23.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.23.b
+    }
+}
+
+# Education for Women - has law_no_womens_rights
+
+MFE_political_events.24 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.24.t
+    desc = MFE_political_events.24.d
+    flavor = MFE_political_events.24.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/europenorthamerica_sufferage.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        has_law = law_type:law_no_womens_rights
+        NOT = { has_variable = womens_education_demanded }
+        any_interest_group = {
+            is_in_government = yes
+            law_stance = {
+                law = law_type:law_womens_suffrage
+                value > neutral
+            }
+        }
+    }
+
+    immediate = {
+        set_variable = womens_education_demanded
+        random_interest_group = {
+            limit = {
+                is_in_government = yes
+                law_stance = {
+                    law = law_type:law_womens_suffrage
+                    value > neutral
+                }
+            }
+            save_scope_as = womens_ig
+        }
+    }
+
+    option = {      
+        name = MFE_political_events.24.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.24.b
+    }
+}
+
+# Hunger Strike - has law_women_in_the_workplace and can enact law_womens_suffrage
+
+MFE_political_events.25 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.25.t
+    desc = MFE_political_events.25.d
+    flavor = MFE_political_events.25.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/europenorthamerica_sufferage.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        has_law = law_type:law_women_in_the_workplace
+        NOT = { has_variable = womens_rights_demanded }
+        any_interest_group = {
+            is_in_government = yes
+            law_stance = {
+                law = law_type:law_womens_suffrage
+                value > neutral
+            }
+        }
+    }
+
+    immediate = {
+        set_variable = womens_rights_demanded
+        random_interest_group = {
+            limit = {
+                is_in_government = yes
+                law_stance = {
+                    law = law_type:law_womens_suffrage
+                    value > neutral
+                }
+            }
+            save_scope_as = womens_ig
+        }
+    }
+
+    option = {      
+        name = MFE_political_events.25.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.25.b
+    }
+}
+
+##### Other #####
+# based on https://github.com/Historical-Expansion-Mod/Greater-Flavor-Mod/blob/master/GFM/events/NationalistMovements.txt
+
+# Local Poet
+
+MFE_political_events.26 = {
+    type = country_event
+    placement = scope:arts_state
+    title = MFE_political_events.26.t
+    desc = MFE_political_events.26.d
+    flavor = MFE_political_events.26.f
+    
+    duration = 3
+
+    gui_window = event_window_1char_tabloid
+
+    #left_icon = scope:poet_guy
+    left_icon = ruler
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        NOT = { has_variable = local_poet_cooldown }
+        any_scope_state = {
+            any_scope_building = {
+                is_building_type = building_arts_academy
+                level >= 3
+            }
+        }
+    }
+
+    immediate = {
+        set_variable = {
+            name = local_poet_cooldown
+            days = medium_cooldown
+        }
+        random_scope_state = {
+            limit = {
+                any_scope_building = {
+                    is_building_type = building_arts_academy
+                    level >= 3
+                }
+            }
+            save_scope_as = arts_state
+        }
+        # Commented out until crash fix
+        #create_character = {
+        #   interest_group = ig_industrialists
+        #   ideology = ideology_market_liberal
+        #   save_scope_as = poet_guy
+        #}
+    }
+
+    option = {      
+        name = MFE_political_events.26.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.26.b
+    }
+}
+
+# Underground Newspaper
+
+MFE_political_events.27 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.27.t
+    desc = MFE_political_events.27.d
+    flavor = MFE_political_events.27.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        OR = {
+            has_law = law_type:law_right_of_assembly
+            has_law = law_type:law_protected_speech
+        }
+        NOT = { has_variable = underground_newspaper_cooldown } 
+    }
+
+    immediate = {
+        set_variable = {
+            name = underground_newspaper_cooldown
+            days = long_cooldown
+        }
+    }
+
+    option = {      
+        name = MFE_political_events.27.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.27.b
+    }
+}
+
+# Nobles Incite the peasantry - Does not have law_multicultural
+
+MFE_political_events.28 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.28.t
+    desc = MFE_political_events.28.d
+    flavor = MFE_political_events.28.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/middleeast_upperclass_party.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        NOT = { has_law = law_type:law_multicultural }
+        NOT = { has_variable = nobles_vs_peasents_var }
+    }
+
+    immediate = {
+        set_variable = {
+            name = nobles_vs_peasents_var
+            days = long_cooldown
+        }
+    }
+
+    option = {      
+        name = MFE_political_events.28.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.28.b
+    }
+}
+
+# Local Merchants Upset
+
+MFE_political_events.29 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.29.t
+    desc = MFE_political_events.29.d
+    flavor = MFE_political_events.29.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/europenorthamerica_springtime_of_nations.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+    
+    }
+
+    immediate = {
+
+    }
+
+    option = {      
+        name = MFE_political_events.29.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.29.b
+    }
+}
+
+# Building permits - has law_command_economy
+
+MFE_political_events.30 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.30.t
+    desc = MFE_political_events.30.d
+    flavor = MFE_political_events.30.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        has_law = law_type:law_command_economy
+    }
+
+    immediate = {
+
+    }
+
+    option = {      
+        name = MFE_political_events.30.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.30.b
+    }
+}
+
+# School Strike - has a level 5 university and no law_multicultural, university strikes
+
+MFE_political_events.31 = {
+    type = country_event
+    placement = root
+    title = MFE_political_events.31.t
+    desc = MFE_political_events.31.d
+    flavor = MFE_political_events.31.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/europenorthamerica_sufferage.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        any_scope_state = {
+            any_scope_building = {
+                is_wealthy_building = {
+                    BUILDING = building_university
+                    LEVEL = 3
+                }
+            }
+        }
+        NOT = { has_law = law_type:law_multicultural }
+        NOT = { has_variable = school_strike_var }
+    }
+
+    immediate = {
+        set_variable = {
+            name = school_strike_var
+            days = very_long_cooldown
+        }
+    }
+
+    option = {      
+        name = MFE_political_events.31.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_political_events.31.b
+    }
+}

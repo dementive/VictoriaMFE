@@ -1,0 +1,37 @@
+﻿je_columbia_coffee = {
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	complete = {
+	    any_scope_state = {
+	    	any_scope_building = {
+	    		is_building_type = building_coffee_plantation
+	    		level >= 4
+	    	}
+	    }
+	}
+
+	on_complete = {
+    	ordered_scope_state = {
+    		limit = {
+    			any_scope_building = {
+    				is_building_type = building_coffee_plantation
+    			}
+    		}
+    		max = 2
+    		order_by = state_population
+    		add_modifier = {
+    			name = columbian_coffee_boom
+    			months = -1
+    		}
+    		add_building_level_effect = {
+    			BUILDING = "building_coffee_plantation"
+    			AMOUNT = "2"
+    			TT = "add_2_coffee_level_tt"
+    		}
+    	}
+	}
+
+	weight = 100
+
+	inheritable = no
+}

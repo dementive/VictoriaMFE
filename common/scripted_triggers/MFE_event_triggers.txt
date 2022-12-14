@@ -1,0 +1,44 @@
+﻿has_worker_rights_and_powerful_trade_unions = {
+	# Scope = Country
+	exists = ig:ig_trade_unions
+	ig:ig_trade_unions = {
+	    is_insurrectionary = no
+	    is_revolutionary = no
+	    is_marginal = no
+	}
+	OR = {
+	    has_law = law_type:law_regulatory_bodies
+	    has_law = law_type:law_worker_protections
+	}
+}
+
+is_rich_manufacturing_building = {
+	# Scope = Building
+	# $LEVEL$ = Required building level
+	is_building_group = bg_manufacturing
+	level >= $LEVEL$
+	cash_reserves_ratio > 0.85
+	weekly_profit > 0
+	occupancy >= 0.8
+}
+
+is_poor_manufacturing_building = {
+	# Scope = Building
+	# $LEVEL$ = Required building level
+	is_building_group = bg_manufacturing
+	level >= $LEVEL$
+	cash_reserves_ratio > 0.55
+	weekly_profit < 5
+	occupancy >= 0.5
+}
+
+is_wealthy_building = {
+	# Scope = Building
+	# $BUILDING$ = The building type to check
+	# $LEVEL$ = Required building level
+	is_building_type = $BUILDING$
+	level >= $LEVEL$
+	cash_reserves_ratio > 0.85
+	weekly_profit > 0
+	occupancy >= 0.8
+}

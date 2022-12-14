@@ -1,0 +1,55 @@
+namespace = MFE_south_america
+
+MFE_south_america.1 = {
+    type = country_event
+    placement = root
+    title = MFE_south_america.1.t
+    desc = MFE_south_america.1.d
+    flavor = MFE_south_america.1.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        OR = {
+        	exists = c:CLM
+        	this = c:CLM
+            exists = c:GCO
+            this = c:GCO
+        }
+    	any_scope_state = {
+    		count >= 3
+    		any_scope_building = {
+    			is_building_type = building_coffee_plantation
+    		}
+    	}
+        NOT = { has_variable = coffee_boom_happened }
+    }
+
+    immediate = {
+        set_variable = coffee_boom_happened
+    }
+
+    option = { # It's Coffee time!
+        name = MFE_south_america.1.a
+        default_option = yes
+        add_journal_entry = {
+        	type = je_columbia_coffee
+        }
+    }
+    option = { # We should focus on Columbian industries
+    	name = MFE_south_america.1.b
+    	add_modifier = {
+    		name = focus_on_columbian_industrial_development
+    		days = 3650
+    	}
+    }
+}

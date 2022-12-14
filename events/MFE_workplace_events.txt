@@ -1,0 +1,149 @@
+﻿namespace = MFE_workplace_events
+
+# Based on https://github.com/Historical-Expansion-Mod/Greater-Flavor-Mod/blob/master/GFM/events/WorkPlaceEvents.txt
+
+# Mine accident - has level 5 coal mine and does not have law_worker_protections
+
+MFE_workplace_events.1 = {
+    type = country_event
+    placement = scope:mine_state
+    title = MFE_workplace_events.1.t
+    desc = MFE_workplace_events.1.d
+    flavor = MFE_workplace_events.1.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+    	any_scope_state = {
+    		any_scope_building = {
+    			is_building_type = building_coal_mine
+    			level >= 5
+    		}
+    	}
+    	NOT = { has_law = law_type:law_worker_protections }
+    	NOT = { has_variable = mine_accident_cooldown }
+    }
+
+    immediate = {
+    	set_variable = {
+    	    name = mine_accident_cooldown
+    	    days = very_long_cooldown
+    	}
+    	random_scope_state = {
+    		limit = {
+    			any_scope_building = {
+    				is_building_type = building_coal_mine
+    				level >= 5
+    			}
+    		}
+    		save_scope_as = mine_state
+    	}
+    }
+
+    option = {      
+        name = MFE_workplace_events.1.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_workplace_events.1.b
+    }
+}
+
+#The Girl in The Coal Mine - has level 5 coal mine, no law_worker_protections, law_women_in_the_workplace or law_womens_suffrage, and law_child_labor_allowed
+
+MFE_workplace_events.2 = {
+    type = country_event
+    placement = scope:mining_state
+    title = MFE_workplace_events.2.t
+    desc = MFE_workplace_events.2.d
+    flavor = MFE_workplace_events.2.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+    	NOR = {
+    		has_law = law_type:law_worker_protections
+    		has_law = law_type:law_women_in_the_workplace
+    		has_law = law_type:law_womens_suffrage
+    	}
+    	has_law = law_type:law_child_labor_allowed
+    	any_scope_state = {
+    		any_scope_building = {
+    			is_building_type = building_coal_mine
+    			level >= 5
+    		}
+    	}
+    	NOT = { has_variable = mining_cooldown_var }
+    }
+
+    immediate = {
+    	set_variable = mining_cooldown_var
+    	random_scope_state = {
+    		limit = {
+    			any_scope_building = {
+    				is_building_type = building_coal_mine
+    				level >= 5
+    			}
+    		}
+    		save_scope_as = mining_state
+    	}
+    }
+
+    option = {      
+        name = MFE_workplace_events.2.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_workplace_events.2.b
+    }
+}
+
+# Production Shortfalls
+
+# Tea Weighing Station Robbed
+
+# Old Canned Food - Has level 3 grocery building with cannaries production method
+
+# Bovine Fever - Has level 5 or more livestock ranches video = "gfx/event_pictures/asia_dead_cattle_poor_harvest.bk2"
+
+# Death In The Silk Fields - Has level 5 or more silk plantation and no law_worker_protections
+
+# Blood & Iron Mine - has level 5 iron mine and no law_worker_protections, iron mine workers die and radicalize
+
+# Tragedy at the Mine - has level 5 iron mine and no law_worker_protections
+
+# Quality Problems - has level 5 cottom plantation
+
+# Boiler Explodes! - has a shipyard that has the steamers production method
+
+# Dyeworks Accident - has level 3 dye plantation
+
+# Cistern Explodes - has level 5 oil rig
+
+# Overproduction at the Refinery - Has level 5 oil rig, get throughput mod or pocket cash
+
+# The Old Man and The Sea - has level 5 fishery, get throughput mod
+
+# Explosives Explode - has level 3 fertilizer plant producing explosives
+
+# Elegant furniture - has level 5 furniture manufactury, get mod
+
+# Fashion Fails - Has a level 3 textile mill with the focusing on luxury clothes production method

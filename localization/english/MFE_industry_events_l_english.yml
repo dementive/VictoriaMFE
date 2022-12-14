@@ -24,3 +24,5 @@
 
   add_1_rail_level_tt:0 "Add #Y 1#! building level to Railways in [SCOPE.sState('railway_state').GetName]"
   add_2_rail_level_tt:0 "Add #Y 2#! building levels to Railways in [SCOPE.sState('railway_state').GetName]"
+  add_1_coffee_level_tt:0 "Add #Y 1#! building level to Coffee Plantations in [THIS.GetState.GetName]"
+  add_2_coffee_level_tt:0 "Add #Y 2#! building levels to Coffee Plantations in [THIS.GetState.GetName]"
