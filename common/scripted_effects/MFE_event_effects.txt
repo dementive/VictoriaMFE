@@ -48,6 +48,7 @@ add_building_level_effect = {
 			create_building = {
 				building = $BUILDING$
 				level = var:level_var
+				reserves = 1
 			}
 			remove_variable = level_var
 		}
@@ -55,6 +56,7 @@ add_building_level_effect = {
 			create_building = {
 				building = $BUILDING$
 				level = $AMOUNT$
+				reserves = 1
 			}
 		}
 	}

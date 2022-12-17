@@ -1,6 +1,6 @@
 ﻿on_yearly_pulse_country = {
 	random_events = {
-		2360 = 0	# As more events are added this value can be decreased but total should always be around 3000
+		2190 = 0	# As more events are added this value can be decreased but total should always be around 3000
 
 
 		20 = mfe_industry_events.1
@@ -37,6 +37,25 @@
 		20 = MFE_political_events.29
 		20 = MFE_political_events.30
 		20 = MFE_political_events.31
+
+		# Workplace Events
+		10 = MFE_workplace_events.1
+		10 = MFE_workplace_events.2
+		10 = MFE_workplace_events.3
+		10 = MFE_workplace_events.4
+		10 = MFE_workplace_events.5
+		10 = MFE_workplace_events.6
+		10 = MFE_workplace_events.7
+		10 = MFE_workplace_events.8
+		10 = MFE_workplace_events.9
+		10 = MFE_workplace_events.10
+		10 = MFE_workplace_events.11
+		10 = MFE_workplace_events.12
+		10 = MFE_workplace_events.13
+		10 = MFE_workplace_events.14
+		10 = MFE_workplace_events.15
+		10 = MFE_workplace_events.16
+		10 = MFE_workplace_events.17
 	}
 	events = {
 		MFE_south_america.1

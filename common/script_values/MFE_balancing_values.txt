@@ -10,6 +10,12 @@ very_long_cooldown = 18250 # 50 years
 	multiply = 0.05
 }
 
+subtract_2_percent_of_credit = {
+	add = root.credit
+	multiply = 0.02
+	multiply = -1
+}
+
 #########################################
 ## Copied in from vanilla event_values.txt
 #########################################

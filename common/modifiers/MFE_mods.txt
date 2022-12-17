@@ -60,11 +60,139 @@ focus_on_columbian_industrial_development = {
 	country_prestige_add = 10
 }
 
-industrialists_trade_policy_approval = {
+industrialists_trade_policy_approval_mod = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
 	interest_group_approval_add = 3
 }
-industrialists_trade_policy_disapproval = {
+industrialists_trade_policy_disapproval_mod = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
 	interest_group_approval_add = -3
+}
+
+suppressed_newspaper_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	interest_group_approval_add = -4
+}
+free_flowing_publications_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	country_weekly_innovation_max_add = 5
+}
+
+workers_committee_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	interest_group_approval_add = 3
+}
+workers_committee_demands_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	country_authority_add = -50
+}
+
+workers_committee_disallowed_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	interest_group_approval_add = -3	
+}
+
+local_management_conflict_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	country_bureaucracy_add = -35
+}
+public_meeting_ig_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	interest_group_approval_add = 2
+}
+public_meeting_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	country_authority_mult = -0.1
+}
+public_meeting_disaster_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	interest_group_approval_add = -2
+}
+
+attacked_warehouse_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	building_group_bg_manufacturing_laborers_standard_of_living_add = -1
+	building_group_bg_manufacturing_machinists_standard_of_living_add = -1
+	building_group_bg_manufacturing_engineers_standard_of_living_add = -1
+}
+
+professor_supported_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	interest_group_pol_str_mult = 0.1
+}
+
+professor_suppressed_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	interest_group_pol_str_mult = -0.1
+}
+
+bread_riot_sol_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	state_standard_of_living_add = -2
+}
+
+bread_riot_concessions_given_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	country_bureaucracy_add = -20
+	country_authority_add = -10
+}
+
+buissness_failed_state_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	state_standard_of_living_add = -2
+}
+
+state_buissness_supported_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
+	building_group_bg_manufacturing_laborers_mortality_mult = 0.04
+}
+
+state_recruitment_drive_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	state_conscription_rate_mult = 0.25
+}
+
+ig_devout_bribed_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	interest_group_pol_str_mult = 0.05
+	interest_group_approval_add = 2
+}
+
+bribed_interest_group_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	country_legitimacy_base_add = -5
+}
+
+free_trade_support_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	country_prestige_mult = 0.1
+}
+free_trade_denied_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	country_influence_mult = 0.1
+}
+
+censorship_bureau_supported_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	country_bureaucracy_add = -60
+	country_authority_add = 10
+	country_institution_police_max_investment_add = 1
+}
+
+censorship_supported_ig_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	interest_group_approval_add = 2
+}
+censorship_bureau_denied_funds_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_institution_police_max_investment_add = -1
+}
+censorship_denied_funds_ig_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	interest_group_approval_add = -2
+}
+
+local_poet_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	building_arts_academy_throughput_mult = 0.1
 }

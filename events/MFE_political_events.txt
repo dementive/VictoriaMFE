@@ -1,5 +1,90 @@
 ﻿namespace = MFE_political_events
 
+scripted_trigger conflict_building = {
+    any_scope_building = {
+        OR = {
+            is_building_type = building_urban_center
+            is_building_type = building_trade_center
+        }
+        cash_reserves_ratio > 0.5
+        weekly_profit > 0
+        occupancy >= 0.75
+        level >= 5
+    }
+}
+
+scripted_effect build_wheat_building = {
+    random_scope_building = {
+        limit = { is_grain_producing_building = yes }
+        weight = {
+            modifier = {
+                factor = 20
+                occupancy >= 0.9
+            }
+            modifier = {
+                factor = -100
+                level < 5
+            }
+            modifier = {
+                factor = 15
+                level >= 5
+            }
+            modifier = {
+                factor = 100
+                level >= 10
+            }
+        }
+        switch = {
+            trigger = is_building_type
+            building_wheat_farm = {
+                prev = {
+                    add_building_level_effect = {
+                        BUILDING = "building_wheat_farm"
+                        AMOUNT = "2"
+                        TT = "add_2_wheat_level_tt"
+                    }
+                }
+            }
+            building_rice_farm = {
+                prev = {
+                    add_building_level_effect = {
+                        BUILDING = "building_rice_farm"
+                        AMOUNT = "2"
+                        TT = "add_2_rice_level_tt"
+                    }
+                }
+            }
+            building_rye_farm = {
+                prev = {
+                    add_building_level_effect = {
+                        BUILDING = "building_rye_farm"
+                        AMOUNT = "2"
+                        TT = "add_2_rye_level_tt"
+                    }
+                }
+            }
+            building_maize_farm = {
+                prev = {
+                    add_building_level_effect = {
+                        BUILDING = "building_maize_farm"
+                        AMOUNT = "2"
+                        TT = "add_2_maize_level_tt"
+                    }
+                }
+            }
+            building_millet_farm = {
+                prev = {
+                    add_building_level_effect = {
+                        BUILDING = "building_millet_farm"
+                        AMOUNT = "2"
+                        TT = "add_2_millet_level_tt"
+                    }
+                }
+            }
+        }
+    }
+}
+
 # Based on https://github.com/Historical-Expansion-Mod/Greater-Flavor-Mod/blob/master/GFM/events/PoliticalEvents.txt
 
 # Newspaper Publishes Slander
@@ -16,34 +101,53 @@ MFE_political_events.1 = {
         video = "gfx/event_pictures/unspecific_signed_contract.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    cooldown = { months = long_cooldown }
 
     trigger = {
     	OR = {
     		has_law = law_type:law_right_of_assembly
     		has_law = law_type:law_protected_speech
     	}
-    	NOT = { has_variable = slander_cooldown }
-    }
-
-    immediate = {
-    	set_variable = {
-    		name = slander_cooldown
-    		days = long_cooldown
-    	}
+        has_technology_researched = mass_communication
     }
 
     option = {      
         name = MFE_political_events.1.a
         default_option = yes
         # Suppress it, gain radicals and make integelsentia mad
+        if = {
+            limit = {
+                exists = ig:ig_intelligentsia
+                ig:ig_intelligentsia = { is_marginal = no }
+            }
+            ig:ig_intelligentsia = {
+                add_modifier = {
+                    name = suppressed_newspaper_mod
+                    days = normal_modifier_time
+                }
+            }
+        }
+        else = {
+            add_radicals = {
+                value = 0.1
+            }
+        }
     }
     option = {      
         name = MFE_political_events.1.b
         # Gain radicals but also gain some innovation modifier
+        add_radicals = {
+            value = 0.5
+        }
+        add_modifier = {
+            name = free_flowing_publications_mod
+            days = normal_modifier_time
+        }
     }
 }
 
@@ -66,6 +170,7 @@ MFE_political_events.2 = {
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
 
+    cooldown = { months = long_cooldown }
     trigger = {
 	    in_election_campaign = yes
         any_interest_group = {
@@ -83,16 +188,11 @@ MFE_political_events.2 = {
 	    		is_party_type = social_democrat_party
 	    	}
 	    }
-        NOT = { has_variable = harassment_cooldown }
     }
     cancellation_trigger = {
         in_election_campaign = no
     }
     immediate = {
-        set_variable = {
-            name = harassment_cooldown
-            days = long_cooldown
-        }
     	random_active_party = {
     		limit = {
     			OR = {
@@ -113,12 +213,32 @@ MFE_political_events.2 = {
     	}
     }
 
-    option = {      
+    option = { # Defend harassed_party
         name = MFE_political_events.2.a
         default_option = yes
+        scope:harassed_party = {
+            add_momentum = momentum_small
+        }
+        scope:harassing_party = {
+            add_momentum = momentum_small_decrease
+        }
     }
-    option = {      
+    option = { # Nothing can be done for harassed_party
         name = MFE_political_events.2.b
+        scope:harassed_party = {
+            add_momentum = momentum_small_decrease
+        }
+        scope:harassing_party = {
+            add_momentum = momentum_small
+        }
+        random_scope_state = {
+            limit = {
+                is_incorporated = yes
+            }
+            add_radicals = {
+                value = 0.15
+            }
+        }
     }
 }
 
@@ -141,6 +261,7 @@ MFE_political_events.3 = {
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
 
+    cooldown = { months = long_cooldown }
     trigger = {
     	in_election_campaign = yes
     	OR = {
@@ -155,16 +276,11 @@ MFE_political_events.3 = {
                 is_party_type = social_democrat_party
             }
         }
-        NOT = { has_variable = fraud_cooldown }
     }
     cancellation_trigger = {
         in_election_campaign = no
     }
     immediate = {
-        set_variable = {
-            name = fraud_cooldown
-            days = long_cooldown
-        }
     	random_active_party = {
     		save_scope_as = party_1
     	}
@@ -177,12 +293,24 @@ MFE_political_events.3 = {
     	}
     }
 
-    option = {      
+    option = { # party_1 clearly made up those votes...
         name = MFE_political_events.3.a
         default_option = yes
+        scope:party_1 = {
+            add_momentum = momentum_small_decrease
+        }
+        scope:party_2 = {
+            add_momentum = momentum_small
+        }
     }
-    option = {      
+    option = { # party_2 can not be trusted in these matters...
         name = MFE_political_events.3.b
+        scope:party_2 = {
+            add_momentum = momentum_small_decrease
+        }
+        scope:party_1 = {
+            add_momentum = momentum_small
+        }
     }
 }
 
@@ -192,7 +320,7 @@ MFE_political_events.3 = {
 
 MFE_political_events.4 = {
     type = country_event
-    placement = root
+    placement = scope:workers_state
     title = MFE_political_events.4.t
     desc = MFE_political_events.4.d
     flavor = MFE_political_events.4.f
@@ -207,33 +335,53 @@ MFE_political_events.4 = {
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-
+    cooldown = { months = long_cooldown }
     trigger = {
         has_worker_rights_and_powerful_trade_unions = yes
-        NOT = { has_variable = workers_committee_cooldown }
     }
 
     immediate = {
-        set_variable = {
-            name = workers_committee_cooldown
-            days = long_cooldown
+        random_scope_state = {
+            save_scope_as = workers_state
         }
     }
 
-    option = {      
+    option = {  # We'll give into their demands
         name = MFE_political_events.4.a
         default_option = yes
+        ig:ig_trade_unions = {
+            add_modifier = {
+                name = workers_committee_mod
+                days = normal_modifier_time
+            }
+        }
+        add_modifier = {
+            name = workers_committee_demands_mod
+            days = normal_modifier_time
+        }
     }
-    option = {      
+    option = {  # This is unacceptable these meetings cannot continue 
         name = MFE_political_events.4.b
-    }
+        ig:ig_trade_unions = {
+            add_modifier = {
+                name = workers_committee_disallowed_mod
+                days = normal_modifier_time
+            }
+        }
+        scope:workers_state = {
+            add_radicals = {
+                value = 0.15
+            }
+        }
+    } 
 }
 
 # Local Management Conflict
 
+
 MFE_political_events.5 = {
     type = country_event
-    placement = root
+    placement = scope:conflict_state
     title = MFE_political_events.5.t
     desc = MFE_political_events.5.d
     flavor = MFE_political_events.5.f
@@ -248,37 +396,38 @@ MFE_political_events.5 = {
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-
+    cooldown = { months = long_cooldown }
     trigger = {
         has_worker_rights_and_powerful_trade_unions = yes
         any_scope_state = {
-            any_scope_building = {
-                OR = {
-                    is_building_type = building_urban_center
-                    is_building_type = building_trade_center
-                }
-                cash_reserves_ratio > 0.5
-                weekly_profit > 0
-                occupancy >= 0.75
-                level >= 5
-            }
+            conflict_building = yes
         }
-        NOT = { has_variable = management_cooldown }
     }
 
     immediate = {
-        set_variable = {
-            name = management_cooldown
-            days = long_cooldown
+        random_scope_state = {
+            limit = {
+                conflict_building = yes
+            }
+            save_scope_as = conflict_state
         }
     }
 
-    option = {      
+    option = {  # Nothing can be done about this... 
         name = MFE_political_events.5.a
         default_option = yes
+        scope:conflict_state = {
+            add_radicals = {
+                value = 0.25
+            }
+        }
     }
-    option = {      
+    option = {  # We need to step in immediately      
         name = MFE_political_events.5.b
+        add_modifier = {
+            name = local_management_conflict_mod
+            days = short_modifier_time
+        }
     }
 }
 
@@ -286,7 +435,7 @@ MFE_political_events.5 = {
 
 MFE_political_events.6 = {
     type = country_event
-    placement = root
+    placement = scope:random_state
     title = MFE_political_events.6.t
     desc = MFE_political_events.6.d
     flavor = MFE_political_events.6.f
@@ -301,25 +450,45 @@ MFE_political_events.6 = {
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-
+    cooldown = { months = long_cooldown }
     trigger = {
         has_worker_rights_and_powerful_trade_unions = yes
-        NOT = { has_variable = meeting_cooldown }
     }
 
     immediate = {
-        set_variable = {
-            name = meeting_cooldown
-            days = long_cooldown
+        random_scope_state = {
+            limit = { is_incorporated = yes }
+            save_scope_as = random_state
         }
     }
 
-    option = {      
+    option = {  # This is great!     
         name = MFE_political_events.6.a
         default_option = yes
+        ig:ig_trade_unions = {
+            add_modifier = {
+                name = public_meeting_ig_mod
+                days = normal_modifier_time
+            }
+        }
+        add_modifier = {
+            name = public_meeting_mod
+            days = normal_modifier_time
+        }
     }
-    option = {      
+    option = {  # Do what we can to prevent this activity
         name = MFE_political_events.6.b
+        ig:ig_trade_unions = {
+            add_modifier = {
+                name = public_meeting_disaster_mod
+                days = normal_modifier_time
+            }
+        }
+        scope:random_state = {
+            add_radicals = {
+                value = 0.2
+            }
+        }
     }
 }
 
@@ -327,7 +496,7 @@ MFE_political_events.6 = {
 
 MFE_political_events.7 = {
     type = country_event
-    placement = scope:attacked_warehouse
+    placement = scope:attacked_state
     title = MFE_political_events.7.t
     desc = MFE_political_events.7.d
     flavor = MFE_political_events.7.f
@@ -342,44 +511,61 @@ MFE_political_events.7 = {
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-
+    cooldown = { months = long_cooldown }
     trigger = {
         any_scope_state = {
             average_sol < 8
-            any_scope_building = {
-                is_rich_manufacturing_building = { LEVEL = 3 }
-            }   
+            MFE_has_building = {
+                S = "2"
+                T = "is_building_group = bg_manufacturing level >= 3"
+                K = "2"
+            }
         }
-        NOT = { has_variable = warhouse_attacked_cooldown }
     }
 
     immediate = {
-        set_variable = {
-            name = warhouse_attacked_cooldown
-            days = long_cooldown
-        }
         random_scope_state = {
             limit = { 
                 average_sol < 8 
-                any_scope_building = {
-                    is_rich_manufacturing_building = { LEVEL = 3 }
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_group = bg_manufacturing level >= 3"
+                    K = "2"
                 }
             }
             random_scope_building = {
                 limit = {
-                    is_rich_manufacturing_building = { LEVEL = 3 }
+                    MFE_has_building = {
+                        S = "3"
+                        T = "is_building_group = bg_manufacturing level >= 3"
+                        K = "2"
+                    }
                 }
                 save_scope_as = attacked_warehouse
+                add_modifier = {
+                    name = attacked_warehouse_mod
+                    days = short_modifier_time
+                }
             }
+            save_scope_as = attacked_state
         }
-    }
+    } 
 
     option = {      
         name = MFE_political_events.7.a
         default_option = yes
+        add_radicals = {
+            strata = poor
+            value = small_radicals
+        }
     }
     option = {      
         name = MFE_political_events.7.b
+        add_treasury = subtract_2_percent_of_credit
+        add_loyalists = {
+            value = 0.1a
+            pop_type = laborers
+        }
     }
 }
 
@@ -387,7 +573,7 @@ MFE_political_events.7 = {
 
 MFE_political_events.8 = {
     type = country_event
-    placement = scope:striking_warehouse
+    placement = scope:striking_warehouse_state
     title = MFE_political_events.8.t
     desc = MFE_political_events.8.d
     flavor = MFE_political_events.8.f
@@ -402,48 +588,68 @@ MFE_political_events.8 = {
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-
+    cooldown = { months = long_cooldown }
     trigger = {
         any_scope_state = {
             average_sol < 8
-            any_scope_building = {
-                is_rich_manufacturing_building = { LEVEL = 5 }
-            }   
+            MFE_has_building = {
+                S = "2"
+                T = "is_building_group = bg_manufacturing level >= 5"
+                K = "2"
+            }  
         }
         OR = {
             has_law = law_type:law_regulatory_bodies
             has_law = law_type:law_worker_protections
         }
-        NOT = { has_variable = warhouse_strike_cooldown }
     }
 
     immediate = {
-        set_variable = {
-            name = warhouse_attacked_cooldown
-            days = long_cooldown
-        }
         random_scope_state = {
             limit = { 
                 average_sol < 8 
-                any_scope_building = {
-                    is_rich_manufacturing_building = { LEVEL = 5 }
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_group = bg_manufacturing level >= 5"
+                    K = "2"
                 }
             }
             random_scope_building = {
                 limit = {
-                    is_rich_manufacturing_building = { LEVEL = 5 }
+                    MFE_has_building = {
+                        S = "3"
+                        T = "is_building_group = bg_manufacturing level >= 5"
+                        K = "2"
+                    }
                 }
-                save_scope_as = striking_warehouse
+                add_modifier = {
+                    name = attacked_warehouse_mod
+                    days = short_modifier_time
+                }
+            }
+            save_scope_as = striking_warehouse_state
+
+            add_radicals = {
+                value = 0.25
             }
         }
     }
 
-    option = {      
+    option = {  # Send in the Police!      
         name = MFE_political_events.8.a
         default_option = yes
+        add_radicals = {
+            strata = poor
+            value = large_radicals
+        }
     }
-    option = {      
+    option = {  # This is no big deal...
         name = MFE_political_events.8.b
+        add_treasury = subtract_2_percent_of_credit
+        add_loyalists = {
+            value = 0.1a
+            pop_type = laborers
+        }
     }
 }
 
@@ -463,14 +669,13 @@ MFE_political_events.9 = {
 
     gui_window = event_window_1char_tabloid
 
-    #left_icon = scope:professor
-    left_icon = ruler
+    left_icon = scope:professor
 
     icon = "gfx/interface/icons/event_icons/event_industry.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
-
+    cooldown = { months = long_cooldown }
     trigger = {
         any_scope_state = {
             any_scope_building = {
@@ -483,14 +688,11 @@ MFE_political_events.9 = {
             has_law = law_type:law_wealth_voting
             has_law = law_type:law_census_voting
         }
-        NOT = { has_variable = prof_university_cooldown }
+        exists = ig:ig_intelligentsia
+        ig:ig_intelligentsia = { is_marginal = no }
     }
 
     immediate = {
-        set_variable = {
-            name = prof_university_cooldown
-            days = long_cooldown
-        }
         random_scope_state = {
             limit = {
                 any_scope_building = {
@@ -507,19 +709,37 @@ MFE_political_events.9 = {
             }
             save_scope_as = university_state
         }
-        #create_character = {
-        #    interest_group = ig_intelligentsia
-        #    ideology = ideology_reformer
-        #    save_scope_as = professor
-        #}
+        create_character = {
+            interest_group = ig_intelligentsia
+            ideology = ideology_reformer
+            save_scope_as = professor
+        }
     }
 
-    option = {      
+    option = {  # These are valid points 
         name = MFE_political_events.9.a
         default_option = yes
+        ig:ig_intelligentsia = {
+            add_modifier = {
+                name = professor_supported_mod
+                days = long_modifier_time
+            }
+        }
     }
-    option = {      
+    option = {  # Suppress these ideas      
         name = MFE_political_events.9.b
+        ig:ig_intelligentsia = {
+            add_modifier = {
+                name = professor_suppressed_mod
+                months = normal_modifier_time
+            }
+        }
+        scope:university_state = {
+            add_radicals = {
+                pop_type = academics
+                value = very_large_radicals
+            }
+        }
     }
 }
 
@@ -544,18 +764,13 @@ MFE_political_events.10 = {
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-
+    cooldown = { months = very_long_cooldown }
     trigger = {
         has_law = law_type:law_free_trade
         exists = ig:ig_industrialists
-        NOT = { has_variable = trade_boon_cooldown }
     }
 
     immediate = {
-        set_variable = {
-            name = trade_boon_cooldown
-            days = very_long_cooldown
-        }
         add_treasury = 5_percent_of_credit
     }
 
@@ -564,7 +779,7 @@ MFE_political_events.10 = {
         default_option = yes
         ig:ig_industrialists = {
             add_modifier = {
-                name = industrialists_trade_policy_approval
+                name = industrialists_trade_policy_approval_mod
                 months = normal_modifier_time
             }
         }
@@ -573,7 +788,7 @@ MFE_political_events.10 = {
         name = MFE_political_events.10.b
         ig:ig_industrialists = {
             add_modifier = {
-                name = industrialists_trade_policy_disapproval
+                name = industrialists_trade_policy_disapproval_mod
                 months = normal_modifier_time
             }
         }
@@ -602,7 +817,7 @@ MFE_political_events.11 = {
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-
+    cooldown = { months = long_cooldown }
     trigger = {
         market_capital.market = {
             mg:grain = { market_goods_pricier > 0.25 }
@@ -612,7 +827,6 @@ MFE_political_events.11 = {
             average_sol < 8
             is_incorporated = yes
         }
-        NOT = { has_variable = bread_riot_cooldown }
     }
 
     immediate = {
@@ -622,19 +836,32 @@ MFE_political_events.11 = {
                 is_incorporated = yes
             }
             save_scope_as = bread_riot_state
-        }
-        set_variable = {
-            name = bread_riot_cooldown
-            days = long_cooldown
+            add_modifier = {
+                name = bread_riot_sol_mod
+                months = normal_modifier_time
+            }
         }
     }
 
-    option = {      
+    option = {  # Try to alleviate their hunger      
         name = MFE_political_events.11.a
         default_option = yes
+        add_modifier = {
+            name = bread_riot_concessions_given_mod
+            months = normal_modifier_time
+        }
+        scope:bread_riot_state = {
+            build_wheat_building = yes
+        }
     }
-    option = {      
+    option = {  # If they want food they can buy it!
         name = MFE_political_events.11.b
+        scope:bread_riot_state = {
+            add_radicals = {
+                strata = poor
+                value = large_radicals
+            }
+        }
     }
 }
 
@@ -657,7 +884,7 @@ MFE_political_events.12 = {
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-
+    cooldown = { months = long_cooldown }
     trigger = {
         market_capital.market = {
             mg:grain = { market_goods_pricier > 0.25 }
@@ -667,7 +894,6 @@ MFE_political_events.12 = {
             average_sol < 8
             is_incorporated = yes
         }
-        NOT = { has_variable = bread_queue_cooldown }
     }
 
     immediate = {
@@ -678,18 +904,30 @@ MFE_political_events.12 = {
             }
             save_scope_as = bread_queue_state
         }
-        set_variable = {
-            name = bread_queue_cooldown
-            days = long_cooldown
-        }
     }
 
     option = {      
         name = MFE_political_events.12.a
         default_option = yes
+        ordered_scope_state = {
+            limit = {
+                any_scope_building = {
+                    is_grain_producing_building = yes
+                }
+            }
+            order_by = state_population
+            build_wheat_building = yes
+        }
+        add_treasury = subtract_2_percent_of_credit
     }
     option = {      
         name = MFE_political_events.12.b
+        scope:bread_queue_state = {
+            add_radicals = {
+                strata = poor
+                value = large_radicals
+            }
+        }
     }
 }
 
@@ -717,7 +955,6 @@ MFE_political_events.13 = {
         has_law = law_type:law_free_trade
         any_neighbouring_state = {
             owner = {
-                religion = root.religion
                 market_capital.market = {
                     mg:small_arms = {
                         market_goods_delta >= 10
@@ -733,7 +970,6 @@ MFE_political_events.13 = {
         random_neighbouring_state = {
             limit = {
                 owner = {
-                    religion = root.religion
                     market_capital.market = {
                         mg:small_arms = {
                             market_goods_delta >= 10
@@ -757,12 +993,18 @@ MFE_political_events.13 = {
         set_variable = guns_across_border # Only happens once
     }
 
-    option = {      
+    option = {  # Little can be done in a free market...     
         name = MFE_political_events.13.a
         default_option = yes
+        scope:neighbor_neighbor_state = {
+            add_radicals = {
+                value = 0.35
+            }
+        }
     }
-    option = {      
+    option = {  # Demand they Stop this Immediately      
         name = MFE_political_events.13.b
+        change_relations = { country = scope:neighbor_country value = -30 }
     }
 }
 # Local Business Fails - has interventionalism law
@@ -787,10 +1029,10 @@ MFE_political_events.14 = {
 
     trigger = {
         has_law = law_type:law_interventionism
-        any_scope_state = {
-            any_scope_building = {
-                is_poor_manufacturing_building = { LEVEL = 4 }
-            }
+        MFE_has_building = {
+            S = "1"
+            T = "is_building_group = bg_manufacturing level >= 4"
+            K = "1"
         }
         NOT = { has_variable = buissness_failed_var }
     }
@@ -799,34 +1041,72 @@ MFE_political_events.14 = {
         set_variable = buissness_failed_var # Only happens once
         random_scope_state = {
             limit = {
-                any_scope_building = {
-                    is_poor_manufacturing_building = { LEVEL = 4 }
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_group = bg_manufacturing level >= 4"
+                    K = "1"
                 }
             }
             random_scope_building = {
                 limit = {
-                    is_poor_manufacturing_building = { LEVEL = 4 }
+                    MFE_has_building = {
+                        S = "3"
+                        T = "is_building_group = bg_manufacturing level >= 4"
+                        K = "1"
+                    }
                 }
                 save_scope_as = failing_building
             }
             save_scope_as = failing_state
+            add_modifier = {
+                name = buissness_failed_state_mod
+                months = normal_modifier_time
+            }
         }
     }
 
-    option = {      
+    option = {  # Send money to the state administrators
         name = MFE_political_events.14.a
         default_option = yes
+        scope:failing_state = {
+            add_modifier = {
+                name = state_buissness_supported_mod
+                months = normal_modifier_time
+            }
+            add_radicals = {
+                pop_type = laborers
+                value = medium_radicals
+            }
+        }
     }
-    option = {      
+    option = {  # We need to support the People      
         name = MFE_political_events.14.b
+        trigger = {
+            ig:ig_trade_unions = {
+                is_insurrectionary = no
+                is_revolutionary = no
+            }
+        }
+        scope:failing_state = {
+            add_modifier = {
+                name = state_buissness_supported_mod
+                months = normal_modifier_time
+            }
+        }
+        ig:ig_trade_unions = {
+            add_modifier = {
+                name = ig_gaining_support
+                months = normal_modifier_time
+            }
+        }
     }
 }
 
-# Recruitment Drive - is at war and has natioal militia law, increase conscription
+# Recruitment Drive - is at war and has national militia law, increase conscription
 
 MFE_political_events.15 = {
     type = country_event
-    placement = root
+    placement = scope:conscription_state
     title = MFE_political_events.15.t
     desc = MFE_political_events.15.d
     flavor = MFE_political_events.15.f
@@ -841,7 +1121,7 @@ MFE_political_events.15 = {
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-
+    cooldown = { months = long_cooldown }
     trigger = {
         is_at_war = yes
         any_scope_war = {
@@ -851,23 +1131,43 @@ MFE_political_events.15 = {
                 value >= 0
             }
         }
-        has_law = law_type:law_national_militia
-        NOT = { has_variable = recruitment_drive_cooldown }
+        any_scope_state = {
+            any_scope_building = { is_building_type = building_conscription_center }
+        }
+        OR = {
+            has_law = law_type:law_national_militia
+            has_law = law_type:law_mass_conscription
+        }
     }
 
     immediate = {
-        set_variable = {
-            name = recruitment_drive_cooldown
-            days = long_cooldown
+        ordered_scope_state = {
+            limit = {
+                any_scope_building = { is_building_type = building_conscription_center }
+            }
+            order_by = num_conscription_centers
+            max = 1
+            save_scope_as = conscription_state
         }
     }
 
     option = { # Go through with the recruitment drive  
         name = MFE_political_events.15.a
         default_option = yes
+        scope:conscription_state = {
+            add_modifier = {
+                name = state_recruitment_drive_mod
+                months = short_modifier_time
+            }
+        }
     }
     option = { # We don't need the extra soldiers
         name = MFE_political_events.15.b
+        scope:conscription_state = {
+            add_loyalists = {
+                value = 0.15
+            }
+        }
     }
 }
 
@@ -890,7 +1190,7 @@ MFE_political_events.16 = {
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-
+    cooldown = { months = long_cooldown }
     trigger = {
         OR = {
             has_law = law_type:law_freedom_of_conscience
@@ -905,28 +1205,65 @@ MFE_political_events.16 = {
             is_marginal = no
             exists = leader
         }
+        any_scope_state = {
+            any_scope_pop = {
+                is_pop_type = clergymen
+            }
+        }
     }
 
     immediate = {
         ig:ig_devout.leader = {
             save_scope_as = ig_leader
         }
-        random_scope_state = {
+        ordered_scope_state = {
             limit = {
                 any_scope_pop = {
                     is_pop_type = clergymen
                 }
             }
+            order_by = num_of_clergymen
+            max = 1
             save_scope_as = religious_state
         }
     }
 
-    option = {      
+    option = {  # 'Convince' the Church to stay quiet  
         name = MFE_political_events.16.a
         default_option = yes
+        ig:ig_devout = {
+            add_modifier = {
+                name = ig_devout_bribed_mod
+                months = normal_modifier_time
+            }
+            leader = {
+                if = {
+                    limit = {
+                        NOT = { has_trait = basic_political_operator }
+                    }
+                    add_trait = basic_political_operator
+                }
+            }
+        }
+        add_modifier = {
+            name = bribed_interest_group_mod
+            months = normal_modifier_time
+        }
     }
-    option = {      
+    option = {  # Do they not have faith in our policies?!
         name = MFE_political_events.16.b
+        ig:ig_devout = {
+            add_modifier = {
+                name = ig_power_challenged
+                months = normal_modifier_time
+            }
+        }
+        scope:religious_state = {
+            add_radicals = {
+                value = 0.25
+                pop_type = clergymen
+            }
+        }
     }
 }
 
@@ -982,7 +1319,7 @@ MFE_political_events.17 = {
         }
     }
 
-    option = {      
+    option = {  # Perhaps we can apply some more restrictions...     
         name = MFE_political_events.17.a
         default_option = yes
         every_active_party = {
@@ -991,14 +1328,26 @@ MFE_political_events.17 = {
             }
             add_momentum = momentum_small
         }
+        scope:conservative_ig = {
+            add_modifier = {
+                name = ig_gaining_support
+                months = normal_modifier_time
+            }
+        }
     }
-    option = {      
+    option = {  # Who do they think they are...
         name = MFE_political_events.17.b
         every_active_party = {
             limit = {
                 is_party_type = conservative_party
             }
             add_momentum = momentum_small_decrease
+        }
+        scope:conservative_ig = {
+            add_modifier = {
+                name = ig_power_challenged
+                months = normal_modifier_time
+            }
         }
     }
 }
@@ -1055,7 +1404,7 @@ MFE_political_events.18 = {
         }
     }
 
-    option = {      
+    option = {  # Free Trade may be a good idea...      
         name = MFE_political_events.18.a
         default_option = yes
         every_active_party = {
@@ -1063,15 +1412,28 @@ MFE_political_events.18 = {
                 is_party_type = liberal_party
             }
             add_momentum = momentum_small
+            save_scope_as = liberal_party
+        }
+        scope:liberal_ig = {
+            add_modifier = {
+                name = ig_gaining_support
+                months = normal_modifier_time
+            }
         }
     }
-    option = {      
+    option = {  # The [SCOPE.sParty('liberal_party').GetName] will not dictate our policy!
         name = MFE_political_events.18.b
         every_active_party = {
             limit = {
                 is_party_type = liberal_party
             }
             add_momentum = momentum_small_decrease
+        }
+        scope:liberal_ig = {
+            add_modifier = {
+                name = ig_power_challenged
+                months = normal_modifier_time
+            }
         }
     }
 }
@@ -1105,15 +1467,30 @@ MFE_political_events.19 = {
 
     immediate = {
         set_variable = freetrade_morals_var
-
     }
 
-    option = {      
+    option = { # Free Trade is the way      
         name = MFE_political_events.19.a
         default_option = yes
+        add_modifier = {
+            name = free_trade_support_mod
+            months = long_modifier_time
+        }
+        add_radicals = {
+            pop_type = peasants
+            value = large_radicals
+        }
     }
-    option = {      
+    option = { # Perhaps they are right...
         name = MFE_political_events.19.b
+        add_modifier = {
+            name = free_trade_denied_mod
+            months = long_modifier_time
+        }
+        add_radicals = {
+            pop_type = peasants
+            value = medium_radicals
+        }
     }
 }
 
@@ -1156,12 +1533,27 @@ MFE_political_events.20 = {
         }
     }
 
-    option = {      
+    option = {  # This offer cannot be accepted      
         name = MFE_political_events.20.a
         default_option = yes
+        ig:ig_trade_unions = {
+            add_modifier = {
+                name = ig_power_challenged
+                months = normal_modifier_time
+            }
+        }
+        add_radicals = {
+            value = 0.05
+        }
     }
-    option = {      
+    option = {  # We will appease them...for now
         name = MFE_political_events.20.b
+        ig:ig_trade_unions = {
+            add_modifier = {
+                name = ig_gaining_support
+                months = normal_modifier_time
+            }
+        }
     }
 }
 
@@ -1190,19 +1582,57 @@ MFE_political_events.21 = {
             has_law = law_type:law_outlawed_dissent
             has_law = law_type:law_censorship
         }
+        any_interest_group = {
+            is_in_government = yes
+            law_stance = {
+                law = law_type:law_censorship
+                value > neutral
+            }
+        }
+        bureaucracy > 0
         NOT = { has_variable = censorship_bureau_var }
     }
 
     immediate = {
         set_variable = censorship_bureau_var
+        random_interest_group = {
+            limit = {
+                is_in_government = yes
+                law_stance = {
+                    law = law_type:law_censorship
+                    value > neutral
+                }
+            }
+            save_scope_as = censorship_ig
+        }
     }
 
-    option = {      
+    option = {  # Well...We need to censor the people      
         name = MFE_political_events.21.a
         default_option = yes
+        add_modifier = {
+            name = censorship_bureau_supported_mod
+            months = long_modifier_time
+        }
+        scope:censorship_ig = {
+            add_modifier = {
+                name = censorship_supported_ig_mod
+                months = normal_modifier_time
+            }
+        }
     }
-    option = {      
+    option = {  # They can do without more support
         name = MFE_political_events.21.b
+        add_modifier = {
+            name = censorship_bureau_denied_funds_mod
+            months = long_modifier_time
+        }
+        scope:censorship_ig = {
+            add_modifier = {
+                name = censorship_denied_funds_ig_mod
+                months = normal_modifier_time
+            }
+        }
     }
 }
 
@@ -1225,7 +1655,7 @@ MFE_political_events.22 = {
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-
+    cooldown = { months = long_cooldown }
     trigger = {
         any_active_party = {
             is_party_type = conservative_party
@@ -1239,19 +1669,52 @@ MFE_political_events.22 = {
                 value < neutral
             }
         }
+        any_interest_group = {
+            has_ideology = ideology_laissez_faire
+        }
         has_law = law_type:law_laissez_faire
     }
 
     immediate = {
-
+        random_interest_group = {
+            limit = {
+                is_member_of_party = owner.py:conservative_party
+                is_in_government = yes
+                law_stance = {
+                    law = law_type:law_laissez_faire
+                    value < neutral
+                }
+            }
+            save_scope_as = conservative_ig
+        }
+        random_interest_group = {
+            limit = {
+                has_ideology = ideology_laissez_faire
+                NOT = { this = scope:conservative_ig }
+            }
+            save_scope_as = free_trade_ig
+        }
     }
 
-    option = {      
+    option = {  # The Free Market is the only way forward!
         name = MFE_political_events.22.a
         default_option = yes
+        scope:free_trade_ig = {
+            add_modifier = {
+                name = ig_gaining_support
+                months = normal_modifier_time
+            }
+        }
+        add_radicals = { value = 0.1 }
     }
-    option = {      
+    option = {  # Things really aren't like they used to be...
         name = MFE_political_events.22.b
+        scope:conservative_ig = {
+            add_modifier = {
+                name = ig_power_challenged
+                months = normal_modifier_time
+            }
+        }
     }
 }
 
@@ -1270,15 +1733,15 @@ MFE_political_events.23 = {
     
     duration = 3
 
-    event_image = {
-        video = "gfx/event_pictures/middleeast_courtroom_upheaval.bk2"
-    }
+    gui_window = event_window_2char
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    left_icon = scope:anti_slavery_ig.leader
+    right_icon = scope:pro_slavery_ig.leader
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-
+    on_opened_soundeffect = "event:/SFX/Events/misc/2Characters"
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    cooldown = { months = long_cooldown }
     trigger = {
         OR = {
             has_law = law_type:law_slave_trade
@@ -1286,37 +1749,81 @@ MFE_political_events.23 = {
         }
         any_interest_group = {
             is_in_government = yes
-            law_stance = {
-                law = law_type:law_slavery_banned
-                value > neutral
+            OR = {
+                has_ideology = ideology_pro_slavery
+                leader = {
+                    has_ideology = ideology_slaver
+                }
             }
         }
-        NOT = { has_variable = anti_slavery_convention_cooldown }
+        any_interest_group = {
+            is_in_government = yes
+            OR = {
+                has_ideology = ideology_anti_slavery
+                leader = { 
+                    has_ideology = ideology_abolitionist
+                }
+            }
+        }
     }
 
     immediate = {
-        set_variable = {
-            name = anti_slavery_convention_cooldown
-            days = long_cooldown
-        }
         random_interest_group = {
             limit = {
                 is_in_government = yes
-                law_stance = {
-                    law = law_type:law_slavery_banned
-                    value > neutral
+                OR = {
+                    has_ideology = ideology_anti_slavery
+                    leader = { 
+                        has_ideology = ideology_abolitionist
+                    }
                 }
             }
             save_scope_as = anti_slavery_ig
         }
+        random_interest_group = {
+            limit = {
+                is_in_government = yes
+                OR = {
+                    has_ideology = ideology_pro_slavery
+                    leader = {
+                        has_ideology = ideology_slaver
+                    }
+                }
+            }
+            save_scope_as = pro_slavery_ig
+        }
     }
 
-    option = {      
+    option = {  #There is little we can do
         name = MFE_political_events.23.a
         default_option = yes
+        scope:anti_slavery_ig = {
+            add_modifier = {
+                name = ig_abolitionists_mad
+                months = short_modifier_time
+            }
+        }
+        scope:pro_slavery_ig = {
+            add_modifier = {
+                name = ig_slavers_happy
+                months = short_modifier_time
+            }
+        }        
     }
     option = {      
         name = MFE_political_events.23.b
+        scope:anti_slavery_ig = {
+            add_modifier = {
+                name = ig_abolitionists_happy
+                months = short_modifier_time
+            }
+        }
+        scope:pro_slavery_ig = {
+            add_modifier = {
+                name = ig_slavers_mad
+                months = short_modifier_time
+            }
+        } 
     }
 }
 
@@ -1341,37 +1848,174 @@ MFE_political_events.24 = {
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
 
     trigger = {
-        has_law = law_type:law_no_womens_rights
         NOT = { has_variable = womens_education_demanded }
+        has_law = law_type:law_no_womens_rights
+        OR = {
+            has_law = law_type:law_census_voting
+            has_law = law_type:law_universal_suffrage
+        }
         any_interest_group = {
-            is_in_government = yes
-            law_stance = {
-                law = law_type:law_womens_suffrage
-                value > neutral
+            leader = { has_ideology = ideology_reformer }
+        }
+        any_interest_group = {
+            OR = {
+                is_interest_group_type = ig_rural_folk
+                is_interest_group_type = ig_intelligentsia
+                is_interest_group_type = ig_trade_unions
+                is_interest_group_type = ig_petty_bourgeoisie
+                is_interest_group_type = ig_industrialists
+            }
+            NOR = {
+                leader = { has_ideology = ideology_reformer }
+                leader = { has_ideology = ideology_feminist }
             }
         }
     }
 
     immediate = {
         set_variable = womens_education_demanded
-        random_interest_group = {
-            limit = {
-                is_in_government = yes
-                law_stance = {
-                    law = law_type:law_womens_suffrage
-                    value > neutral
-                }
-            }
-            save_scope_as = womens_ig
-        }
     }
 
-    option = {      
+    option = {     # Education is a fundamental right!
         name = MFE_political_events.24.a
         default_option = yes
+        random_list = {
+            1 = {
+                modifier = {
+                    if = {
+                        limit = {
+                            ig:ig_rural_folk = {
+                                leader = { has_ideology = ideology_feminist }
+                            }
+                        }
+                        add = -1
+                    }
+                }
+                ig:ig_rural_folk = { leader = { set_ideology = ideology_feminist } }
+            }
+            1 = {
+                modifier = {
+                    if = {
+                        limit = {
+                            ig:ig_trade_unions = {
+                                leader = { has_ideology = ideology_feminist }
+                            }
+                        }
+                        add = -1
+                    }
+                }
+                ig:ig_trade_unions = { leader = { set_ideology = ideology_feminist } }
+            }
+            1 = {
+                modifier = {
+                    if = {
+                        limit = {
+                            ig:ig_petty_bourgeoisie = {
+                                leader = { has_ideology = ideology_feminist }
+                            }
+                        }
+                        add = -1
+                    }
+                }
+                ig:ig_petty_bourgeoisie = { leader = { set_ideology = ideology_feminist } }
+            }
+            1 = {
+                modifier = {
+                    if = {
+                        limit = {
+                            ig:ig_industrialists = {
+                                leader = { has_ideology = ideology_feminist }
+                            }
+                        }
+                        add = -1
+                    }
+                }
+                ig:ig_industrialists = { leader = { set_ideology = ideology_feminist } }
+            }
+            1 = {
+                modifier = {
+                    if = {
+                        limit = {
+                            ig:ig_intelligentsia = {
+                                leader = { has_ideology = ideology_feminist }
+                            }
+                        }
+                        add = -1
+                    }
+                }
+                ig:ig_intelligentsia = { leader = { set_ideology = ideology_feminist } }
+            }
+        }
     }
-    option = {      
+    option = {     #  Incremental change is a safer path to progress.
         name = MFE_political_events.24.b
+        random_list = {
+            1 = {
+                modifier = {
+                    if = {
+                        limit = {
+                            ig:ig_rural_folk = {
+                                leader = { has_ideology = ideology_reformer }
+                            }
+                        }
+                        add = -1
+                    }
+                }
+                ig:ig_rural_folk = { leader = { set_ideology = ideology_reformer } }
+            }
+            1 = {
+                modifier = {
+                    if = {
+                        limit = {
+                            ig:ig_trade_unions = {
+                                leader = { has_ideology = ideology_reformer }
+                            }
+                        }
+                        add = -1
+                    }
+                }
+                ig:ig_trade_unions = { leader = { set_ideology = ideology_reformer } }
+            }
+            1 = {
+                modifier = {
+                    if = {
+                        limit = {
+                            ig:ig_petty_bourgeoisie = {
+                                leader = { has_ideology = ideology_reformer }
+                            }
+                        }
+                        add = -1
+                    }
+                }
+                ig:ig_petty_bourgeoisie = { leader = { set_ideology = ideology_reformer } }
+            }
+            1 = {
+                modifier = {
+                    if = {
+                        limit = {
+                            ig:ig_industrialists = {
+                                leader = { has_ideology = ideology_reformer }
+                            }
+                        }
+                        add = -1
+                    }
+                }
+                ig:ig_industrialists = { leader = { set_ideology = ideology_reformer } }
+            }
+            1 = {
+                modifier = {
+                    if = {
+                        limit = {
+                            ig:ig_intelligentsia = {
+                                leader = { has_ideology = ideology_reformer }
+                            }
+                        }
+                        add = -1
+                    }
+                }
+                ig:ig_intelligentsia = { leader = { set_ideology = ideology_reformer } }
+            }
+        }
     }
 }
 
@@ -1396,37 +2040,62 @@ MFE_political_events.25 = {
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
 
     trigger = {
-        has_law = law_type:law_women_in_the_workplace
         NOT = { has_variable = womens_rights_demanded }
         any_interest_group = {
-            is_in_government = yes
-            law_stance = {
-                law = law_type:law_womens_suffrage
-                value > neutral
+            leader = { has_ideology = ideology_feminist }
+        }
+        NOT = { has_law = law_type:law_womens_suffrage }
+        OR = {
+            has_law = law_type:law_landed_voting
+            has_law = law_type:law_wealth_voting
+            has_law = law_type:law_census_voting
+            has_law = law_type:law_universal_suffrage
+        }
+        NOT = {
+            any_interest_group = {
+                OR = {
+                    has_modifier = successful_protest
+                    has_modifier = arrested_protesters
+                }
             }
         }
     }
 
     immediate = {
         set_variable = womens_rights_demanded
-        random_interest_group = {
+        random_scope_character = {
             limit = {
-                is_in_government = yes
-                law_stance = {
-                    law = law_type:law_womens_suffrage
-                    value > neutral
-                }
+                this = interest_group.leader
+                has_ideology = ideology_feminist
             }
-            save_scope_as = womens_ig
+            save_scope_as = suffrage_leader
         }
     }
 
-    option = {      
+    option = {  # They make some good points.
         name = MFE_political_events.25.a
         default_option = yes
+        every_interest_group = {
+            limit = {
+                leader = { has_ideology = ideology_feminist }
+            }
+            add_modifier = {
+                name = successful_protest
+                months = normal_modifier_time
+            }
+        }
     }
-    option = {      
+    option = {  # Arrest these troublemakers.
         name = MFE_political_events.25.b
+        every_interest_group = {
+            limit = {
+                leader = { has_ideology = ideology_feminist }
+            }
+            add_modifier = {
+                name = arrested_protesters
+                months = normal_modifier_time
+            }
+        }
     }
 }
 
@@ -1446,16 +2115,14 @@ MFE_political_events.26 = {
 
     gui_window = event_window_1char_tabloid
 
-    #left_icon = scope:poet_guy
-    left_icon = ruler
+    left_icon = scope:poet_guy
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-
+    cooldown = { months = long_cooldown }
     trigger = {
-        NOT = { has_variable = local_poet_cooldown }
         any_scope_state = {
             any_scope_building = {
                 is_building_type = building_arts_academy
@@ -1465,10 +2132,6 @@ MFE_political_events.26 = {
     }
 
     immediate = {
-        set_variable = {
-            name = local_poet_cooldown
-            days = medium_cooldown
-        }
         random_scope_state = {
             limit = {
                 any_scope_building = {
@@ -1478,20 +2141,28 @@ MFE_political_events.26 = {
             }
             save_scope_as = arts_state
         }
-        # Commented out until crash fix
-        #create_character = {
-        #   interest_group = ig_industrialists
-        #   ideology = ideology_market_liberal
-        #   save_scope_as = poet_guy
-        #}
+        create_character = {
+           interest_group = ig_industrialists
+           ideology = ideology_market_liberal
+           save_scope_as = poet_guy
+        }
     }
 
-    option = {      
+    option = {  # Have Him Teach the Students      
         name = MFE_political_events.26.a
         default_option = yes
+        add_modifier = {
+            name = local_poet_mod
+            months = normal_modifier_time
+        }
     }
-    option = {      
+    option = {  # Well it doens't really matter anyway
         name = MFE_political_events.26.b
+        trigger = {
+            NOT = { has_technology_researched = realism }
+            can_research = realism
+        }
+        add_technology_progress = { progress = 3000 technology = realism }
     }
 }
 
@@ -1499,7 +2170,7 @@ MFE_political_events.26 = {
 
 MFE_political_events.27 = {
     type = country_event
-    placement = root
+    placement = scope:newspaper_state
     title = MFE_political_events.27.t
     desc = MFE_political_events.27.d
     flavor = MFE_political_events.27.f
@@ -1510,32 +2181,71 @@ MFE_political_events.27 = {
         video = "gfx/event_pictures/unspecific_signed_contract.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-
+    cooldown = { months = long_cooldown }
     trigger = {
         OR = {
             has_law = law_type:law_right_of_assembly
             has_law = law_type:law_protected_speech
         }
-        NOT = { has_variable = underground_newspaper_cooldown } 
+        any_scope_state = {
+            is_incorporated = yes
+            any_scope_building = {
+                is_building_type = building_paper_mills
+                level >= 2
+            }
+        }
+        has_technology_researched = mass_communication
     }
 
     immediate = {
-        set_variable = {
-            name = underground_newspaper_cooldown
-            days = long_cooldown
+        random_scope_state = {
+            limit = {
+                is_incorporated = yes
+                any_scope_building = {
+                    is_building_type = building_paper_mills
+                    level >= 2
+                }
+            }
+            save_scope_as = newspaper_state
         }
     }
 
     option = {      
         name = MFE_political_events.27.a
         default_option = yes
+        # Suppress it, gain radicals and make integelsentia mad
+        if = {
+            limit = {
+                exists = ig:ig_intelligentsia
+                ig:ig_intelligentsia = { is_marginal = no }
+            }
+            ig:ig_intelligentsia = {
+                add_modifier = {
+                    name = suppressed_newspaper_mod
+                    days = normal_modifier_time
+                }
+            }
+        }
+        else = {
+            add_radicals = {
+                value = 0.1
+            }
+        }
     }
     option = {      
         name = MFE_political_events.27.b
+        # Gain radicals but also gain some innovation modifier
+        add_radicals = {
+            value = 0.5
+        }
+        add_modifier = {
+            name = free_flowing_publications_mod
+            days = normal_modifier_time
+        }
     }
 }
 
@@ -1543,7 +2253,7 @@ MFE_political_events.27 = {
 
 MFE_political_events.28 = {
     type = country_event
-    placement = root
+    placement = scope:discriminated_state
     title = MFE_political_events.28.t
     desc = MFE_political_events.28.d
     flavor = MFE_political_events.28.f
@@ -1558,25 +2268,76 @@ MFE_political_events.28 = {
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-
+    cooldown = { months = long_cooldown }
     trigger = {
         NOT = { has_law = law_type:law_multicultural }
-        NOT = { has_variable = nobles_vs_peasents_var }
-    }
-
-    immediate = {
-        set_variable = {
-            name = nobles_vs_peasents_var
-            days = long_cooldown
+        institution_investment_level = {
+            institution = institution_schools
+            value < 2
+        }
+        any_scope_pop = {
+            culture_accepted = no
         }
     }
 
-    option = {      
+    immediate = {
+        random_scope_pop = {
+            limit = {
+                culture_accepted = no
+            }
+            weight = {
+                modifier = { 
+                    factor = -50
+                    wealth > 10
+                }
+                modifier = {
+                    factor = -100
+                    wealth > 20
+                }
+                modifier = {
+                    factor = 1
+                    pop_is_discriminated = yes
+                }
+            }
+            culture = { save_scope_as = discriminated_culture }
+            state = { save_scope_as = discriminated_state }
+        }
+    }
+
+    option = {  # That's actually pretty funny
         name = MFE_political_events.28.a
         default_option = yes
+        add_radicals = {
+            value = large_radicals
+            culture = scope:discriminated_culture
+        }
+        scope:discriminated_state = {
+            add_culture_standard_of_living_modifier = {
+                culture = scope:discriminated_culture
+                months = 13
+                multiplier = -1
+            }
+        }
     }
-    option = {      
+    option = {  # Side with the [SCOPE.sCulture('discriminated_culture').GetName] People
         name = MFE_political_events.28.b
+        add_loyalists = {
+            value = small_radicals
+            culture = scope:discriminated_culture
+        }
+        random_interest_group = {
+            limit = {
+                law_stance = {
+                    law = law_type:law_multicultural
+                    value < neutral
+                }
+                is_marginal = no
+            }
+            add_modifier = {
+                name = segregation_eroding
+                months = normal_modifier_time 
+            }
+        }
     }
 }
 
@@ -1599,9 +2360,9 @@ MFE_political_events.29 = {
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-
+    cooldown = { months = long_cooldown }
     trigger = {
-    
+        
     }
 
     immediate = {
@@ -1611,9 +2372,11 @@ MFE_political_events.29 = {
     option = {      
         name = MFE_political_events.29.a
         default_option = yes
+
     }
     option = {      
         name = MFE_political_events.29.b
+
     }
 }
 
@@ -1636,7 +2399,7 @@ MFE_political_events.30 = {
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-
+    cooldown = { months = long_cooldown }
     trigger = {
         has_law = law_type:law_command_economy
     }
@@ -1673,25 +2436,14 @@ MFE_political_events.31 = {
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-
+    cooldown = { months = long_cooldown }
     trigger = {
-        any_scope_state = {
-            any_scope_building = {
-                is_wealthy_building = {
-                    BUILDING = building_university
-                    LEVEL = 3
-                }
-            }
+        MFE_has_building = {
+            S = "1"
+            T = "is_building_type = building_university level >= 3"
+            K = "2"
         }
         NOT = { has_law = law_type:law_multicultural }
-        NOT = { has_variable = school_strike_var }
-    }
-
-    immediate = {
-        set_variable = {
-            name = school_strike_var
-            days = very_long_cooldown
-        }
     }
 
     option = {      

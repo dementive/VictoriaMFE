@@ -21,29 +21,24 @@ MFE_workplace_events.1 = {
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-
+    cooldown = { months = very_long_cooldown }
     trigger = {
-    	any_scope_state = {
-    		any_scope_building = {
-    			is_building_type = building_coal_mine
-    			level >= 5
-    		}
-    	}
+        MFE_has_building = {
+            S = "1"
+            T = "is_building_type = building_coal_mine level >= 5"
+            K = "2"
+        }
     	NOT = { has_law = law_type:law_worker_protections }
-    	NOT = { has_variable = mine_accident_cooldown }
     }
 
     immediate = {
-    	set_variable = {
-    	    name = mine_accident_cooldown
-    	    days = very_long_cooldown
-    	}
     	random_scope_state = {
     		limit = {
-    			any_scope_building = {
-    				is_building_type = building_coal_mine
-    				level >= 5
-    			}
+                MFE_has_building = {
+                    S = "2"
+                    K = "2"
+                    T = "is_building_type = building_coal_mine level >= 5"
+                }
     		}
     		save_scope_as = mine_state
     	}
@@ -85,12 +80,11 @@ MFE_workplace_events.2 = {
     		has_law = law_type:law_womens_suffrage
     	}
     	has_law = law_type:law_child_labor_allowed
-    	any_scope_state = {
-    		any_scope_building = {
-    			is_building_type = building_coal_mine
-    			level >= 5
-    		}
-    	}
+        MFE_has_building = {
+            S = "1"
+            T = "is_building_type = building_coal_mine level >= 5"
+            K = "2"
+        }
     	NOT = { has_variable = mining_cooldown_var }
     }
 
@@ -98,10 +92,11 @@ MFE_workplace_events.2 = {
     	set_variable = mining_cooldown_var
     	random_scope_state = {
     		limit = {
-    			any_scope_building = {
-    				is_building_type = building_coal_mine
-    				level >= 5
-    			}
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_type = building_coal_mine level >= 5"
+                    K = "2"
+                }
     		}
     		save_scope_as = mining_state
     	}
@@ -118,32 +113,762 @@ MFE_workplace_events.2 = {
 
 # Production Shortfalls
 
+MFE_workplace_events.3 = {
+    type = country_event
+    placement = scope:shorfalls_state
+    title = MFE_workplace_events.3.t
+    desc = MFE_workplace_events.3.d
+    flavor = MFE_workplace_events.3.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+    cooldown = { months = long_cooldown }
+    trigger = {
+        MFE_has_building = {
+            S = "1"
+            T = "is_building_group = bg_manufacturing level >= 5"
+            K = "2"
+        }
+    }
+
+    immediate = {
+        random_scope_state = {
+            limit = {
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_group = bg_manufacturing level >= 5"
+                    K = "2"
+                }
+            }
+            save_scope_as = shorfalls_state
+        }
+    }
+
+    option = {      
+        name = MFE_workplace_events.3.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_workplace_events.3.b
+    }
+}
+
 # Tea Weighing Station Robbed
+
+MFE_workplace_events.4 = {
+    type = country_event
+    placement = scope:tea_state
+    title = MFE_workplace_events.4.t
+    desc = MFE_workplace_events.4.d
+    flavor = MFE_workplace_events.4.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+    cooldown = { months = long_cooldown }
+    trigger = {
+        MFE_has_building = {
+            S = "1"
+            T = "is_building_type = building_tea_plantation level >= 5"
+            K = "2"
+        }
+    }
+
+    immediate = {
+        random_scope_state = {
+            limit = {
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_type = building_tea_plantation level >= 5"
+                    K = "2"
+                } 
+            }
+            save_scope_as = tea_state
+        }
+    }
+
+    option = {      
+        name = MFE_workplace_events.4.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_workplace_events.4.b
+    }
+}
 
 # Old Canned Food - Has level 3 grocery building with cannaries production method
 
-# Bovine Fever - Has level 5 or more livestock ranches video = "gfx/event_pictures/asia_dead_cattle_poor_harvest.bk2"
+MFE_workplace_events.5 = {
+    type = country_event
+    placement = scope:canning_state
+    title = MFE_workplace_events.5.t
+    desc = MFE_workplace_events.5.d
+    flavor = MFE_workplace_events.5.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+    cooldown = { months = very_long_cooldown }
+    trigger = {
+        MFE_has_building = {
+            S = "1"
+            T = "is_building_type = building_food_industry has_active_production_method = pm_cannery level >= 3"
+            K = "2"
+        }
+    }
+
+    immediate = {
+        random_scope_state = {
+            limit = {
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_type = building_food_industry has_active_production_method = pm_cannery level >= 3"
+                    K = "2"
+                }
+            }
+            save_scope_as = canning_state
+        }
+    }
+
+    option = {      
+        name = MFE_workplace_events.5.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_workplace_events.5.b
+    }
+}
+
+# Bovine Fever - Has level 5 or more livestock ranches 
+
+MFE_workplace_events.6 = {
+    type = country_event
+    placement = scope:bovine_state
+    title = MFE_workplace_events.6.t
+    desc = MFE_workplace_events.6.d
+    flavor = MFE_workplace_events.6.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/asia_dead_cattle_poor_harvest.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+    cooldown = { months = long_cooldown }
+    trigger = {
+        MFE_has_building = {
+            S = "1"
+            T = "is_building_type = building_livestock_ranch level >= 5"
+            K = "2"
+        }
+    }
+
+    immediate = {
+        random_scope_state = {
+            limit = {
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_type = building_livestock_ranch level >= 5"
+                    K = "2"
+                }
+            }
+            save_scope_as = bovine_state
+        }
+    }
+
+    option = {      
+        name = MFE_workplace_events.6.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_workplace_events.6.b
+    }
+}
 
 # Death In The Silk Fields - Has level 5 or more silk plantation and no law_worker_protections
 
+MFE_workplace_events.7 = {
+    type = country_event
+    placement = scope:silk_state
+    title = MFE_workplace_events.7.t
+    desc = MFE_workplace_events.7.d
+    flavor = MFE_workplace_events.7.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+    cooldown = { months = long_cooldown }
+    trigger = {
+        MFE_has_building = {
+            S = "1"
+            T = "is_building_type = building_silk_plantation level >= 5"
+            K = "2"
+        }
+        NOT = { has_law = law_type:law_worker_protections }
+    }
+
+    immediate = {
+        random_scope_state = {
+            limit = {
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_type = building_silk_plantation level >= 5"
+                    K = "2"
+                }
+            }
+            save_scope_as = silk_state
+        }
+    }
+
+    option = {      
+        name = MFE_workplace_events.7.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_workplace_events.7.b
+    }
+}
+
 # Blood & Iron Mine - has level 5 iron mine and no law_worker_protections, iron mine workers die and radicalize
+
+MFE_workplace_events.8 = {
+    type = country_event
+    placement = root
+    title = MFE_workplace_events.8.t
+    desc = MFE_workplace_events.8.d
+    flavor = MFE_workplace_events.8.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+    cooldown = { months = long_cooldown }
+    trigger = {
+        MFE_has_building = {
+            S = "1"
+            T = "is_building_type = building_iron_mine level >= 5"
+            K = "2"
+        }
+        NOT = { has_law = law_type:law_worker_protections }
+    }
+
+    immediate = {
+        random_scope_state = {
+            limit = {
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_type = building_iron_mine level >= 5"
+                    K = "2"
+                }
+            }
+            save_scope_as = iron_state
+        }
+    }
+
+    option = {      
+        name = MFE_workplace_events.8.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_workplace_events.8.b
+    }
+}
 
 # Tragedy at the Mine - has level 5 iron mine and no law_worker_protections
 
+MFE_workplace_events.9 = {
+    type = country_event
+    placement = scope:iron_tragedy_state
+    title = MFE_workplace_events.9.t
+    desc = MFE_workplace_events.9.d
+    flavor = MFE_workplace_events.9.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+    cooldown = { months = long_cooldown }
+    trigger = {
+        MFE_has_building = {
+            S = "1"
+            T = "is_building_type = building_iron_mine level >= 5"
+            K = "2"
+        }
+        NOT = { has_law = law_type:law_worker_protections }
+    }
+
+    immediate = {
+        random_scope_state = {
+            limit = {
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_type = building_iron_mine level >= 5"
+                    K = "2"
+                }
+            }
+            save_scope_as = iron_tragedy_state
+        }
+    }
+
+    option = {      
+        name = MFE_workplace_events.9.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_workplace_events.9.b
+    }
+}
+
 # Quality Problems - has level 5 cottom plantation
+
+MFE_workplace_events.10 = {
+    type = country_event
+    placement = scope:cotton_state
+    title = MFE_workplace_events.10.t
+    desc = MFE_workplace_events.10.d
+    flavor = MFE_workplace_events.10.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+    cooldown = { months = very_long_cooldown }
+    trigger = {
+        MFE_has_building = {
+            S = "1"
+            T = "is_building_type = building_cotton_plantation NOT = { has_active_production_method = automatic_irrigation_building_cotton_plantation } level >= 5"
+            K = "2"
+        }
+    }
+
+    immediate = {
+        random_scope_state = {
+            limit = {
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_type = building_cotton_plantation NOT = { has_active_production_method = automatic_irrigation_building_cotton_plantation } level >= 5"
+                    K = "2"
+                }
+            }
+            save_scope_as = cotton_state
+        }
+    }
+
+    option = {      
+        name = MFE_workplace_events.10.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_workplace_events.10.b
+    }
+}
 
 # Boiler Explodes! - has a shipyard that has the steamers production method
 
+MFE_workplace_events.11 = {
+    type = country_event
+    placement = scope:steamer_state
+    title = MFE_workplace_events.11.t
+    desc = MFE_workplace_events.11.d
+    flavor = MFE_workplace_events.11.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+    cooldown = { months = long_cooldown }
+    trigger = {
+        MFE_has_building = {
+            S = "1"
+            T = "is_building_type = building_shipyards OR = { has_active_production_method = pm_metal_shipbuilding has_active_production_method = pm_arc_welding_shipbuilding } level >= 3"
+            K = "2"
+        }
+    }
+
+    immediate = {
+        random_scope_state = {
+            limit = {
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_type = building_shipyards OR = { has_active_production_method = pm_metal_shipbuilding has_active_production_method = pm_arc_welding_shipbuilding } level >= 3"
+                    K = "2"
+                }
+            }
+            save_scope_as = steamer_state
+        }
+    }
+
+    option = {      
+        name = MFE_workplace_events.11.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_workplace_events.11.b
+    }
+}
+
 # Dyeworks Accident - has level 3 dye plantation
+
+MFE_workplace_events.12 = {
+    type = country_event
+    placement = scope:dyeworks_state
+    title = MFE_workplace_events.12.t
+    desc = MFE_workplace_events.12.d
+    flavor = MFE_workplace_events.12.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        MFE_has_building = {
+            S = "1"
+            T = "is_building_type = building_dye_plantation level >= 3"
+            K = "2"
+        }
+        NOT = { has_variable = dyeworks_accident_var }
+    }
+
+    immediate = {
+        set_variable = dyeworks_accident_var
+        random_scope_state = {
+            limit = {
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_type = building_dye_plantation level >= 3"
+                    K = "2"
+                }
+            }
+            save_scope_as = dyeworks_state
+        }
+    }
+
+    option = {      
+        name = MFE_workplace_events.12.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_workplace_events.12.b
+    }
+}
 
 # Cistern Explodes - has level 5 oil rig
 
-# Overproduction at the Refinery - Has level 5 oil rig, get throughput mod or pocket cash
+MFE_workplace_events.13 = {
+    type = country_event
+    placement = scope:oil_state
+    title = MFE_workplace_events.13.t
+    desc = MFE_workplace_events.13.d
+    flavor = MFE_workplace_events.13.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        MFE_has_building = {
+            S = "1"
+            T = "is_building_type = building_oil_rig level >= 5"
+            K = "2"
+        }
+        NOT = { has_variable = oil_accident_var }
+    }
+
+    immediate = {
+        set_variable = oil_accident_var
+        random_scope_state = {
+            limit = {
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_type = building_oil_rig level >= 5"
+                    K = "2"
+                } 
+            }
+            save_scope_as = oil_state
+        }
+    }
+
+    option = {      
+        name = MFE_workplace_events.13.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_workplace_events.13.b
+    }
+}
+
+# Overproduction at the Refinery - Has level 8 oil rig, get throughput mod or pocket cash
+
+MFE_workplace_events.14 = {
+    type = country_event
+    placement = scope:oil_state
+    title = MFE_workplace_events.14.t
+    desc = MFE_workplace_events.14.d
+    flavor = MFE_workplace_events.14.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        MFE_has_building = {
+            S = "1"
+            T = "is_building_type = building_oil_rig level >= 8"
+            K = "2"
+        }
+        NOT = { has_variable = oil_boon_var }
+    }
+
+    immediate = {
+        set_variable = oil_boon_var
+        random_scope_state = {
+            limit = {
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_type = building_oil_rig level >= 8"
+                    K = "2"
+                }
+            }
+            save_scope_as = oil_state
+        }
+    }
+
+    option = {      
+        name = MFE_workplace_events.14.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_workplace_events.14.b
+    }
+}
 
 # The Old Man and The Sea - has level 5 fishery, get throughput mod
 
+MFE_workplace_events.15 = {
+    type = country_event
+    placement = scope:fishing_state
+    title = MFE_workplace_events.15.t
+    desc = MFE_workplace_events.15.d
+    flavor = MFE_workplace_events.15.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+        MFE_has_building = {
+            S = "1"
+            T = "is_building_type = building_fishing_wharf level >= 8"
+            K = "2"
+        }
+        NOT = { has_variable = fish_boon_var }
+    }
+
+    immediate = {
+        set_variable = fish_boon_var
+        random_scope_state = {
+            limit = {
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_type = building_fishing_wharf level >= 8"
+                    K = "2"
+                }
+            }
+            save_scope_as = fishing_state
+        }
+    }
+
+    option = {      
+        name = MFE_workplace_events.15.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_workplace_events.15.b
+    }
+}
+
 # Explosives Explode - has level 3 fertilizer plant producing explosives
+
+MFE_workplace_events.16 = {
+    type = country_event
+    placement = scope:explosion_state
+    title = MFE_workplace_events.16.t
+    desc = MFE_workplace_events.16.d
+    flavor = MFE_workplace_events.16.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+    cooldown = { months = long_cooldown }
+    trigger = {
+        MFE_has_building = {
+            S = "1"
+            T = "is_building_type = building_chemical_plants NOT = { has_active_production_method = pm_no_explosives_production } level >= 3"
+            K = "2"
+        }
+    }
+
+    immediate = {
+        random_scope_state = {
+            limit = {
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_type = building_chemical_plants NOT = { has_active_production_method = pm_no_explosives_production } level >= 3"
+                    K = "2"
+                }
+            }
+            save_scope_as = explosion_state
+        }
+    }
+
+    option = {      
+        name = MFE_workplace_events.16.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_workplace_events.16.b
+    }
+}
 
 # Elegant furniture - has level 5 furniture manufactury, get mod
 
-# Fashion Fails - Has a level 3 textile mill with the focusing on luxury clothes production method
+MFE_workplace_events.17 = {
+    type = country_event
+    placement = scope:luxury_state
+    title = MFE_workplace_events.17.t
+    desc = MFE_workplace_events.17.d
+    flavor = MFE_workplace_events.17.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+    cooldown = { months = long_cooldown }
+    trigger = {
+        MFE_has_building = {
+            S = "1"
+            T = "is_building_type = building_furniture_manufacturies NOT = { has_active_production_method = pm_no_luxuries } level >= 5"
+            K = "2"
+        }
+        #leading_producer_of = g:luxury_furniture
+    }
+
+    immediate = {
+        random_scope_state = {
+            limit = {
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_type = building_furniture_manufacturies NOT = { has_active_production_method = pm_no_luxuries } level >= 5"
+                    K = "2"
+                }
+            }
+            save_scope_as = luxury_state
+        }
+    }
+
+    option = {      
+        name = MFE_workplace_events.17.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_workplace_events.17.b
+    }
+}
