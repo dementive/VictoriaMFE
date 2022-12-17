@@ -563,7 +563,7 @@ MFE_political_events.7 = {
         name = MFE_political_events.7.b
         add_treasury = subtract_2_percent_of_credit
         add_loyalists = {
-            value = 0.1a
+            value = 0.05
             pop_type = laborers
         }
     }
@@ -2281,23 +2281,13 @@ MFE_political_events.28 = {
     }
 
     immediate = {
-        random_scope_pop = {
+        ordered_scope_pop = {
             limit = {
                 culture_accepted = no
             }
-            weight = {
-                modifier = { 
-                    factor = -50
-                    wealth > 10
-                }
-                modifier = {
-                    factor = -100
-                    wealth > 20
-                }
-                modifier = {
-                    factor = 1
-                    pop_is_discriminated = yes
-                }
+            order_by = {
+                value = wealth
+                multiply = -1
             }
             culture = { save_scope_as = discriminated_culture }
             state = { save_scope_as = discriminated_state }
@@ -2345,7 +2335,7 @@ MFE_political_events.28 = {
 
 MFE_political_events.29 = {
     type = country_event
-    placement = root
+    placement = scope:merchants_state
     title = MFE_political_events.29.t
     desc = MFE_political_events.29.d
     flavor = MFE_political_events.29.f
@@ -2362,95 +2352,62 @@ MFE_political_events.29 = {
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
     cooldown = { months = long_cooldown }
     trigger = {
-        
-    }
-
-    immediate = {
-
-    }
-
-    option = {      
-        name = MFE_political_events.29.a
-        default_option = yes
-
-    }
-    option = {      
-        name = MFE_political_events.29.b
-
-    }
-}
-
-# Building permits - has law_command_economy
-
-MFE_political_events.30 = {
-    type = country_event
-    placement = root
-    title = MFE_political_events.30.t
-    desc = MFE_political_events.30.d
-    flavor = MFE_political_events.30.f
-    
-    duration = 3
-
-    event_image = {
-        video = "gfx/event_pictures/unspecific_signed_contract.bk2"
-    }
-
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
-
-    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-    cooldown = { months = long_cooldown }
-    trigger = {
-        has_law = law_type:law_command_economy
-    }
-
-    immediate = {
-
-    }
-
-    option = {      
-        name = MFE_political_events.30.a
-        default_option = yes
-    }
-    option = {      
-        name = MFE_political_events.30.b
-    }
-}
-
-# School Strike - has a level 5 university and no law_multicultural, university strikes
-
-MFE_political_events.31 = {
-    type = country_event
-    placement = root
-    title = MFE_political_events.31.t
-    desc = MFE_political_events.31.d
-    flavor = MFE_political_events.31.f
-    
-    duration = 3
-
-    event_image = {
-        video = "gfx/event_pictures/europenorthamerica_sufferage.bk2"
-    }
-
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
-
-    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
-    cooldown = { months = long_cooldown }
-    trigger = {
         MFE_has_building = {
             S = "1"
-            T = "is_building_type = building_university level >= 3"
+            T = "is_building_type = building_trade_center level >= 10"
             K = "2"
         }
-        NOT = { has_law = law_type:law_multicultural }
+        OR = {
+            has_law = law_type:law_mercantilism
+            has_law = law_type:law_free_trade
+        }
+        any_interest_group = {
+            is_in_government = yes
+            law_stance = {
+                law = law_type:law_free_trade
+                value > neutral
+            }
+        }
     }
 
-    option = {      
-        name = MFE_political_events.31.a
-        default_option = yes
+    immediate = {
+        random_scope_state = {
+            limit = {
+                MFE_has_building = {
+                    S = "2"
+                    T = "is_building_type = building_trade_center level >= 10"
+                    K = "2"
+                }
+            }
+            save_scope_as = merchants_state
+        }
+        random_interest_group = {
+            limit = {
+                is_in_government = yes
+                law_stance = {
+                    law = law_type:law_free_trade
+                    value > neutral
+                }
+            }
+            save_scope_as = free_trade_ig
+        }
     }
-    option = {      
-        name = MFE_political_events.31.b
+
+    option = {  # Support Free Trade!
+        name = MFE_political_events.29.a
+        default_option = yes
+        scope:pro_free_trade_ig = {
+            add_modifier = {
+                name = free_market_ideologue
+                months = short_modifier_time
+            }
+        }
+    }
+    option = {  # Our markets need all the advantages they can get!
+        name = MFE_political_events.29.b
+        add_modifier = {
+            name = market_protectionism_mod
+            months = short_modifier_time
+        }
     }
 }

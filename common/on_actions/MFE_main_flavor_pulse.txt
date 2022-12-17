@@ -35,8 +35,6 @@
 		20 = MFE_political_events.27
 		20 = MFE_political_events.28
 		20 = MFE_political_events.29
-		20 = MFE_political_events.30
-		20 = MFE_political_events.31
 
 		# Workplace Events
 		10 = MFE_workplace_events.1
