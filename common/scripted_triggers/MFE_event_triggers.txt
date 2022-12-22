@@ -1,18 +1,4 @@
-﻿has_worker_rights_and_powerful_trade_unions = {
-	# Scope = Country
-	exists = ig:ig_trade_unions
-	ig:ig_trade_unions = {
-	    is_insurrectionary = no
-	    is_revolutionary = no
-	    is_marginal = no
-	}
-	OR = {
-	    has_law = law_type:law_regulatory_bodies
-	    has_law = law_type:law_worker_protections
-	}
-}
-
-rich_building_trigger = {
+﻿rich_building_trigger = {
 	cash_reserves_ratio > 0.8
 	occupancy >= 0.75
 	weekly_profit > 3

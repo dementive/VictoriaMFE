@@ -13,6 +13,20 @@ scripted_trigger conflict_building = {
     }
 }
 
+scripted_trigger has_worker_rights_and_powerful_trade_unions = {
+    # Scope = Country
+    exists = ig:ig_trade_unions
+    ig:ig_trade_unions = {
+        is_insurrectionary = no
+        is_revolutionary = no
+        is_marginal = no
+    }
+    OR = {
+        has_law = law_type:law_regulatory_bodies
+        has_law = law_type:law_worker_protections
+    }
+}
+
 scripted_effect build_wheat_building = {
     random_scope_building = {
         limit = { is_grain_producing_building = yes }
@@ -115,7 +129,13 @@ MFE_political_events.1 = {
     	}
         has_technology_researched = mass_communication
     }
-
+    
+    immediate = {
+        ig:ig_intelligentsia = {
+            save_scope_as = ig_intelligentsia
+        }
+    }
+    
     option = {      
         name = MFE_political_events.1.a
         default_option = yes
@@ -128,13 +148,13 @@ MFE_political_events.1 = {
             ig:ig_intelligentsia = {
                 add_modifier = {
                     name = suppressed_newspaper_mod
-                    days = normal_modifier_time
+                    days = long_modifier_time
                 }
             }
         }
         else = {
             add_radicals = {
-                value = 0.1
+                value = 0.01
             }
         }
     }
@@ -142,11 +162,11 @@ MFE_political_events.1 = {
         name = MFE_political_events.1.b
         # Gain radicals but also gain some innovation modifier
         add_radicals = {
-            value = 0.5
+            value = 0.01
         }
         add_modifier = {
             name = free_flowing_publications_mod
-            days = normal_modifier_time
+            days = long_modifier_time
         }
     }
 }
@@ -165,7 +185,7 @@ MFE_political_events.2 = {
         video = "gfx/event_pictures/unspecific_vandalized_storefront.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_protest.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -236,7 +256,7 @@ MFE_political_events.2 = {
                 is_incorporated = yes
             }
             add_radicals = {
-                value = 0.15
+                value = 0.1
             }
         }
     }
@@ -256,7 +276,7 @@ MFE_political_events.3 = {
         video = "gfx/event_pictures/europenorthamerica_political_extremism.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -328,10 +348,10 @@ MFE_political_events.4 = {
     duration = 3
 
     event_image = {
-        video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2"
+        video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_scales.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -343,6 +363,9 @@ MFE_political_events.4 = {
     immediate = {
         random_scope_state = {
             save_scope_as = workers_state
+        }
+        ig:ig_trade_unions = {
+            save_scope_as = ig_tradeunions
         }
     }
 
@@ -370,7 +393,7 @@ MFE_political_events.4 = {
         }
         scope:workers_state = {
             add_radicals = {
-                value = 0.15
+                value = 0.1
             }
         }
     } 
@@ -392,7 +415,7 @@ MFE_political_events.5 = {
         video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -418,7 +441,7 @@ MFE_political_events.5 = {
         default_option = yes
         scope:conflict_state = {
             add_radicals = {
-                value = 0.25
+                value = 0.15
             }
         }
     }
@@ -446,7 +469,7 @@ MFE_political_events.6 = {
         video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_protest.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -486,7 +509,7 @@ MFE_political_events.6 = {
         }
         scope:random_state = {
             add_radicals = {
-                value = 0.2
+                value = 0.15
             }
         }
     }
@@ -507,7 +530,7 @@ MFE_political_events.7 = {
         video = "gfx/event_pictures/unspecific_vandalized_storefront.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_fire.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -584,7 +607,7 @@ MFE_political_events.8 = {
         video = "gfx/event_pictures/europenorthamerica_political_extremism.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_protest.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -630,7 +653,7 @@ MFE_political_events.8 = {
             save_scope_as = striking_warehouse_state
 
             add_radicals = {
-                value = 0.25
+                value = 0.15
             }
         }
     }
@@ -647,7 +670,7 @@ MFE_political_events.8 = {
         name = MFE_political_events.8.b
         add_treasury = subtract_2_percent_of_credit
         add_loyalists = {
-            value = 0.1a
+            value = 0.1
             pop_type = laborers
         }
     }
@@ -671,7 +694,7 @@ MFE_political_events.9 = {
 
     left_icon = scope:professor
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_portrait.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
@@ -760,7 +783,7 @@ MFE_political_events.10 = {
         video = "gfx/event_pictures/southamerica_factory_opening.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_trade.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -813,7 +836,7 @@ MFE_political_events.11 = {
         video = "gfx/event_pictures/europenorthamerica_rich_and_poor.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_protest.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -880,7 +903,7 @@ MFE_political_events.12 = {
         video = "gfx/event_pictures/asia_dead_cattle_poor_harvest.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_protest.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -946,7 +969,7 @@ MFE_political_events.13 = {
         video = "gfx/event_pictures/europenorthamerica_political_extremism.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_military.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -998,7 +1021,7 @@ MFE_political_events.13 = {
         default_option = yes
         scope:neighbor_neighbor_state = {
             add_radicals = {
-                value = 0.35
+                value = 0.15
             }
         }
     }
@@ -1022,7 +1045,7 @@ MFE_political_events.14 = {
         video = "gfx/event_pictures/asia_factory_accident.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_scales.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -1117,7 +1140,7 @@ MFE_political_events.15 = {
         video = "gfx/event_pictures/unspecific_military_parade.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_military.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -1186,7 +1209,7 @@ MFE_political_events.16 = {
 
     left_icon = scope:ig_leader
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_map.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -1260,7 +1283,7 @@ MFE_political_events.16 = {
         }
         scope:religious_state = {
             add_radicals = {
-                value = 0.25
+                value = 0.15
                 pop_type = clergymen
             }
         }
@@ -1282,7 +1305,7 @@ MFE_political_events.17 = {
         video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_trade.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -1367,7 +1390,7 @@ MFE_political_events.18 = {
         video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_trade.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -1453,7 +1476,7 @@ MFE_political_events.19 = {
         video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_trade.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -1543,7 +1566,7 @@ MFE_political_events.20 = {
             }
         }
         add_radicals = {
-            value = 0.05
+            value = 0.01
         }
     }
     option = {  # We will appease them...for now
@@ -1651,7 +1674,7 @@ MFE_political_events.22 = {
         video = "gfx/event_pictures/middleeast_courtroom_upheaval.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -1705,7 +1728,7 @@ MFE_political_events.22 = {
                 months = normal_modifier_time
             }
         }
-        add_radicals = { value = 0.1 }
+        add_radicals = { value = 0.02 }
     }
     option = {  # Things really aren't like they used to be...
         name = MFE_political_events.22.b
@@ -1740,7 +1763,7 @@ MFE_political_events.23 = {
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/misc/2Characters"
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
     cooldown = { months = long_cooldown }
     trigger = {
         OR = {
@@ -1842,7 +1865,7 @@ MFE_political_events.24 = {
         video = "gfx/event_pictures/europenorthamerica_sufferage.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -2034,7 +2057,7 @@ MFE_political_events.25 = {
         video = "gfx/event_pictures/europenorthamerica_sufferage.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_protest.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -2117,7 +2140,7 @@ MFE_political_events.26 = {
 
     left_icon = scope:poet_guy
 
-    icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+    icon = "gfx/interface/icons/event_icons/event_portrait.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -2232,7 +2255,7 @@ MFE_political_events.27 = {
         }
         else = {
             add_radicals = {
-                value = 0.1
+                value = 0.01
             }
         }
     }
@@ -2240,7 +2263,7 @@ MFE_political_events.27 = {
         name = MFE_political_events.27.b
         # Gain radicals but also gain some innovation modifier
         add_radicals = {
-            value = 0.5
+            value = 0.01
         }
         add_modifier = {
             name = free_flowing_publications_mod
@@ -2264,7 +2287,7 @@ MFE_political_events.28 = {
         video = "gfx/event_pictures/middleeast_upperclass_party.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_protest.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -2346,7 +2369,7 @@ MFE_political_events.29 = {
         video = "gfx/event_pictures/europenorthamerica_springtime_of_nations.bk2"
     }
 
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+    icon = "gfx/interface/icons/event_icons/event_trade.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"

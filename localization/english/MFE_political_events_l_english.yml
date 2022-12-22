@@ -1,29 +1,29 @@
-l_english:
+﻿l_english:
 
 
-  MFE_political_events.1.t:0 "Newspaper Slander"
-  MFE_political_events.1.d:0 ""
-  MFE_political_events.1.f:0 ""
-  MFE_political_events.1.a:0 "Suppress it, this slander is crazy!"
+  MFE_political_events.1.t:0 "Anonymous Articles In The Paper"
+  MFE_political_events.1.d:0 "Members of the [SCOPE.gsInterestGroup('ig_intelligentsia').GetName], emboldened by the current political climate, are publishing scurrilous anti-government screeds in the newspapers."
+  MFE_political_events.1.f:0 ""In this day and age, what use do the people have for [ROOT.GetCountry.GetRuler.GetFullName]? We envision a bolder future for [ROOT.GetCountry.GetName], one finally freed from the grip of tyrants.""
+  MFE_political_events.1.a:0 "Suppress it - these accusations are crazy!"
   MFE_political_events.1.b:0 "Allow the publications to flow freely"
 
-  MFE_political_events.2.t:0 "Harassment in Local Election"
-  MFE_political_events.2.d:0 ""
-  MFE_political_events.2.f:0 ""
-  MFE_political_events.2.a:0 "Defend [SCOPE.sParty('harassed_party').GetName]"
-  MFE_political_events.2.b:0 "Nothing can be done for [SCOPE.sParty('harassed_party').GetName]"
+  MFE_political_events.2.t:0 "Harassment In Local Election"
+  MFE_political_events.2.d:0 "Political tensions are running high in [ROOT.GetCountry.GetCapital.GetName], leading to attacks on the local offices of party newspapers."
+  MFE_political_events.2.f:0 ""I saw the lot of them, [SCOPE.sParty('harassing_party').GetName] men, armed with prybars and axes - said they was going to smash the [SCOPE.sParty('harassed_party').GetName] printing presses and rough up anyone who got in their way.""
+  MFE_political_events.2.a:0 "Defend the [SCOPE.sParty('harassed_party').GetName]"
+  MFE_political_events.2.b:0 "Denounce the [SCOPE.sParty('harassing_party').GetName] mobs"
 
   MFE_political_events.3.t:0 "Voting Fraud"
-  MFE_political_events.3.d:0 ""
-  MFE_political_events.3.f:0 ""
+  MFE_political_events.3.d:0 "Election results in [ROOT.GetCountry.GetCapital.GetName] have been tainted with accusations of ballot stuffing and vote buying by the opposition."
+  MFE_political_events.3.f:0 ""How many times have I seen you today, young man? I could have sworn that you have already been here...""
   MFE_political_events.3.a:0 "[SCOPE.sParty('party_1').GetName] clearly made up those votes..."
   MFE_political_events.3.b:0 "[SCOPE.sParty('party_2').GetName] cannot be trusted in these matters..."
 
   MFE_political_events.4.t:0 "Worker's Committee"
-  MFE_political_events.4.d:0 ""
-  MFE_political_events.4.f:0 ""
-  MFE_political_events.4.a:0 "We'll give into their demands."
-  MFE_political_events.4.b:0 "This is unacceptable these meetings cannot continue."
+  MFE_political_events.4.d:0 "Laborers associated with the [SCOPE.gsInterestGroup('ig_tradeunions').GetName] in [SCOPE.sState('workers_state').GetName] have formed a Committee and are agitating for more rights in the workplace."
+  MFE_political_events.4.f:0 ""Twelve hour shifts in the factories are inhumane, an affront on human decency; I tell you, Worker, that another way is possible.""
+  MFE_political_events.4.a:0 "We will allow them to congregate...for now"
+  MFE_political_events.4.b:0 "This is unacceptable! These meetings cannot continue."
 
   MFE_political_events.5.t:0 "Local Management Conflict"
   MFE_political_events.5.d:0 ""

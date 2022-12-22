@@ -31,11 +31,18 @@ mfe_industry_events.1 = {	#Rich industrialist Founds a railway company
 		ig:ig_industrialists = {
 			is_marginal = no
 		}
+		exists = ig:ig_intelligentsia
+		ig:ig_intelligentsia = {
+			is_marginal = no
+		}
 		has_technology_researched = railways
 		NOT = { has_variable = railway_company_showed_up }
 	}
 
 	immediate = {
+		ig:ig_intelligentsia = {
+			save_scope_as = ig_intelligentsia
+		}
 		set_variable = railway_company_showed_up
 		ordered_scope_state = {
 			limit = {
@@ -50,7 +57,6 @@ mfe_industry_events.1 = {	#Rich industrialist Founds a railway company
 			max = 1
 			save_scope_as = railway_state
 		}
-		# Commented out until crash fix
 		create_character = {
 			interest_group = ig_industrialists
 			ideology = ideology_market_liberal
@@ -78,26 +84,47 @@ mfe_industry_events.1 = {	#Rich industrialist Founds a railway company
 				days = 300
 			}
 		}
-		ig_approval_effect = {
-			GROUP = "ig:ig_industrialists"
-			MOD1 = supported_railway_company_approval
-			MOD2 = supported_railway_company_disapproval
+		ig:ig_industrialists = {
+			add_modifier = {
+				name = supported_railway_company_approval
+				months = normal_modifier_time
+			}
+		}
+		ig:ig_intelligentsia = {	
+			add_modifier = {
+				name = supported_railway_company_disapproval
+				months = normal_modifier_time
+			}
 		}
 	}
 	option = {	# Block any further efforts
 		name = mfe_industry_events.1.b
-		ig_approval_effect = {
-			GROUP = "ig:ig_industrialists"
-			MOD1 = supported_railway_company_disapproval
-			MOD2 = supported_railway_company_approval
+		ig:ig_industrialists = {
+			add_modifier = {
+				name = supported_railway_company_disapproval
+				months = normal_modifier_time
+			}
+		}
+		ig:ig_intelligentsia = {	
+			add_modifier = {
+				name = supported_railway_company_approval
+				months = normal_modifier_time
+			}
 		}
 	}
 	option = {	# Subsidize his efforts
 		name = mfe_industry_events.1.c
-		ig_approval_effect = {
-			GROUP = "ig:ig_industrialists"
-			MOD1 = supported_railway_company_approval
-			MOD2 = supported_railway_company_disapproval
+		ig:ig_industrialists = {
+			add_modifier = {
+				name = supported_railway_company_approval
+				months = normal_modifier_time
+			}
+		}
+		ig:ig_intelligentsia = {	
+			add_modifier = {
+				name = supported_railway_company_disapproval
+				months = normal_modifier_time
+			}
 		}
 		add_modifier = {
 			name = spent_money_on_rail_company
@@ -193,6 +220,15 @@ mfe_industry_events.3 = {	#Railway company in trouble
     trigger = {
     	exists = scope:railway_state
     }
+
+	immediate = {
+		ig:ig_intelligentsia = {
+			save_scope_as = ig_intelligentsia
+		}
+		ig:ig_industrialists = {
+			save_scope_as = ig_industrialists
+		}
+	}
 
     option = {	# Subsidize the Rails!
         name = mfe_industry_events.3.a
