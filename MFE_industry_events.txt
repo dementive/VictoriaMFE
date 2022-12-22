@@ -197,6 +197,15 @@ mfe_industry_events.3 = {	#Railway company in trouble
     	exists = scope:railway_state
     }
 
+	immediate = {
+		ig:ig_intelligentsia = {
+			save_scope_as = ig_intelligentsia
+		}
+		ig:ig_industrialists = {
+			save_scope_as = ig_industrialists
+		}
+	}
+
     option = {	# Subsidize the Rails!
         name = mfe_industry_events.3.a
         default_option = yes
