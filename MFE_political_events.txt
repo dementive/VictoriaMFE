@@ -1547,13 +1547,16 @@ MFE_political_events.20 = {
         NOT = { has_variable = unions_reform_var }
     }
 
+
     immediate = {
         set_variable = unions_reform_var
         ig:ig_trade_unions.leader = {
             save_scope_as = trade_leader
+        ig:ig_trade_unions = {
+                save_scope_as = ig_trade_unions
+            }
         }
     }
-
     option = {  # This offer cannot be accepted      
         name = MFE_political_events.20.a
         default_option = yes
@@ -1715,6 +1718,9 @@ MFE_political_events.22 = {
             }
             save_scope_as = free_trade_ig
         }
+        ig:ig_industrialists = {
+			save_scope_as = ig_industrialists
+		}
     }
 
     option = {  # The Free Market is the only way forward!
@@ -2083,6 +2089,9 @@ MFE_political_events.25 = {
     }
 
     immediate = {
+        ig:ig_industrialists = {
+			save_scope_as = ig_industrialists
+    }
         set_variable = womens_rights_demanded
         random_scope_character = {
             limit = {
@@ -2223,6 +2232,9 @@ MFE_political_events.27 = {
     }
 
     immediate = {
+        ig:ig_intelligentsia = {
+			save_scope_as = ig_intelligentsia
+		}
         random_scope_state = {
             limit = {
                 is_incorporated = yes
