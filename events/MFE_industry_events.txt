@@ -162,7 +162,7 @@ mfe_industry_events.2 = { #Railway company is thriving
     icon = "gfx/interface/icons/event_icons/event_industry.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/trains"
 
     trigger = {
     	exists = scope:railway_state
@@ -215,7 +215,7 @@ mfe_industry_events.3 = {	#Railway company in trouble
     icon = "gfx/interface/icons/event_icons/event_industry.dds"
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/signed_contract"
 
     trigger = {
     	exists = scope:railway_state
