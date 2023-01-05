@@ -202,3 +202,103 @@ market_protectionism_mod = {
 	country_convoys_capacity_add = 1
 	country_trade_route_exports_add = 10
 }
+
+national_tradgedy_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	country_influence_mult = -0.02
+}
+
+struggling_munitions_plant_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
+	building_output_ammunition_add = -25
+}
+
+supported_munitions_plant_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
+	building_output_ammunition_add = 20
+	building_employment_laborers_add = 1000
+}
+
+bovine_fever_aid_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 1
+}
+
+blood_and_iron_aid_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 1	
+}
+
+explosive_explosion_aid_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 2
+}
+
+bovine_fever_state_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
+	building_livestock_ranch_throughput_mult = -0.1
+}
+
+iron_and_blood_building_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
+	building_iron_mine_throughput_mult = -0.1
+}
+
+iron_and_blood_building_fuck_em_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
+	building_iron_mine_throughput_mult = 0.1
+}
+
+cotton_quality_problems_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
+	building_cotton_plantation_throughput_mult = 0.1
+}
+
+sent_livestock_to_help_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
+	building_livestock_ranch_throughput_mult = -0.025
+}
+
+oil_boon_diverted_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	country_expenses_add = -5
+	country_authority_add = -50
+}
+
+oil_boon_building_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	building_oil_rig_throughput_mult = 0.25
+}
+
+fish_boon_building_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	building_fishing_wharf_throughput_mult = 0.25
+}
+fish_boon_state_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	state_standard_of_living_add = 3
+}
+
+elegant_furniture_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	building_output_luxury_furniture_add = 40
+}
+elegant_furniture_sol_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	state_standard_of_living_add = 2
+	country_prestige_mult = 0.1
+}
+
+robbed_tea_station_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	building_tea_plantation_throughput_mult = -0.1
+}
+
+fertilizer_factory_supported_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	building_chemical_plants_throughput_mult = 0.1
+}
+local_restrictions_on_fertilizer_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
+	building_chemical_plants_throughput_mult = -0.1
+}

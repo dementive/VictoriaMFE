@@ -1,4 +1,77 @@
-﻿ig_approval_effect = {
+﻿build_wheat_building = {
+	random_scope_building = {
+		limit = { is_grain_producing_building = yes }
+		weight = {
+			modifier = {
+				factor = 20
+				occupancy >= 0.9
+			}
+			modifier = {
+				factor = -100
+				level < 5
+			}
+			modifier = {
+				factor = 15
+				level >= 5
+			}
+			modifier = {
+				factor = 100
+				level >= 10
+			}
+		}
+		switch = {
+			trigger = is_building_type
+			building_wheat_farm = {
+				prev = {
+					add_building_level_effect = {
+						BUILDING = "building_wheat_farm"
+						AMOUNT = "2"
+						TT = "add_2_wheat_level_tt"
+					}
+				}
+			}
+			building_rice_farm = {
+				prev = {
+					add_building_level_effect = {
+						BUILDING = "building_rice_farm"
+						AMOUNT = "2"
+						TT = "add_2_rice_level_tt"
+					}
+				}
+			}
+			building_rye_farm = {
+				prev = {
+					add_building_level_effect = {
+						BUILDING = "building_rye_farm"
+						AMOUNT = "2"
+						TT = "add_2_rye_level_tt"
+					}
+				}
+			}
+			building_maize_farm = {
+				prev = {
+					add_building_level_effect = {
+						BUILDING = "building_maize_farm"
+						AMOUNT = "2"
+						TT = "add_2_maize_level_tt"
+					}
+				}
+			}
+			building_millet_farm = {
+				prev = {
+					add_building_level_effect = {
+						BUILDING = "building_millet_farm"
+						AMOUNT = "2"
+						TT = "add_2_millet_level_tt"
+					}
+				}
+			}
+		}
+	}
+}
+
+
+ig_approval_effect = {
 	# Scope = country or party
 	# GROUP = interest group to target
 	# MOD1 = modifier given to GROUP

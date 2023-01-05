@@ -14,6 +14,7 @@ subtract_2_percent_of_credit = {
 	add = root.credit
 	multiply = 0.02
 	multiply = -1
+	min = -100000
 }
 
 #########################################

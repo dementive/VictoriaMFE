@@ -1,4 +1,4 @@
-namespace = MFE_south_america
+﻿namespace = MFE_south_america
 
 MFE_south_america.1 = {
     type = country_event
