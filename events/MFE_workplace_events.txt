@@ -1,16 +1,5 @@
 ﻿namespace = MFE_workplace_events
 
-scripted_effect mining_cooldown = {
-	set_variable = {
-	    name = had_recent_mining_accident
-	    days = medium_cooldown
-	}
-}
-
-scripted_trigger mining_cooldown_trigger = {
-	NOT = { has_variable = had_recent_mining_accident }
-}
-
 # Based on https://github.com/Historical-Expansion-Mod/Greater-Flavor-Mod/blob/master/GFM/events/WorkPlaceEvents.txt
 
 # Mine accident - has level 5 coal mine and does not have law_worker_protections
@@ -675,11 +664,14 @@ MFE_workplace_events.8 = {
 			K = "2"
 		}
 		NOT = { has_law = law_type:law_worker_protections }
-		mining_cooldown_trigger = yes
+		NOT = { has_variable = had_recent_mining_accident }
 	}
 
 	immediate = {
-		mining_cooldown = yes
+		set_variable = {
+		    name = had_recent_mining_accident
+		    days = medium_cooldown
+		}
 		random_scope_state = {
 			limit = {
 				MFE_has_building = {
@@ -768,11 +760,14 @@ MFE_workplace_events.9 = {
 			K = "2"
 		}
 		NOT = { has_law = law_type:law_worker_protections }
-		mining_cooldown_trigger = yes
+		NOT = { has_variable = had_recent_mining_accident }
 	}
 
 	immediate = {
-		mining_cooldown = yes
+		set_variable = {
+		    name = had_recent_mining_accident
+		    days = medium_cooldown
+		}
 		random_scope_state = {
 			limit = {
 				MFE_has_building = {
