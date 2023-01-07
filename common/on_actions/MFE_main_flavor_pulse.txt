@@ -54,6 +54,8 @@
 		10 = MFE_workplace_events.16
 		10 = MFE_workplace_events.17
 		10 = MFE_workplace_events.18
+		10 = MFE_workplace_events.19
+		10 = MFE_workplace_events.20
 	}
 	events = {
 		MFE_south_america.1

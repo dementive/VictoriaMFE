@@ -56,4 +56,6 @@
   elegant_furniture_sol_mod:0 "Beautiful Local Furniture"
   fertilizer_factory_supported_mod:0 "Fertilizer Production Supported"
   local_restrictions_on_fertilizer_mod:0 "Local Restrictions on Chemicals"
-  
+  naval_school_mod:0 "Naval School"
+  radio_component_shortage_mod:0 "Radio Component Shortage"
+  supporting_state_with_radio_components_mod:0 "Supporting Radio Companies"

@@ -72,11 +72,11 @@
 
 
 ig_approval_effect = {
-	# Scope = country or party
+	# Scope = country or party (party must have at least 2 members)
 	# GROUP = interest group to target
 	# MOD1 = modifier given to GROUP
 	# MOD2 = modifier given to opposing interest group
-	
+
 	$GROUP$ = {
 		add_modifier = {
 			name = $MOD1$

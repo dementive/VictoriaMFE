@@ -89,7 +89,7 @@ workers_committee_demands_mod = {
 
 workers_committee_disallowed_mod = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-	interest_group_approval_add = -3	
+	interest_group_approval_add = -3
 }
 
 local_management_conflict_mod = {
@@ -226,7 +226,7 @@ bovine_fever_aid_mod = {
 
 blood_and_iron_aid_mod = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-	country_expenses_add = 1	
+	country_expenses_add = 1
 }
 
 explosive_explosion_aid_mod = {
@@ -301,4 +301,24 @@ fertilizer_factory_supported_mod = {
 local_restrictions_on_fertilizer_mod = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
 	building_chemical_plants_throughput_mult = -0.1
+}
+
+naval_school_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
+	building_naval_base_throughput_mult = 0.1
+}
+
+world_renowned_clippers = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_prestige_add = 5
+}
+
+radio_component_shortage_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
+	building_electrics_industry_throughput_mult = -0.1
+}
+
+supporting_state_with_radio_components_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
+	country_expenses_add = 2
 }

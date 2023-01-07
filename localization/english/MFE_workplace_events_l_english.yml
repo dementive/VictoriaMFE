@@ -74,7 +74,6 @@
   MFE_workplace_events.11.b:0 "Workers should not be exploited and forced into such conditions."
   MFE_workplace_events.11.c:0 "Machines are dangerous! Industry itself is a cancer."
 
-  # Note to zorgo: Make as many puns as possible about dyes and dying
   MFE_workplace_events.12.t:0 "Destruction at the Dyeworks"
   MFE_workplace_events.12.d:0 "Several workers died today at the one of our dyeworks, when an industrial sized tub of hot dye accidentally spilled out over the workshop floor and the unsuspecting workers. Locals are upset about the incident, claiming that the poor safety regulations in the hot and dangerous workplace are to blame for the accident, and are urging the government to take action. As rescue workers left the scene, several workshop employees were left dying."
   MFE_workplace_events.12.f:0 "I was just working, dying some shirts and then everyone just started up and dying around me."
@@ -117,3 +116,15 @@
   MFE_workplace_events.18.f:0 "I awoke this morning and took to the streets and was greeted with the most putrid smell I have ever experienced. It did not seem possible that such a disgusting stench could actually exists, but one thing was clear. It was coming from the chemical plant."
   MFE_workplace_events.18.a:0 "Crops do not grow themselves, sadly."
   MFE_workplace_events.18.b:0 "We should consider some local restrictions."
+
+  MFE_workplace_events.19.t:0 "Clipper Boom"
+  MFE_workplace_events.19.d:0 "The wharfs, quays, and drydocks in one of our coastal provinces are abuzz with the rings of hammers and the songs of saws, as the local factory struggles to keep up with new orders for clipper ships that are pouring in from all over the world. Efficient work processes and management, combined with excellent craftsmanship and seamanship, have led them to produce more and better ships than during any year previous! Perhaps this is the time to rest on the laurels, but, then again, the future is always an uncertainty."
+  MFE_workplace_events.19.f:0 "These ships are the finest in the world, just look at them the sails glisten in the sun with a beauty that seems impossible."
+  MFE_workplace_events.19.a:0 "Let us celebrate!"
+  MFE_workplace_events.19.b:0 "Establish a Naval School"
+
+  MFE_workplace_events.20.t:0 "Radio [SCOPE.sState('radio_state').GetName]"
+  MFE_workplace_events.20.d:0 "A local radio station in one of our provinces, [SCOPE.sState('radio_state').GetName], is facing a shortage of radio components for their transmitters, and have been forced to cease broadcasts until the situation is resolved. Local authorities have suggested lending some of the government’s radio components to the station, as it fears that the local populace will be alarmed by a lack of news from the front."
+  MFE_workplace_events.20.f:0 "Did you hear, the radio station in [SCOPE.sState('radio_state').GetName] went out the other day. Who knows what could be happening with the war now..."
+  MFE_workplace_events.20.a:0 "We have none to spare"
+  MFE_workplace_events.20.b:0 "Give them the radios"

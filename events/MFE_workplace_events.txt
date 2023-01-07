@@ -252,7 +252,7 @@ MFE_workplace_events.4 = {
 		video = "gfx/event_pictures/public_assasination_test.bk2"
 	}
 
-	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/southamerica/public_figure_assassination"
@@ -412,8 +412,7 @@ MFE_workplace_events.6 = {
 	minor_left_icon = g:meat
 	minor_right_icon = g:fabric
 
-	#minor_right_icon
-	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/asia/dead_cattle_poor_harvest"
@@ -538,7 +537,7 @@ MFE_workplace_events.7 = {
 
 	left_icon = scope:guilty_silk_field_owner
 
-	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -749,7 +748,7 @@ MFE_workplace_events.9 = {
 		video = "gfx/event_pictures/asia_factory_accident.bk2"
 	}
 
-	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/asia/factory_accident"
@@ -913,7 +912,7 @@ MFE_workplace_events.11 = {
 		video = "gfx/event_pictures/unspecific_devastation.bk2"
 	}
 
-	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/unspecific/devastation"
@@ -1002,7 +1001,7 @@ MFE_workplace_events.12 = {
 		video = "gfx/event_pictures/asia_factory_accident.bk2"
 	}
 
-	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
@@ -1081,7 +1080,7 @@ MFE_workplace_events.13 = {
 	gui_window = event_window_1char_tabloid
 
 	left_icon = scope:guilty_oil_owner
-	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/middleeast/oil_derricks"
@@ -1270,7 +1269,7 @@ MFE_workplace_events.15 = {
 
 	left_icon = scope:professor
 
-	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+	icon = "gfx/interface/icons/event_icons/event_trade.dds"
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/africa/prosperous_farm"
@@ -1352,7 +1351,7 @@ MFE_workplace_events.16 = {
 		video = "gfx/event_pictures/unspecific_devastation.bk2"
 	}
 
-	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/unspecific/devastation"
@@ -1487,7 +1486,7 @@ MFE_workplace_events.18 = {
     title = MFE_workplace_events.18.t
     desc = MFE_workplace_events.18.d
     flavor = MFE_workplace_events.18.f
-    
+
     duration = 3
 
     event_image = {
@@ -1551,6 +1550,148 @@ MFE_workplace_events.18 = {
         	add_modifier = {
         		name = ig_gaining_support
         		months = long_modifier_time
+        	}
+        }
+    }
+}
+
+# Clippings (boon)
+MFE_workplace_events.19 = {
+    type = country_event
+    placement = scope:clipper_state
+    title = MFE_workplace_events.19.t
+    desc = MFE_workplace_events.19.d
+    flavor = MFE_workplace_events.19.f
+
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/africa_construction_colony.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/africa/construction_colony"
+
+    cooldown = { months = long_cooldown }
+    trigger = {
+    	# Navy building with clipper pm
+    	MFE_has_building = {
+    		S = "1"
+    		T = "OR = { has_active_production_method = pm_basic_shipbuilding has_active_production_method = pm_complex_shipbuilding } level >= 2"
+    		K = "3"
+    	}
+    	market = {
+    		mg:clippers = {
+    			market_goods_sell_orders > 5
+    		}
+    	}
+    }
+
+    immediate = {
+    	random_scope_state = {
+    		limit = {
+    			MFE_has_building = {
+    				S = "1"
+    				T = "OR = { has_active_production_method = pm_basic_shipbuilding has_active_production_method = pm_complex_shipbuilding } level >= 2"
+    				K = "3"
+    			}
+    		}
+    		save_scope_as = clipper_state
+    	}
+    }
+
+    option = {
+        name = MFE_workplace_events.19.a
+        add_modifier = {
+        	name = world_renowned_clippers
+        	months = long_modifier_time
+        }
+    }
+    option = {
+        name = MFE_workplace_events.19.b
+        default_option = yes
+        scope:clipper_state = {
+        	add_modifier = {
+        		name = naval_school_mod
+        		months = long_modifier_time
+        	}
+        	add_loyalists = {
+        		value = medium_radicals
+        	}
+        }
+    }
+}
+
+# Radio [SCOPE.sState('radio_state').GetName]
+MFE_workplace_events.20 = {
+    type = country_event
+    placement = scope:radio_state
+    title = MFE_workplace_events.20.t
+    desc = MFE_workplace_events.20.d
+    flavor = MFE_workplace_events.20.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_world_fair.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/world_fair"
+
+    trigger = {
+    	has_technology_researched = radio
+		any_scope_building = {
+			is_building_type = building_electrics_industry
+			weekly_profit > 0
+			level >= 2
+			has_active_production_method = pm_radios
+		}
+    	any_scope_war = {
+    		count > 0
+    	}
+    }
+
+    immediate = {
+    	random_scope_building = {
+    		limit = {
+    			is_building_type = building_electrics_industry
+    			occupancy > 0.75
+    			cash_reserves_ratio > 0.25
+    			weekly_profit > 0
+    			level >= 5
+    			has_active_production_method = pm_radios
+    		}
+    		save_scope_as = radio_state
+    		add_modifier = {
+    			name = radio_component_shortage_mod
+    			months = long_modifier_time
+    		}
+    	}
+    }
+
+    option = {	# We have none to spare
+        name = MFE_workplace_events.20.a
+        default_option = yes
+        scope:radio_state = {
+        	add_radicals = {
+        		value = medium_radicals
+        	}
+        }
+    }
+    option = {	# Give them the radios
+        name = MFE_workplace_events.20.b
+        add_modifier = {
+        	name = supporting_state_with_radio_components_mod
+        	months = long_modifier_time
+        }
+        scope:radio_state = {
+        	add_loyalists = {
+        		value = medium_radicals
         	}
         }
     }
