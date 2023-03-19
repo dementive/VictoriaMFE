@@ -1696,39 +1696,3 @@ MFE_workplace_events.20 = {
         }
     }
 }
-
-MFE_workplace_events.21 = {
-    type = country_event
-    placement = root
-    title = MFE_workplace_events.21.t
-    desc = MFE_workplace_events.21.d
-    flavor = MFE_workplace_events.21.f
-    
-    duration = 3
-
-	gui_window = event_window_big_icon_center
-	event_image = {
-	    texture = "gfx/event_pictures/test_image.dds"
-	}
-
-    icon = "gfx/interface/icons/event_icons/event_industry.dds"
-
-    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-    on_opened_soundeffect = "event:/SFX/Events/africa/construction_colony"
-
-    trigger = {
-    
-    }
-
-    immediate = {
-
-    }
-
-    option = {      
-        name = MFE_workplace_events.21.a
-        default_option = yes
-    }
-    option = {      
-        name = MFE_workplace_events.21.b
-    }
-}
