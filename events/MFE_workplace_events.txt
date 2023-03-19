@@ -333,7 +333,7 @@ MFE_workplace_events.5 = {
 	icon = "gfx/interface/icons/event_icons/event_industry.dds"
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/asia/poor_people_moving"
+	on_opened_soundeffect = "event:/SFX/Events/event_prosperous_farm_amb_07"
 	cooldown = { months = very_long_cooldown }
 	trigger = {
 		MFE_has_building = {
@@ -356,7 +356,7 @@ MFE_workplace_events.5 = {
 			random_scope_building = {
 				limit = {
 					MFE_has_building = {
-						S = "2"
+						S = "3"
 						T = "is_building_type = building_food_industry has_active_production_method = pm_cannery level >= 3"
 						K = "3"
 					}
@@ -1593,7 +1593,7 @@ MFE_workplace_events.19 = {
     	random_scope_state = {
     		limit = {
     			MFE_has_building = {
-    				S = "1"
+    				S = "2"
     				T = "OR = { has_active_production_method = pm_basic_shipbuilding has_active_production_method = pm_complex_shipbuilding } level >= 2"
     				K = "3"
     			}
@@ -1694,5 +1694,41 @@ MFE_workplace_events.20 = {
         		value = medium_radicals
         	}
         }
+    }
+}
+
+MFE_workplace_events.21 = {
+    type = country_event
+    placement = root
+    title = MFE_workplace_events.21.t
+    desc = MFE_workplace_events.21.d
+    flavor = MFE_workplace_events.21.f
+    
+    duration = 3
+
+	gui_window = event_window_big_icon_center
+	event_image = {
+	    texture = "gfx/event_pictures/test_image.dds"
+	}
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/africa/construction_colony"
+
+    trigger = {
+    
+    }
+
+    immediate = {
+
+    }
+
+    option = {      
+        name = MFE_workplace_events.21.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_workplace_events.21.b
     }
 }

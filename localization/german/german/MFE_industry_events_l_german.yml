@@ -1,0 +1,19 @@
+﻿l_german:
+  mfe_industry_events.1.t:0 "Eine Eisenbahngesellschaft entsteht"
+  mfe_industry_events.1.d:0 "Ein Politiker mit Beziehungen, [SCOPE.sCharacter('rich_dude').GetFullName], will eine neue Eisenbahngesellschaft finanzieren, aber die [SCOPE.gsInterestGroup('ig_intelligentsia').GetName] unterstützt den neuen Vorschlag nicht."
+  mfe_industry_events.1.f:0 ""Die ganze Welt ist im Eisenbahnfieber, und es gibt viele Möglichkeiten, Geld zu verdienen, aber wir müssen uns bewegen, und zwar schnell. Was sagen Sie dazu?""
+  mfe_industry_events.1.a:0 "Erlaubt [SCOPE.sCharacter('rich_dude').GetFullName], das Geschäft weiterzuführen"
+  mfe_industry_events.1.b:0 "Blockiert alle weiteren Bemühungen"
+  mfe_industry_events.1.c:0 "Subventioniert ihre Bemühungen"
+
+  mfe_industry_events.2.t:0 "Florierendes Eisenbahnunternehmen"
+  mfe_industry_events.2.d:0 "Die neuen Eisenbahnen in [SCOPE.sState('railway_state').GetName] sind ein voller Erfolg bei den Einheimischen, die sie mit Begeisterung annehmen."
+  mfe_industry_events.2.f:0 ""Früher dauerte die Reise von [SCOPE.sState('railway_state').GetName] nach [ROOT.GetCountry.GetCapital.GetName] drei Stunden, aber diese neuen Routen verkürzen die Reisezeit um die Hälfte.""
+  mfe_industry_events.2.a:0 "Das ist grossartig!"
+
+  mfe_industry_events.3.t:0 "Eisenbahngesellschaft in Schwierigkeiten"
+  mfe_industry_events.3.d:0 "Plötzliche Veränderungen an der Börse haben die [SCOPE.gsInterestGroup('ig_industrialists').GetName] unter Druck gesetzt, was zum Versiegen der Kapitalquellen führt und die überschuldeten Eisenbahnunternehmen in [SCOPE.sState('railway_state').GetName] zu Grunde gehen lässt."
+  mfe_industry_events.3.f:0 ""Natürlich hat die Presse ihre helle Freude daran - jeden Tag gibt es Artikel, die von den Mitgliedern der [SCOPE.gsInterestGroup('ig_intelligentsia').GetName] geschrieben werden und in denen sie unsere Verzweiflung herausschreien - es muss etwas getan werden.""
+  mfe_industry_events.3.a:0 "Subventioniert die Schienen!"
+  mfe_industry_events.3.b:0 "Die [SCOPE.gsInterestGroup('ig_industrialists').GetName] waren diejenigen, die einen freien Markt wollten..."
+  subsidize_rail_state_tt:0 " Beginnt mit der Subventionierung der Eisenbahnen in [SCOPE.sState('railway_state').GetName]"

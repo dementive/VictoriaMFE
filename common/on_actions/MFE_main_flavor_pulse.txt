@@ -1,6 +1,14 @@
 ﻿on_yearly_pulse_country = {
+	on_actions = {
+		mfe_yearly_pulse
+		delay = { days = { 30 365 } } 
+		# 30 days because most vanilla events actually fire in january for some reason, this will prevent double events from firing all the time
+	}
+}
+
+mfe_yearly_pulse = {
 	random_events = {
-		2180 = 0	# As more events are added this value can be decreased but total should always be around 3000
+		1180 = 0	# As more events are added this value can be decreased but total should always be around 2000
 
 		20 = mfe_industry_events.1
 

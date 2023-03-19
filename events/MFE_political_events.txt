@@ -2135,9 +2135,7 @@ MFE_political_events.26 = {
 			save_scope_as = arts_state
 		}
 		create_character = {
-		   interest_group = ig_industrialists
-		   ideology = ideology_market_liberal
-		   save_scope_as = poet_guy
+			save_scope_as = poet_guy
 		}
 	}
 
