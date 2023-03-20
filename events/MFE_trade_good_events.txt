@@ -1,0 +1,165 @@
+﻿namespace = MFE_trade_good_events
+
+@event_duration = 3
+
+# Bullets for [active_war.GetName]
+MFE_trade_good_events.1 = {
+    type = country_event
+    placement = scope:munitions_state
+    title = MFE_trade_good_events.1.t
+    desc = MFE_trade_good_events.1.d
+    flavor = MFE_trade_good_events.1.f
+    
+    duration = @event_duration
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+    }
+
+    minor_left_icon = g:ammunition
+    minor_right_icon = g:ammunition
+    icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+    	any_scope_war = {
+    		count > 0
+    	}
+    	any_scope_building = {
+    		has_ammo_pm = yes
+			is_building_type = building_munition_plants
+			cash_reserves_ratio > 0.25
+			weekly_profit > 0
+			occupancy >= 0.5
+			level >= 5
+    	}
+    }
+
+    immediate = {
+    	random_scope_war = {
+    		save_scope_as = active_war
+    	}
+    	random_scope_building = {
+    		limit = {
+    			has_ammo_pm = yes
+    			is_building_type = building_munition_plants
+    			cash_reserves_ratio > 0.25
+    			weekly_profit > 0
+    			occupancy >= 0.5
+    			level >= 5
+    		}
+    		save_scope_as = munitions_building
+    		state = {
+    			save_scope_as = munitions_state
+    		}
+    	}
+    }
+
+    option = {      
+        name = MFE_trade_good_events.1.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_trade_good_events.1.b
+    }
+}
+
+# [ally.GetName] is short on bullets for [active_war.GetName]
+MFE_trade_good_events.2 = {
+    type = country_event
+    placement = root
+    title = MFE_trade_good_events.2.t
+    desc = MFE_trade_good_events.2.d
+    flavor = MFE_trade_good_events.2.f
+    
+    duration = @event_duration
+
+    event_image = {
+    	trigger = {
+    		ruler.religion = {
+    			OR = {
+    				this = sunni
+					this = shiite
+    			}
+    		}
+    	}
+    	video = "gfx/event_pictures/middleeast_battlefield_trenches.bk2"
+    }
+    event_image = {
+    	trigger = {
+    		ruler.culture = {
+    			OR = {
+    				has_discrimination_trait = iberian_culture_group
+					has_discrimination_trait = lusophone
+					has_discrimination_trait = hispanophone
+    			}
+    		}
+    	}
+    	video = "gfx/event_pictures/southamerica_aristocrats.bk2"
+    }
+    event_image = { trigger = { ruler.culture = { has_culture_graphics = african } } video = "gfx/event_pictures/africa_diplomats_negotiating.bk2" }
+    event_image = { trigger = { ruler.culture = { has_culture_graphics = asian } } video = "gfx/event_pictures/asia_politician_parliament_motion.bk2" }
+    event_image = { trigger = { ruler.culture = { has_culture_graphics = european } } video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2" }
+    event_image = { trigger = { ruler.culture = { has_culture_graphics = mideast_indian } } video = "gfx/event_pictures/asia_politician_parliament_motion.bk2" }
+    minor_left_icon = ruler
+    minor_right_icon = scope:ally.ruler
+    icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+    	any_scope_war = {
+    		count > 0
+    	}
+    	any_scope_ally = {
+    		root = {
+    			is_in_war_together = prev
+    			NOT = {
+    				has_war_with = prev
+    			}
+    		}
+    		market.mg:ammunition = {
+    			market_goods_has_goods_shortage = yes
+    		}
+    	}
+    	market.mg:ammunition = {
+    		market_goods_has_goods_shortage = no
+    	}
+    	any_scope_building = {
+    		has_ammo_pm = yes
+			is_building_type = building_munition_plants
+			cash_reserves_ratio > 0.25
+			weekly_profit > 0
+			occupancy >= 0.5
+			level >= 5
+    	}
+    }
+
+    immediate = {
+    	random_scope_ally = {
+    		limit = {
+    			root = {
+    				is_in_war_together = prev
+    				NOT = {
+    					has_war_with = prev
+    				}
+    			}
+    			market.mg:ammunition = {
+    				market_goods_has_goods_shortage = yes
+    			}
+    		}
+    		save_scope_as = ally
+    	}
+    }
+
+    option = {      
+        name = MFE_trade_good_events.2.a
+        default_option = yes
+    }
+    option = {      
+        name = MFE_trade_good_events.2.b
+    }
+}

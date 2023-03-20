@@ -10,6 +10,22 @@ poor_building_trigger = {
 	occupancy >= 0.5
 }
 
+has_ammo_pm = {
+	OR = {
+		has_active_production_method = pm_percussion_caps
+		has_active_production_method = pm_explosive_shells
+	}
+}
+
+has_artillery_pm = {
+	OR = {
+		has_active_production_method = pm_cannon_artillery
+		has_active_production_method = pm_mobile_artillery
+		has_active_production_method = pm_shrapnel_artillery
+		has_active_production_method = pm_siege_artillery
+	}
+}
+
 # MFE_has_building
 # S = Scope to run trigger in, can be 1/2/3 (1 = country scope, 2 = state, 3 = building)
 # T = Trigger to identifty building and evaluate more conditions with
