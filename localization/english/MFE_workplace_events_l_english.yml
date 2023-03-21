@@ -112,7 +112,7 @@
   MFE_workplace_events.17.b:0 "The rich will love those tables!"
 
   MFE_workplace_events.18.t:0 "Factory stinks"
-  MFE_workplace_events.18.d:0 "Locals in one of our provinces, [SCOPE.sState('stinking_state').GetName], are complaining about certain emissions coming from the local fertilizer factory. While the place might smell like roses to the provincial budget, the balance certainly hasn’t been adding up for local noses lately. We could support an ordinance to modify the work process, but doing so might anger local captains of industry."
+  MFE_workplace_events.18.d:0 "Locals in one of our provinces, [SCOPE.sState('stinking_state').GetName], are complaining about certain emissions coming from the local fertilizer factory. While the place might smell like roses to the provincial budget, the balance certainly hasn't been adding up for local noses lately. We could support an ordinance to modify the work process, but doing so might anger local captains of industry."
   MFE_workplace_events.18.f:0 "I awoke this morning and took to the streets and was greeted with the most putrid smell I have ever experienced. It did not seem possible that such a disgusting stench could actually exists, but one thing was clear. It was coming from the chemical plant."
   MFE_workplace_events.18.a:0 "Crops do not grow themselves, sadly."
   MFE_workplace_events.18.b:0 "We should consider some local restrictions."
@@ -124,7 +124,7 @@
   MFE_workplace_events.19.b:0 "Establish a Naval School"
 
   MFE_workplace_events.20.t:0 "Radio [SCOPE.sState('radio_state').GetName]"
-  MFE_workplace_events.20.d:0 "A local radio station in one of our provinces, [SCOPE.sState('radio_state').GetName], is facing a shortage of radio components for their transmitters, and have been forced to cease broadcasts until the situation is resolved. Local authorities have suggested lending some of the government’s radio components to the station, as it fears that the local populace will be alarmed by a lack of news from the front."
+  MFE_workplace_events.20.d:0 "A local radio station in one of our provinces, [SCOPE.sState('radio_state').GetName], is facing a shortage of radio components for their transmitters, and have been forced to cease broadcasts until the situation is resolved. Local authorities have suggested lending some of the government's radio components to the station, as it fears that the local populace will be alarmed by a lack of news from the front."
   MFE_workplace_events.20.f:0 "Did you hear, the radio station in [SCOPE.sState('radio_state').GetName] went out the other day. Who knows what could be happening with the war now..."
   MFE_workplace_events.20.a:0 "We have none to spare"
   MFE_workplace_events.20.b:0 "Give them the radios"

@@ -134,3 +134,23 @@ add_building_level_effect = {
 		}
 	}
 }
+
+ally_in_war_short_on_goods_effect = {
+	random_scope_war = {
+		save_scope_as = active_war
+	}
+	random_scope_ally = {
+		limit = {
+			root = {
+				is_in_war_together = prev
+				NOT = {
+					has_war_with = prev
+				}
+			}
+			market.mg:$goods$ = {
+				market_goods_has_goods_shortage = yes
+			}
+		}
+		save_scope_as = ally
+	}
+}
