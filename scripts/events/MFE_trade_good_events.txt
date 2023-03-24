@@ -468,12 +468,16 @@ MFE_trade_good_events.8 = {
 	duration = 3
 	icon = "gfx/interface/icons/event_icons/event_trade.dds"
 	
-	event_image = {
-		video = "gfx/event_pictures/unspecific_factory_closed.bk2"
-	}
+	event_image = { trigger = { var:picture = 1 } texture = "gfx/event_pictures/paintings/harbors/Fitz_Henry_Lane_Castine_Harbor_and_Town.dds" }
+	event_image = { trigger = { var:picture = 2 } texture = "gfx/event_pictures/paintings/harbors/San_Diego.dds" }
+	event_image = { trigger = { var:picture = 3 } texture = "gfx/event_pictures/paintings/harbors/Stage_Fort_across_Gloucester_Harbor.dds" }
+	event_image = { trigger = { var:picture = 4 } texture = "gfx/event_pictures/paintings/harbors/The_Golden_State_Entering_New_York_Harbor.dds" }
+	event_image = { trigger = { var:picture = 5 } texture = "gfx/event_pictures/paintings/harbors/The_Paying_out_Machinery_in_the_Stern_of_the_Great_Eastern.dds" }
+	event_image = { trigger = { var:picture = 6 } texture = "gfx/event_pictures/paintings/harbors/The_Russian_Ship_of_the_Line_Asow_and_a_Frigate_at_Anchor_in_the_Roads_of_Elsinore.dds" }
+	event_image = { trigger = { var:picture = 7 } texture = "gfx/event_pictures/paintings/harbors/View_from_the_Quai_dOrsay.dds" }
 	
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/unspecific/factory_closed"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/steam_ship"
 	
 	cooldown = { months = long_cooldown }
 	trigger = {
@@ -485,6 +489,7 @@ MFE_trade_good_events.8 = {
 	}
 	
 	immediate = {
+		get_harbor_picture = yes
 		random_scope_building = {
 			limit = {
 				has_ironclad_pm = yes
@@ -568,12 +573,16 @@ MFE_trade_good_events.10 = {
 	
 	minor_left_icon = g:fish
 	minor_right_icon = g:fish
-	event_image = {
-		video = "gfx/event_pictures/unspecific_whaling.bk2"
-	}
+	event_image = { trigger = { var:picture = 1 } texture = "gfx/event_pictures/paintings/harbors/Fitz_Henry_Lane_Castine_Harbor_and_Town.dds" }
+	event_image = { trigger = { var:picture = 2 } texture = "gfx/event_pictures/paintings/harbors/San_Diego.dds" }
+	event_image = { trigger = { var:picture = 3 } texture = "gfx/event_pictures/paintings/harbors/Stage_Fort_across_Gloucester_Harbor.dds" }
+	event_image = { trigger = { var:picture = 4 } texture = "gfx/event_pictures/paintings/harbors/The_Golden_State_Entering_New_York_Harbor.dds" }
+	event_image = { trigger = { var:picture = 5 } texture = "gfx/event_pictures/paintings/harbors/The_Paying_out_Machinery_in_the_Stern_of_the_Great_Eastern.dds" }
+	event_image = { trigger = { var:picture = 6 } texture = "gfx/event_pictures/paintings/harbors/The_Russian_Ship_of_the_Line_Asow_and_a_Frigate_at_Anchor_in_the_Roads_of_Elsinore.dds" }
+	event_image = { trigger = { var:picture = 7 } texture = "gfx/event_pictures/paintings/harbors/View_from_the_Quai_dOrsay.dds" }
 	
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/unspecific/whaling"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/steam_ship"
 	
 	cooldown = { months = very_long_cooldown }
 	trigger = {
@@ -584,6 +593,7 @@ MFE_trade_good_events.10 = {
 	}
 	
 	immediate = {
+		get_harbor_picture = yes
 		random_scope_building = {
 			limit = {
 				this = b:building_fishing_wharf
@@ -700,8 +710,6 @@ MFE_trade_good_events.12 = {
 	
 	cooldown = { months = long_cooldown }
 	trigger = {
-
-		is_at_war = no
 		any_scope_building = {
 			has_good_fabric_pm = yes
 			level >= 3
@@ -709,6 +717,7 @@ MFE_trade_good_events.12 = {
 	}
 	
 	immediate = {
+		get_landscape_picture = yes
 		random_scope_building = {
 			limit = {
 				has_good_fabric_pm = yes
@@ -725,5 +734,285 @@ MFE_trade_good_events.12 = {
 	}
 	option = {
 		name = MFE_trade_good_events.12.b
+	}
+}
+
+# Fire in the sawmills of [sawmill_fire_state.GetName]
+MFE_trade_good_events.13 = {
+	type = country_event
+	placement = scope:sawmill_fire_state
+	title = "MFE_trade_good_events.13.t"
+	desc = "MFE_trade_good_events.13.d"
+	flavor = "MFE_trade_good_events.13.f"
+	duration = 3
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_fire.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/destruction"
+	
+	cooldown = { months = very_long_cooldown }
+	trigger = {
+		any_scope_building = {
+			has_active_production_method = pm_saw_mills
+			level >= 5
+		}
+	}
+	
+	immediate = {
+		random_scope_building = {
+			limit = {
+				has_active_production_method = pm_saw_mills
+				level >= 5
+			}
+			state = {
+				save_scope_as = sawmill_fire_state
+			}
+		}
+	}
+	option = {
+		name = MFE_trade_good_events.13.a
+		default_option = yes
+	}
+	option = {
+		name = MFE_trade_good_events.13.b
+	}
+}
+
+# Hardwood in [hardwood_state.GetName] is extremely hard
+MFE_trade_good_events.14 = {
+	type = country_event
+	placement = scope:hardwood_state
+	title = "MFE_trade_good_events.14.t"
+	desc = "MFE_trade_good_events.14.d"
+	flavor = "MFE_trade_good_events.14.f"
+	duration = 3
+	icon = "gfx/interface/icons/event_icons/event_trade.dds"
+	
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_gold_prospectors.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/gold_prospectors"
+	
+	cooldown = { months = very_long_cooldown }
+	trigger = {
+		any_scope_building = {
+			has_active_production_method = pm_hardwood
+			level >= 5
+		}
+	}
+	
+	immediate = {
+		random_scope_building = {
+			limit = {
+				has_active_production_method = pm_hardwood
+				level >= 5
+			}
+			state = {
+				save_scope_as = hardwood_state
+			}
+		}
+	}
+	option = {
+		name = MFE_trade_good_events.14.a
+		default_option = yes
+	}
+	option = {
+		name = MFE_trade_good_events.14.b
+	}
+}
+
+# Entire Grocery chain robbed in grand organized crime in [grocery_state.GetName]
+MFE_trade_good_events.15 = {
+	type = country_event
+	placement = scope:grocery_state
+	title = "MFE_trade_good_events.15.t"
+	desc = "MFE_trade_good_events.15.d"
+	flavor = "MFE_trade_good_events.15.f"
+	duration = 3
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_vandalized_storefront.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/vandalized_storefront"
+	
+	cooldown = { months = very_long_cooldown }
+	trigger = {
+		market_capital.market.mg:groceries = { 
+			market_goods_pricier > 0.25
+		}
+		any_scope_building = {
+			has_groceries_pm = yes
+			poor_building_trigger = yes
+			level >= 5
+		}
+	}
+	
+	immediate = {
+		random_scope_building = {
+			limit = {
+				has_groceries_pm = yes
+				poor_building_trigger = yes
+				level >= 5
+			}
+			state = {
+				save_scope_as = grocery_state
+			}
+		}
+	}
+	option = {
+		name = MFE_trade_good_events.15.a
+		default_option = yes
+	}
+	option = {
+		name = MFE_trade_good_events.15.b
+	}
+}
+
+# People in [clothes_state.GetName] can't afford to wear clothes
+MFE_trade_good_events.16 = {
+	type = country_event
+	placement = scope:clothes_state
+	title = "MFE_trade_good_events.16.t"
+	desc = "MFE_trade_good_events.16.d"
+	flavor = "MFE_trade_good_events.16.f"
+	duration = 3
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+	
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_rich_and_poor.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/rich_and_poor"
+	
+	cooldown = { months = very_long_cooldown }
+	trigger = {
+		market_capital.market.mg:clothes = { 
+			market_goods_pricier > 0.25
+			market_goods_has_goods_shortage = yes
+			market_goods_shortage_ratio < 0.15
+		}
+		any_scope_building = {
+			has_clothes_pm = yes
+			poor_building_trigger = yes
+			level >= 2
+		}
+	}
+	
+	immediate = {
+		random_scope_building = {
+			limit = {
+				has_clothes_pm = yes
+				poor_building_trigger = yes
+				level >= 2
+			}
+			state = {
+				save_scope_as = clothes_state
+			}
+		}
+	}
+	option = {
+		name = MFE_trade_good_events.16.a
+		default_option = yes
+	}
+	option = {
+		name = MFE_trade_good_events.16.b
+	}
+}
+
+# [Player.GetRuler.GetName] dies after sitting on chair while visiting the furniture factory in [furniture_state.GetName]
+MFE_trade_good_events.17 = {
+	type = country_event
+	placement = scope:furniture_state
+	title = "MFE_trade_good_events.17.t"
+	desc = "MFE_trade_good_events.17.d"
+	flavor = "MFE_trade_good_events.17.f"
+	duration = 3
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_factory_closed.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/factory_closed"
+	<Template memory:1c8f00ece90>
+	cooldown = { months = very_long_cooldown }
+	trigger = {
+		capital = {
+			has_building = building_furniture_manufacturies
+			poor_building_trigger = yes
+			level >= 1
+		}
+	}
+	
+	immediate = {
+		capital = {
+			save_scope_as = furniture_state
+		}
+	}
+	option = {
+		name = MFE_trade_good_events.17.a
+		default_option = yes
+	}
+	option = {
+		name = MFE_trade_good_events.17.b
+	}
+}
+
+# Extreme production of paper in [paper_state.GetName] awes the world
+MFE_trade_good_events.18 = {
+	type = country_event
+	placement = scope:paper_state
+	title = "MFE_trade_good_events.18.t"
+	desc = "MFE_trade_good_events.18.d"
+	flavor = "MFE_trade_good_events.18.f"
+	duration = 3
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	
+	event_image = {
+		video = "gfx/event_pictures/southamerica_factory_opening.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/factory_opening"
+	
+	trigger = {
+		NOT = { has_variable = paper_world_event_happened }
+		any_scope_building = {
+			this = b:building_paper_mills
+			level >= 30
+		}
+	}
+	
+	immediate = {
+		get_city_picture = yes
+		set_variable = paper_world_event_happened
+		random_scope_building = {
+			limit = {
+				this = b:building_paper_mills
+				level >= 30
+			}
+			save_scope_as = huge_paper_factory
+			state = {
+				save_scope_as = paper_state
+			}
+		}
+	}
+	option = {
+		name = MFE_trade_good_events.18.a
+		default_option = yes
+	}
+	option = {
+		name = MFE_trade_good_events.18.b
 	}
 }

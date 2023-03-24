@@ -118,10 +118,15 @@ add_building_level_effect = {
 				name = level_var
 				add = $AMOUNT$
 			}
-			create_building = {
-				building = $BUILDING$
-				level = var:level_var
-				reserves = 1
+			# Use this commented out part and delete the spam scripted effect if paradox ever fixes the bug where create_building level parameter only takes integers
+			#create_building = {
+			#	building = $BUILDING$
+			#	level = var:level_var
+			#	reserves = 1
+			#}
+			add_level_spam_effect = {
+				BUILDING = $BUILDING$
+				AMOUNT = var:level_var
 			}
 			remove_variable = level_var
 		}
@@ -130,6 +135,715 @@ add_building_level_effect = {
 				building = $BUILDING$
 				level = $AMOUNT$
 				reserves = 1
+			}
+		}
+	}
+}
+
+add_level_spam_effect = {
+	remove_building = b:$BUILDING$
+	b:$BUILDING$ = {
+		switch = {
+			trigger = $AMOUNT$
+			2 = {
+				create_building = {
+					building = $BUILDING$
+					level = 2
+					reserves = 1
+				}
+			}
+			3 = {
+				create_building = {
+					building = $BUILDING$
+					level = 3
+					reserves = 1
+				}
+			}
+			4 = {
+				create_building = {
+					building = $BUILDING$
+					level = 4
+					reserves = 1
+				}
+			}
+			5 = {
+				create_building = {
+					building = $BUILDING$
+					level = 5
+					reserves = 1
+				}
+			}
+			6 = {
+				create_building = {
+					building = $BUILDING$
+					level = 6
+					reserves = 1
+				}
+			}
+			7 = {
+				create_building = {
+					building = $BUILDING$
+					level = 7
+					reserves = 1
+				}
+			}
+			8 = {
+				create_building = {
+					building = $BUILDING$
+					level = 8
+					reserves = 1
+				}
+			}
+			9 = {
+				create_building = {
+					building = $BUILDING$
+					level = 9
+					reserves = 1
+				}
+			}
+			10 = {
+				create_building = {
+					building = $BUILDING$
+					level = 10
+					reserves = 1
+				}
+			}
+			11 = {
+				create_building = {
+					building = $BUILDING$
+					level = 11
+					reserves = 1
+				}
+			}
+			12 = {
+				create_building = {
+					building = $BUILDING$
+					level = 12
+					reserves = 1
+				}
+			}
+			13 = {
+				create_building = {
+					building = $BUILDING$
+					level = 13
+					reserves = 1
+				}
+			}
+			14 = {
+				create_building = {
+					building = $BUILDING$
+					level = 14
+					reserves = 1
+				}
+			}
+			15 = {
+				create_building = {
+					building = $BUILDING$
+					level = 15
+					reserves = 1
+				}
+			}
+			16 = {
+				create_building = {
+					building = $BUILDING$
+					level = 16
+					reserves = 1
+				}
+			}
+			17 = {
+				create_building = {
+					building = $BUILDING$
+					level = 17
+					reserves = 1
+				}
+			}
+			18 = {
+				create_building = {
+					building = $BUILDING$
+					level = 18
+					reserves = 1
+				}
+			}
+			19 = {
+				create_building = {
+					building = $BUILDING$
+					level = 19
+					reserves = 1
+				}
+			}
+			20 = {
+				create_building = {
+					building = $BUILDING$
+					level = 20
+					reserves = 1
+				}
+			}
+			21 = {
+				create_building = {
+					building = $BUILDING$
+					level = 21
+					reserves = 1
+				}
+			}
+			22 = {
+				create_building = {
+					building = $BUILDING$
+					level = 22
+					reserves = 1
+				}
+			}
+			23 = {
+				create_building = {
+					building = $BUILDING$
+					level = 23
+					reserves = 1
+				}
+			}
+			24 = {
+				create_building = {
+					building = $BUILDING$
+					level = 24
+					reserves = 1
+				}
+			}
+			25 = {
+				create_building = {
+					building = $BUILDING$
+					level = 25
+					reserves = 1
+				}
+			}
+			26 = {
+				create_building = {
+					building = $BUILDING$
+					level = 26
+					reserves = 1
+				}
+			}
+			27 = {
+				create_building = {
+					building = $BUILDING$
+					level = 27
+					reserves = 1
+				}
+			}
+			28 = {
+				create_building = {
+					building = $BUILDING$
+					level = 28
+					reserves = 1
+				}
+			}
+			29 = {
+				create_building = {
+					building = $BUILDING$
+					level = 29
+					reserves = 1
+				}
+			}
+			30 = {
+				create_building = {
+					building = $BUILDING$
+					level = 30
+					reserves = 1
+				}
+			}
+			31 = {
+				create_building = {
+					building = $BUILDING$
+					level = 31
+					reserves = 1
+				}
+			}
+			32 = {
+				create_building = {
+					building = $BUILDING$
+					level = 32
+					reserves = 1
+				}
+			}
+			33 = {
+				create_building = {
+					building = $BUILDING$
+					level = 33
+					reserves = 1
+				}
+			}
+			34 = {
+				create_building = {
+					building = $BUILDING$
+					level = 34
+					reserves = 1
+				}
+			}
+			35 = {
+				create_building = {
+					building = $BUILDING$
+					level = 35
+					reserves = 1
+				}
+			}
+			36 = {
+				create_building = {
+					building = $BUILDING$
+					level = 36
+					reserves = 1
+				}
+			}
+			37 = {
+				create_building = {
+					building = $BUILDING$
+					level = 37
+					reserves = 1
+				}
+			}
+			38 = {
+				create_building = {
+					building = $BUILDING$
+					level = 38
+					reserves = 1
+				}
+			}
+			39 = {
+				create_building = {
+					building = $BUILDING$
+					level = 39
+					reserves = 1
+				}
+			}
+			40 = {
+				create_building = {
+					building = $BUILDING$
+					level = 40
+					reserves = 1
+				}
+			}
+			41 = {
+				create_building = {
+					building = $BUILDING$
+					level = 41
+					reserves = 1
+				}
+			}
+			42 = {
+				create_building = {
+					building = $BUILDING$
+					level = 42
+					reserves = 1
+				}
+			}
+			43 = {
+				create_building = {
+					building = $BUILDING$
+					level = 43
+					reserves = 1
+				}
+			}
+			44 = {
+				create_building = {
+					building = $BUILDING$
+					level = 44
+					reserves = 1
+				}
+			}
+			45 = {
+				create_building = {
+					building = $BUILDING$
+					level = 45
+					reserves = 1
+				}
+			}
+			46 = {
+				create_building = {
+					building = $BUILDING$
+					level = 46
+					reserves = 1
+				}
+			}
+			47 = {
+				create_building = {
+					building = $BUILDING$
+					level = 47
+					reserves = 1
+				}
+			}
+			48 = {
+				create_building = {
+					building = $BUILDING$
+					level = 48
+					reserves = 1
+				}
+			}
+			49 = {
+				create_building = {
+					building = $BUILDING$
+					level = 49
+					reserves = 1
+				}
+			}
+			50 = {
+				create_building = {
+					building = $BUILDING$
+					level = 50
+					reserves = 1
+				}
+			}
+			51 = {
+				create_building = {
+					building = $BUILDING$
+					level = 51
+					reserves = 1
+				}
+			}
+			52 = {
+				create_building = {
+					building = $BUILDING$
+					level = 52
+					reserves = 1
+				}
+			}
+			53 = {
+				create_building = {
+					building = $BUILDING$
+					level = 53
+					reserves = 1
+				}
+			}
+			54 = {
+				create_building = {
+					building = $BUILDING$
+					level = 54
+					reserves = 1
+				}
+			}
+			55 = {
+				create_building = {
+					building = $BUILDING$
+					level = 55
+					reserves = 1
+				}
+			}
+			56 = {
+				create_building = {
+					building = $BUILDING$
+					level = 56
+					reserves = 1
+				}
+			}
+			57 = {
+				create_building = {
+					building = $BUILDING$
+					level = 57
+					reserves = 1
+				}
+			}
+			58 = {
+				create_building = {
+					building = $BUILDING$
+					level = 58
+					reserves = 1
+				}
+			}
+			59 = {
+				create_building = {
+					building = $BUILDING$
+					level = 59
+					reserves = 1
+				}
+			}
+			60 = {
+				create_building = {
+					building = $BUILDING$
+					level = 60
+					reserves = 1
+				}
+			}
+			61 = {
+				create_building = {
+					building = $BUILDING$
+					level = 61
+					reserves = 1
+				}
+			}
+			62 = {
+				create_building = {
+					building = $BUILDING$
+					level = 62
+					reserves = 1
+				}
+			}
+			63 = {
+				create_building = {
+					building = $BUILDING$
+					level = 63
+					reserves = 1
+				}
+			}
+			64 = {
+				create_building = {
+					building = $BUILDING$
+					level = 64
+					reserves = 1
+				}
+			}
+			65 = {
+				create_building = {
+					building = $BUILDING$
+					level = 65
+					reserves = 1
+				}
+			}
+			66 = {
+				create_building = {
+					building = $BUILDING$
+					level = 66
+					reserves = 1
+				}
+			}
+			67 = {
+				create_building = {
+					building = $BUILDING$
+					level = 67
+					reserves = 1
+				}
+			}
+			68 = {
+				create_building = {
+					building = $BUILDING$
+					level = 68
+					reserves = 1
+				}
+			}
+			69 = {
+				create_building = {
+					building = $BUILDING$
+					level = 69
+					reserves = 1
+				}
+			}
+			70 = {
+				create_building = {
+					building = $BUILDING$
+					level = 70
+					reserves = 1
+				}
+			}
+			71 = {
+				create_building = {
+					building = $BUILDING$
+					level = 71
+					reserves = 1
+				}
+			}
+			72 = {
+				create_building = {
+					building = $BUILDING$
+					level = 72
+					reserves = 1
+				}
+			}
+			73 = {
+				create_building = {
+					building = $BUILDING$
+					level = 73
+					reserves = 1
+				}
+			}
+			74 = {
+				create_building = {
+					building = $BUILDING$
+					level = 74
+					reserves = 1
+				}
+			}
+			75 = {
+				create_building = {
+					building = $BUILDING$
+					level = 75
+					reserves = 1
+				}
+			}
+			76 = {
+				create_building = {
+					building = $BUILDING$
+					level = 76
+					reserves = 1
+				}
+			}
+			77 = {
+				create_building = {
+					building = $BUILDING$
+					level = 77
+					reserves = 1
+				}
+			}
+			78 = {
+				create_building = {
+					building = $BUILDING$
+					level = 78
+					reserves = 1
+				}
+			}
+			79 = {
+				create_building = {
+					building = $BUILDING$
+					level = 79
+					reserves = 1
+				}
+			}
+			80 = {
+				create_building = {
+					building = $BUILDING$
+					level = 80
+					reserves = 1
+				}
+			}
+			81 = {
+				create_building = {
+					building = $BUILDING$
+					level = 81
+					reserves = 1
+				}
+			}
+			82 = {
+				create_building = {
+					building = $BUILDING$
+					level = 82
+					reserves = 1
+				}
+			}
+			83 = {
+				create_building = {
+					building = $BUILDING$
+					level = 83
+					reserves = 1
+				}
+			}
+			84 = {
+				create_building = {
+					building = $BUILDING$
+					level = 84
+					reserves = 1
+				}
+			}
+			85 = {
+				create_building = {
+					building = $BUILDING$
+					level = 85
+					reserves = 1
+				}
+			}
+			86 = {
+				create_building = {
+					building = $BUILDING$
+					level = 86
+					reserves = 1
+				}
+			}
+			87 = {
+				create_building = {
+					building = $BUILDING$
+					level = 87
+					reserves = 1
+				}
+			}
+			88 = {
+				create_building = {
+					building = $BUILDING$
+					level = 88
+					reserves = 1
+				}
+			}
+			89 = {
+				create_building = {
+					building = $BUILDING$
+					level = 89
+					reserves = 1
+				}
+			}
+			90 = {
+				create_building = {
+					building = $BUILDING$
+					level = 90
+					reserves = 1
+				}
+			}
+			91 = {
+				create_building = {
+					building = $BUILDING$
+					level = 91
+					reserves = 1
+				}
+			}
+			92 = {
+				create_building = {
+					building = $BUILDING$
+					level = 92
+					reserves = 1
+				}
+			}
+			93 = {
+				create_building = {
+					building = $BUILDING$
+					level = 93
+					reserves = 1
+				}
+			}
+			94 = {
+				create_building = {
+					building = $BUILDING$
+					level = 94
+					reserves = 1
+				}
+			}
+			95 = {
+				create_building = {
+					building = $BUILDING$
+					level = 95
+					reserves = 1
+				}
+			}
+			96 = {
+				create_building = {
+					building = $BUILDING$
+					level = 96
+					reserves = 1
+				}
+			}
+			97 = {
+				create_building = {
+					building = $BUILDING$
+					level = 97
+					reserves = 1
+				}
+			}
+			98 = {
+				create_building = {
+					building = $BUILDING$
+					level = 98
+					reserves = 1
+				}
+			}
+			99 = {
+				create_building = {
+					building = $BUILDING$
+					level = 99
+					reserves = 1
+				}
+			}
+			100 = {
+				create_building = {
+					building = $BUILDING$
+					level = 100
+					reserves = 1
+				}
+			}
+			101 = {
+				create_building = {
+					building = $BUILDING$
+					level = 101
+					reserves = 1
+				}
 			}
 		}
 	}

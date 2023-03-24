@@ -4,12 +4,13 @@ import data
 
 namespace = "MFE_trade_good_events"
 textures = """pdx
-	video = "gfx/event_pictures/africa_diplomats_negotiating.bk2"
+	video = "gfx/event_pictures/europenorthamerica_rich_and_poor.bk2"
 	icon = "gfx/interface/icons/event_icons/event_military.dds"
 	on_opened_soundeffect = "event:/SFX/Events/unspecific/vandalized_storefront"
 """
 video = data.Video()
 sound = data.Sound()
+icon = data.Icon()
 
 ev1 = Event(
 	header="Bullets for [active_war.GetName]",
@@ -49,6 +50,7 @@ ev1 = Event(
 			state = {
 				save_scope_as = munitions_state
 			}
+			scope:active_war
 		}
 	}
 ''').render()[3:],
@@ -303,8 +305,8 @@ ev8 = Event(
 	eventid="8",
 	placement="scope:ironclad_state",
 	icon="gfx/interface/icons/event_icons/event_trade.dds",
-	event_image=video.get("unspecific_factory_closed"),
-	on_opened_soundeffect=sound.get("unspecific_factory_closed"),
+	event_image=video.harbors,
+	on_opened_soundeffect=sound.harbors,
 	cooldown="long",
 	trigger=Template('''pdx
 	trigger = {
@@ -317,6 +319,7 @@ ev8 = Event(
 	''').render()[3:],
 	immediate=Template('''pdx
 	immediate = {
+		get_harbor_picture = yes
 		random_scope_building = {
 			limit = {
 				has_ironclad_pm = yes
@@ -336,7 +339,7 @@ ev9 = Event(
 	namespace=namespace,
 	eventid="9",
 	placement="scope:ironclad_state",
-	icon="gfx/interface/icons/event_icons/event_trade.dds",
+	icon=icon.trade,
 	event_image=video.get("unspecific_vandalized_storefront"),
 	on_opened_soundeffect=sound.get("unspecific_vandalized_storefront"),
 	cooldown="long",
@@ -377,8 +380,8 @@ ev10 = Event(
 	icon="gfx/interface/icons/event_icons/event_skull.dds",
 	minor_left_icon="g:fish",
 	minor_right_icon="g:fish",
-	event_image=video.get("unspecific_whaling"),
-	on_opened_soundeffect=sound.get("unspecific_whaling"),
+	event_image=video.harbors,
+	on_opened_soundeffect=sound.harbors,
 	cooldown="very_long",
 	trigger=Template('''pdx
 	trigger = {
@@ -390,6 +393,7 @@ ev10 = Event(
 	''').render()[3:],
 	immediate=Template('''pdx
 	immediate = {
+		get_harbor_picture = yes
 		random_scope_building = {
 			limit = {
 				this = b:building_fishing_wharf
@@ -448,8 +452,6 @@ ev12 = Event(
 	cooldown="long",
 	trigger=Template('''pdx
 	trigger = {
-
-		is_at_war = no
 		any_scope_building = {
 			has_good_fabric_pm = yes
 			level >= 3
@@ -458,6 +460,7 @@ ev12 = Event(
 	''').render()[3:],
 	immediate=Template('''pdx
 	immediate = {
+		get_landscape_picture = yes
 		random_scope_building = {
 			limit = {
 				has_good_fabric_pm = yes
@@ -471,8 +474,232 @@ ev12 = Event(
 ''').render()[3:],
 )
 
+ev13 = Event(
+	header="Fire in the sawmills of [sawmill_fire_state.GetName]",
+	namespace=namespace,
+	eventid="13",
+	placement="scope:sawmill_fire_state",
+	icon="gfx/interface/icons/event_icons/event_fire.dds",
+	event_image=video.get("unspecific_fire"),
+	on_opened_soundeffect=sound.get("unspecific_fire"),
+	cooldown="very_long",
+	trigger=Template('''pdx
+	trigger = {
+		any_scope_building = {
+			has_active_production_method = pm_saw_mills
+			level >= 5
+		}
+	}
+	''').render()[3:],
+	immediate=Template('''pdx
+	immediate = {
+		random_scope_building = {
+			limit = {
+				has_active_production_method = pm_saw_mills
+				level >= 5
+			}
+			state = {
+				save_scope_as = sawmill_fire_state
+			}
+		}
+	}
+''').render()[3:],
+)
+
+ev14 = Event(
+	header="Hardwood in [hardwood_state.GetName] is extremely hard",
+	namespace=namespace,
+	eventid="14",
+	placement="scope:hardwood_state",
+	icon="gfx/interface/icons/event_icons/event_trade.dds",
+	event_image=video.get("europenorthamerica_gold_prospectors"),
+	on_opened_soundeffect=sound.get("europenorthamerica_gold_prospectors"),
+	cooldown="very_long",
+	trigger=Template('''pdx
+	trigger = {
+		any_scope_building = {
+			has_active_production_method = pm_hardwood
+			level >= 5
+		}
+	}
+	''').render()[3:],
+	immediate=Template('''pdx
+	immediate = {
+		random_scope_building = {
+			limit = {
+				has_active_production_method = pm_hardwood
+				level >= 5
+			}
+			state = {
+				save_scope_as = hardwood_state
+			}
+		}
+	}
+''').render()[3:],
+)
+
+ev15 = Event(
+	header="Entire Grocery chain robbed in grand organized crime in [grocery_state.GetName]",
+	namespace=namespace,
+	eventid="15",
+	placement="scope:grocery_state",
+	icon=icon.skull,
+	event_image=video.get("unspecific_vandalized_storefront"),
+	on_opened_soundeffect=sound.get("unspecific_vandalized_storefront"),
+	cooldown="very_long",
+	trigger=Template('''pdx
+	trigger = {
+		market_capital.market.mg:groceries = { 
+			market_goods_pricier > 0.25
+		}
+		any_scope_building = {
+			has_groceries_pm = yes
+			poor_building_trigger = yes
+			level >= 5
+		}
+	}
+	''').render()[3:],
+	immediate=Template('''pdx
+	immediate = {
+		random_scope_building = {
+			limit = {
+				has_groceries_pm = yes
+				poor_building_trigger = yes
+				level >= 5
+			}
+			state = {
+				save_scope_as = grocery_state
+			}
+		}
+	}
+''').render()[3:],
+)
+
+ev16 = Event(
+	header="People in [clothes_state.GetName] can't afford to wear clothes",
+	namespace=namespace,
+	eventid="16",
+	placement="scope:clothes_state",
+	icon=icon.protest,
+	event_image=video.europenorthamerica_rich_and_poor,
+	on_opened_soundeffect=sound.europenorthamerica_rich_and_poor,
+	cooldown="very_long",
+	trigger=Template('''pdx
+	trigger = {
+		market_capital.market.mg:clothes = { 
+			market_goods_pricier > 0.25
+			market_goods_has_goods_shortage = yes
+			market_goods_shortage_ratio < 0.15
+		}
+		any_scope_building = {
+			has_clothes_pm = yes
+			poor_building_trigger = yes
+			level >= 2
+		}
+	}
+	''').render()[3:],
+	immediate=Template('''pdx
+	immediate = {
+		random_scope_building = {
+			limit = {
+				has_clothes_pm = yes
+				poor_building_trigger = yes
+				level >= 2
+			}
+			state = {
+				save_scope_as = clothes_state
+			}
+		}
+	}
+''').render()[3:],
+)
+
+ev17 = Event(
+	header="[Player.GetRuler.GetName] dies after sitting on chair while visiting the furniture factory in [furniture_state.GetName]",
+	namespace=namespace,
+	eventid="17",
+	placement="scope:furniture_state",
+	icon=icon.skull,
+	event_image=video.unspecific_factory_closed,
+	on_opened_soundeffect=sound.unspecific_factory_closed,
+	cooldown="very_long",
+	weight_multiplier=Template('''pdx
+	weight_multiplier = {
+		base = 1
+		if = {
+			limit = {
+				ruler = {
+					has_trait = cautious
+				}
+			}
+			add = -100
+		}
+		if = {
+			limit = {
+				ruler = {
+					has_trait = reckless
+				}
+			}
+			add = 1
+		}
+	}
+	'''),
+	trigger=Template('''pdx
+	trigger = {
+		capital = {
+			has_building = building_furniture_manufacturies
+			poor_building_trigger = yes
+			level >= 1
+		}
+	}
+	''').render()[3:],
+	immediate=Template('''pdx
+	immediate = {
+		capital = {
+			save_scope_as = furniture_state
+		}
+	}
+''').render()[3:],
+)
+
+ev18 = Event(
+	header="Extreme production of paper in [paper_state.GetName] awes the world",
+	namespace=namespace,
+	eventid="18",
+	placement="scope:paper_state",
+	icon=icon.map,
+	event_image=video.southamerica_factory_opening,
+	on_opened_soundeffect=sound.southamerica_factory_opening,
+	trigger=Template('''pdx
+	trigger = {
+		NOT = { has_variable = paper_world_event_happened }
+		any_scope_building = {
+			this = b:building_paper_mills
+			level >= 30
+		}
+	}
+	''').render()[3:],
+	immediate=Template('''pdx
+	immediate = {
+		get_city_picture = yes
+		set_variable = paper_world_event_happened
+		random_scope_building = {
+			limit = {
+				this = b:building_paper_mills
+				level >= 30
+			}
+			save_scope_as = huge_paper_factory
+			state = {
+				save_scope_as = paper_state
+			}
+		}
+	}
+''').render()[3:],
+)
+
 if __name__ == '__main__':
 	MFE_trade_goods = EventFile(
 		namespace, ev1.event, ev2.event, ev3.event, ev4.event,
 		ev5.event, ev6.event, ev7.event, ev8.event, ev9.event,
-		ev10.event, ev11.event, ev12.event)
+		ev10.event, ev11.event, ev12.event, ev13.event, ev14.event,
+		ev15.event, ev16.event, ev17.event, ev18.event)

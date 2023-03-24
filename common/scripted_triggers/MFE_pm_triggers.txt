@@ -57,3 +57,22 @@ has_good_fabric_pm = {
 		has_active_production_method = automatic_irrigation_building_cotton_plantation
 	}
 }
+
+has_groceries_pm = {
+	OR = {
+		has_active_production_method = pm_vacuum_canning
+		has_active_production_method = pm_cannery
+		has_active_production_method = pm_baking_powder
+		has_active_production_method = pm_sweeteners
+		has_active_production_method = pm_bakery
+	}
+}
+
+has_clothes_pm = {
+	OR = {
+		has_active_production_method = pm_electric_sewing_machines
+		has_active_production_method = pm_sewing_machines
+		has_active_production_method = pm_dye_workshops
+		has_active_production_method = pm_handsewn_clothes
+	}
+}

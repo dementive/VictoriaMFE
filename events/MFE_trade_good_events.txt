@@ -9,7 +9,7 @@ MFE_trade_good_events.1 = {
     title = MFE_trade_good_events.1.t
     desc = MFE_trade_good_events.1.d
     flavor = MFE_trade_good_events.1.f
-    
+
     duration = @event_duration
 
     event_image = {

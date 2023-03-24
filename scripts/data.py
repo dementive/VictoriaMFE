@@ -1,5 +1,6 @@
 from jinja2 import Template
 
+
 class Video():
 	""" Vic3 Event video class """
 
@@ -7,6 +8,83 @@ class Video():
 		self.diplo = diplomatic.render()[4:]
 		self.landscape = landscape.render()[4:]
 		self.city = city.render()[4:]
+		self.harbors = harbors.render()[4:]
+		self.riot = riot.render()[4:]
+		self.africa_animism = EventVideos["africa_animism"]
+		self.africa_city_center = EventVideos["africa_city_center"]
+		self.africa_construction_colony = EventVideos["africa_construction_colony"]
+		self.africa_desert_expedition = EventVideos["africa_desert_expedition"]
+		self.africa_diplomats_negotiating = EventVideos["africa_diplomats_negotiating"]
+		self.africa_leader_arguing = EventVideos["africa_leader_arguing"]
+		self.africa_prosperous_farm = EventVideos["africa_prosperous_farm"]
+		self.africa_public_protest = EventVideos["africa_public_protest"]
+		self.africa_soldiers_breaking_protest = EventVideos["africa_soldiers_breaking_protest"]
+		self.asia_buddhism = EventVideos["asia_buddhism"]
+		self.asia_confucianism_shinto = EventVideos["asia_confucianism_shinto"]
+		self.asia_dead_cattle_poor_harvest = EventVideos["asia_dead_cattle_poor_harvest"]
+		self.asia_factory_accident = EventVideos["asia_factory_accident"]
+		self.asia_farmers_market = EventVideos["asia_farmers_market"]
+		self.asia_hinduism_sikhism = EventVideos["asia_hinduism_sikhism"]
+		self.asia_politician_parliament_motion = EventVideos["asia_politician_parliament_motion"]
+		self.asia_poor_people_moving = EventVideos["asia_poor_people_moving"]
+		self.asia_sepoy_mutiny = EventVideos["asia_sepoy_mutiny"]
+		self.asia_union_leader = EventVideos["asia_union_leader"]
+		self.asia_westerners_arriving = EventVideos["asia_westerners_arriving"]
+		self.europenorthamerica_american_civil_war = EventVideos["europenorthamerica_american_civil_war"]
+		self.europenorthamerica_antarctica = EventVideos["europenorthamerica_antarctica"]
+		self.europenorthamerica_art_gallery = EventVideos["europenorthamerica_art_gallery"]
+		self.europenorthamerica_before_the_battle = EventVideos["europenorthamerica_before_the_battle"]
+		self.europenorthamerica_capitalists_meeting = EventVideos["europenorthamerica_capitalists_meeting"]
+		self.europenorthamerica_gold_prospectors = EventVideos["europenorthamerica_gold_prospectors"]
+		self.europenorthamerica_judaism = EventVideos["europenorthamerica_judaism"]
+		self.europenorthamerica_london_center = EventVideos["europenorthamerica_london_center"]
+		self.europenorthamerica_native_american = EventVideos["europenorthamerica_native_american"]
+		self.europenorthamerica_opium_smoker = EventVideos["europenorthamerica_opium_smoker"]
+		self.europenorthamerica_political_extremism = EventVideos["europenorthamerica_political_extremism"]
+		self.europenorthamerica_rich_and_poor = EventVideos["europenorthamerica_rich_and_poor"]
+		self.europenorthamerica_russian_serfs = EventVideos["europenorthamerica_russian_serfs"]
+		self.europenorthamerica_springtime_of_nations = EventVideos["europenorthamerica_springtime_of_nations"]
+		self.europenorthamerica_sufferage = EventVideos["europenorthamerica_sufferage"]
+		self.middleeast_battlefield_trenches = EventVideos["middleeast_battlefield_trenches"]
+		self.middleeast_courtroom_upheaval = EventVideos["middleeast_courtroom_upheaval"]
+		self.middleeast_engineer_blueprint = EventVideos["middleeast_engineer_blueprint"]
+		self.middleeast_islam = EventVideos["middleeast_islam"]
+		self.middleeast_jungle_expedition = EventVideos["middleeast_jungle_expedition"]
+		self.middleeast_middleclass_cafe = EventVideos["middleeast_middleclass_cafe"]
+		self.middleeast_oil_derricks = EventVideos["middleeast_oil_derricks"]
+		self.middleeast_police_breaking_door = EventVideos["middleeast_police_breaking_door"]
+		self.middleeast_upperclass_party = EventVideos["middleeast_upperclass_party"]
+		self.public_assasination_test = EventVideos["public_assasination_test"]
+		self.southamerica_aristocrats = EventVideos["southamerica_aristocrats"]
+		self.southamerica_child_labor = EventVideos["southamerica_child_labor"]
+		self.southamerica_christianity = EventVideos["southamerica_christianity"]
+		self.southamerica_election = EventVideos["southamerica_election"]
+		self.southamerica_factory_opening = EventVideos["southamerica_factory_opening"]
+		self.southamerica_public_figure_assassination = EventVideos["southamerica_public_figure_assassination"]
+		self.southamerica_slave_chains = EventVideos["southamerica_slave_chains"]
+		self.southamerica_slaves_night = EventVideos["southamerica_slaves_night"]
+		self.southamerica_war_civilians = EventVideos["southamerica_war_civilians"]
+		self.unspecific_airplane = EventVideos["unspecific_airplane"]
+		self.unspecific_armored_train = EventVideos["unspecific_armored_train"]
+		self.unspecific_automobile = EventVideos["unspecific_automobile"]
+		self.unspecific_devastation = EventVideos["unspecific_devastation"]
+		self.unspecific_factory_closed = EventVideos["unspecific_factory_closed"]
+		self.unspecific_fire = EventVideos["unspecific_fire"]
+		self.unspecific_gears_pistons = EventVideos["unspecific_gears_pistons"]
+		self.unspecific_iceberg = EventVideos["unspecific_iceberg"]
+		self.unspecific_military_parade = EventVideos["unspecific_military_parade"]
+		self.unspecific_naval_battle = EventVideos["unspecific_naval_battle"]
+		self.unspecific_politicians_arguing = EventVideos["unspecific_politicians_arguing"]
+		self.unspecific_ruler_speaking_to_people = EventVideos["unspecific_ruler_speaking_to_people"]
+		self.unspecific_sick_in_hospital = EventVideos["unspecific_sick_in_hospital"]
+		self.unspecific_signed_contract = EventVideos["unspecific_signed_contract"]
+		self.unspecific_steam_ship = EventVideos["unspecific_steam_ship"]
+		self.unspecific_temperance_movement = EventVideos["unspecific_temperance_movement"]
+		self.unspecific_trains = EventVideos["unspecific_trains"]
+		self.unspecific_vandalized_storefront = EventVideos["unspecific_vandalized_storefront"]
+		self.unspecific_whaling = EventVideos["unspecific_whaling"]
+		self.unspecific_world_fair = EventVideos["unspecific_world_fair"]
+		self.unspecific_airship = EventVideos["unspecific_airship"]
 
 	def get(self, name: str):
 		return EventVideos[name]
@@ -15,9 +93,134 @@ class Video():
 class Sound():
 	""" Vic3 Event sound class """
 
+	def __init__(self):
+		self.harbors = EventSounds["harbors"]
+		self.diplo = EventSounds["diplo"]
+		self.city = EventSounds["city"]
+		self.landscape = EventSounds["landscape"]
+		self.africa_animism = EventSounds["africa_animism"]
+		self.africa_city_center = EventSounds["africa_city_center"]
+		self.africa_construction_colony = EventSounds["africa_construction_colony"]
+		self.africa_desert_expedition = EventSounds["africa_desert_expedition"]
+		self.africa_diplomats_negotiating = EventSounds["africa_diplomats_negotiating"]
+		self.africa_leader_arguing = EventSounds["africa_leader_arguing"]
+		self.africa_prosperous_farm = EventSounds["africa_prosperous_farm"]
+		self.africa_public_protest = EventSounds["africa_public_protest"]
+		self.africa_soldiers_breaking_protest = EventSounds["africa_soldiers_breaking_protest"]
+		self.asia_buddhism = EventSounds["asia_buddhism"]
+		self.asia_confucianism_shinto = EventSounds["asia_confucianism_shinto"]
+		self.asia_dead_cattle_poor_harvest = EventSounds["asia_dead_cattle_poor_harvest"]
+		self.asia_factory_accident = EventSounds["asia_factory_accident"]
+		self.asia_farmers_market = EventSounds["asia_farmers_market"]
+		self.asia_hinduism_sikhism = EventSounds["asia_hinduism_sikhism"]
+		self.asia_politician_parliament_motion = EventSounds["asia_politician_parliament_motion"]
+		self.asia_poor_people_moving = EventSounds["asia_poor_people_moving"]
+		self.asia_sepoy_mutiny = EventSounds["asia_sepoy_mutiny"]
+		self.asia_union_leader = EventSounds["asia_union_leader"]
+		self.europenorthamerica_american_civil_war = EventSounds["europenorthamerica_american_civil_war"]
+		self.europenorthamerica_before_the_battle = EventSounds["europenorthamerica_before_the_battle"]
+		self.europenorthamerica_capitalists_meeting = EventSounds["europenorthamerica_capitalists_meeting"]
+		self.europenorthamerica_gold_prospectors = EventSounds["europenorthamerica_gold_prospectors"]
+		self.europenorthamerica_judaism = EventSounds["europenorthamerica_judaism"]
+		self.europenorthamerica_london_center = EventSounds["europenorthamerica_london_center"]
+		self.europenorthamerica_native_american = EventSounds["europenorthamerica_native_american"]
+		self.europenorthamerica_opium_smoker = EventSounds["europenorthamerica_opium_smoker"]
+		self.europenorthamerica_political_extremism = EventSounds["europenorthamerica_political_extremism"]
+		self.europenorthamerica_rich_and_poor = EventSounds["europenorthamerica_rich_and_poor"]
+		self.europenorthamerica_russian_serfs = EventSounds["europenorthamerica_russian_serfs"]
+		self.europenorthamerica_slaves_breaking_their_chains = EventSounds["europenorthamerica_slaves_breaking_their_chains"]
+		self.europenorthamerica_springtime_of_nations = EventSounds["europenorthamerica_springtime_of_nations"]
+		self.europenorthamerica_sufferage = EventSounds["europenorthamerica_sufferage"]
+		self.middleeast_battlefield_trenches = EventSounds["middleeast_battlefield_trenches"]
+		self.middleeast_courtroom_upheaval = EventSounds["middleeast_courtroom_upheaval"]
+		self.middleeast_engineer_blueprint = EventSounds["middleeast_engineer_blueprint"]
+		self.middleeast_islam = EventSounds["middleeast_islam"]
+		self.middleeast_jungle_expedition = EventSounds["middleeast_jungle_expedition"]
+		self.middleeast_middleclass_cafe = EventSounds["middleeast_middleclass_cafe"]
+		self.middleeast_oil_derricks = EventSounds["middleeast_oil_derricks"]
+		self.middleeast_police_breaking_door = EventSounds["middleeast_police_breaking_door"]
+		self.middleeast_upperclass_party = EventSounds["middleeast_upperclass_party"]
+		self.misc_1Character_Banner = EventSounds["misc_1Character_Banner"]
+		self.misc_2Characters = EventSounds["misc_2Characters"]
+		self.southamerica_aristocrats = EventSounds["southamerica_aristocrats"]
+		self.southamerica_child_labor = EventSounds["southamerica_child_labor"]
+		self.southamerica_christianity = EventSounds["southamerica_christianity"]
+		self.southamerica_election = EventSounds["southamerica_election"]
+		self.southamerica_factory_opening = EventSounds["southamerica_factory_opening"]
+		self.southamerica_public_figure_assassination = EventSounds["southamerica_public_figure_assassination"]
+		self.southamerica_slaves_night = EventSounds["southamerica_slaves_night"]
+		self.southamerica_war_civilians = EventSounds["southamerica_war_civilians"]
+		self.unspecific_airplane = EventSounds["unspecific_airplane"]
+		self.unspecific_airPlane = EventSounds["unspecific_airPlane"]
+		self.unspecific_airship = EventSounds["unspecific_airship"]
+		self.unspecific_arctic = EventSounds["unspecific_arctic"]
+		self.unspecific_iceberg = EventSounds["unspecific_iceberg"]
+		self.unspecific_armored_train = EventSounds["unspecific_armored_train"]
+		self.unspecific_art_gallery = EventSounds["unspecific_art_gallery"]
+		self.unspecific_automobile = EventSounds["unspecific_automobile"]
+		self.unspecific_destruction = EventSounds["unspecific_destruction"]
+		self.unspecific_fire = EventSounds["unspecific_fire"]
+		self.unspecific_devastation = EventSounds["unspecific_devastation"]
+		self.unspecific_factory_closed = EventSounds["unspecific_factory_closed"]
+		self.unspecific_gears_pistons = EventSounds["unspecific_gears_pistons"]
+		self.unspecific_iceberg_in_the_antartica = EventSounds["unspecific_iceberg_in_the_antartica"]
+		self.unspecific_leader_speaking_to_a_group_of_people = EventSounds["unspecific_leader_speaking_to_a_group_of_people"]
+		self.unspecific_ruler_speaking_to_people = EventSounds["unspecific_ruler_speaking_to_people"]
+		self.unspecific_military_parade = EventSounds["unspecific_military_parade"]
+		self.unspecific_naval_battle = EventSounds["unspecific_naval_battle"]
+		self.unspecific_sick_people_in_a_field_hospital = EventSounds["unspecific_sick_people_in_a_field_hospital"]
+		self.unspecific_sick_in_hospital = EventSounds["unspecific_sick_in_hospital"]
+		self.unspecific_signed_contract = EventSounds["unspecific_signed_contract"]
+		self.unspecific_steam_ship = EventSounds["unspecific_steam_ship"]
+		self.unspecific_temperance_movement = EventSounds["unspecific_temperance_movement"]
+		self.unspecific_trains = EventSounds["unspecific_trains"]
+		self.unspecific_vandalized_storefront = EventSounds["unspecific_vandalized_storefront"]
+		self.unspecific_whaling = EventSounds["unspecific_whaling"]
+		self.unspecific_world_fair = EventSounds["unspecific_world_fair"]
+
 	def get(self, name: str):
 		return EventSounds[name]
 
+
+class Icon():
+	""" Vic3 Event icon class """
+
+	def __init__(self):
+		self.default = EventIcons["default"]
+		self.election = EventIcons["election"]
+		self.fire = EventIcons["fire"]
+		self.industry = EventIcons["industry"]
+		self.map = EventIcons["map"]
+		self.military = EventIcons["military"]
+		self.newspaper = EventIcons["newspaper"]
+		self.portrait = EventIcons["portrait"]
+		self.protest = EventIcons["protest"]
+		self.scales = EventIcons["scales"]
+		self.skull = EventIcons["skull"]
+		self.trade = EventIcons["trade"]
+		self.tutorial = EventIcons["tutorial"]
+		self.book = EventIcons["book"]
+
+	def get(self, name: str):
+		return EventIcons[name]
+
+
+EventIcons = {
+	"default": "gfx/interface/icons/event_icons/event_default.dds",
+	"election": "gfx/interface/icons/event_icons/event_election.dds",
+	"fire": "gfx/interface/icons/event_icons/event_fire.dds",
+	"industry": "gfx/interface/icons/event_icons/event_industry.dds",
+	"map": "gfx/interface/icons/event_icons/event_map.dds",
+	"military": "gfx/interface/icons/event_icons/event_military.dds",
+	"newspaper": "gfx/interface/icons/event_icons/event_newspaper.dds",
+	"portrait": "gfx/interface/icons/event_icons/event_portrait.dds",
+	"protest": "gfx/interface/icons/event_icons/event_protest.dds",
+	"scales": "gfx/interface/icons/event_icons/event_scales.dds",
+	"skull": "gfx/interface/icons/event_icons/event_skull.dds",
+	"trade": "gfx/interface/icons/event_icons/event_trade.dds",
+	"tutorial": "gfx/interface/icons/event_icons/tutorial_icon.dds",
+	"book": "gfx/interface/icons/event_icons/tutorial_icon.dds"
+}
 
 EventSounds = {
 	"harbors": "event:/SFX/Events/unspecific/steam_ship",
@@ -85,6 +288,7 @@ EventSounds = {
 	"unspecific_art_gallery": "event:/SFX/Events/unspecific/art_gallery",
 	"unspecific_automobile": "event:/SFX/Events/unspecific/automobile",
 	"unspecific_destruction": "event:/SFX/Events/unspecific/destruction",
+	"unspecific_fire": "event:/SFX/Events/unspecific/destruction",
 	"unspecific_devastation": "event:/SFX/Events/unspecific/devastation",
 	"unspecific_factory_closed": "event:/SFX/Events/unspecific/factory_closed",
 	"unspecific_gears_pistons": "event:/SFX/Events/unspecific/gears_pistons",
@@ -238,7 +442,7 @@ event_image = {
 				}
 			}
 		}
-		video = "gfx/event_pictures/middleeast_battlefield_trenches.bk2"
+		video = "gfx/event_pictures/middleeast_upperclass_party.bk2"
 	}
 	event_image = {
 		trigger = {
@@ -275,4 +479,34 @@ event_image = { trigger = { var:picture = 1 } texture = "gfx/event_pictures/pain
 	event_image = { trigger = { var:picture = 5 } texture = "gfx/event_pictures/paintings/harbors/The_Paying_out_Machinery_in_the_Stern_of_the_Great_Eastern.dds" }
 	event_image = { trigger = { var:picture = 6 } texture = "gfx/event_pictures/paintings/harbors/The_Russian_Ship_of_the_Line_Asow_and_a_Frigate_at_Anchor_in_the_Roads_of_Elsinore.dds" }
 	event_image = { trigger = { var:picture = 7 } texture = "gfx/event_pictures/paintings/harbors/View_from_the_Quai_dOrsay.dds" }
+''')
+
+riot = Template('''pdx
+event_image = {
+		trigger = {
+			ruler.religion = {
+				OR = {
+					this = sunni
+					this = shiite
+				}
+			}
+		}
+		video = "gfx/event_pictures/middleeast_courtroom_upheaval.bk2"
+	}
+	event_image = {
+		trigger = {
+			ruler.culture = {
+				OR = {
+					has_discrimination_trait = iberian_culture_group
+					has_discrimination_trait = lusophone
+					has_discrimination_trait = hispanophone
+				}
+			}
+		}
+		video = "gfx/event_pictures/southamerica_war_civilians.bk2"
+	}
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = african } } video = "gfx/event_pictures/africa_public_protest.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = asian } } video = "gfx/event_pictures/asia_union_leader.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = european } } video = "gfx/event_pictures/europenorthamerica_springtime_of_nations.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = mideast_indian } } video = "gfx/event_pictures/asia_sepoy_mutiny.bk2" }
 ''')
