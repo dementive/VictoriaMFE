@@ -1,4 +1,9 @@
-﻿num_conscription_centers = {
+﻿building_levels_temp_value = {
+	value = var:level_var
+}
+
+
+num_conscription_centers = {
 	every_scope_building = {
 		limit = { is_building_type = building_conscription_center }
 		add = 1

@@ -1,0 +1,47 @@
+﻿namespace = MFE_test_events
+
+MFE_test_events.1 = {
+    type = country_event
+    placement = root
+    title = test_event_title
+    desc = test_event_desc
+    flavor = test_event_flavor
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/unspecific/gears_pistons"
+
+    trigger = {
+    
+    }
+
+    immediate = {
+    	capital = {
+    		add_building_setup = {
+    			BUILDING = "building_railway"
+    			AMOUNT = "2"
+    		}
+    	}
+    }
+
+    option = {      
+        name = test_event.a
+        default_option = yes
+       	capital = {
+        	add_building_level = {
+        		BUILDING = "building_railway"
+        		AMOUNT = "2"
+        	}
+        }
+    }
+    option = {
+    	name = test_event.b
+    }
+}

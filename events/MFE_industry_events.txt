@@ -80,7 +80,7 @@ mfe_industry_events.1 = {	#Rich industrialist Founds a railway company
 		}
 		default_option = yes
 		scope:railway_state = {
-			add_building_level_effect = {
+			add_building_level_with_tooltip = {
 				BUILDING = "building_railway"
 				AMOUNT = "1"
 				TT = "add_1_rail_level_tt"
@@ -139,7 +139,7 @@ mfe_industry_events.1 = {	#Rich industrialist Founds a railway company
 			days = 365
 		}
 		scope:railway_state = {
-			add_building_level_effect = {
+			add_building_level_with_tooltip = {
 				BUILDING = "building_railway"
 				AMOUNT = "2"
 				TT = "add_2_rail_level_tt"
@@ -188,7 +188,7 @@ mfe_industry_events.2 = { #Railway company is thriving
         			owner = scope:root_c
         			NOT = { has_building = building_railway }
         		}
-    			add_building_level_effect = {
+    			add_building_level_with_tooltip = {
     				BUILDING = "building_railway"
     				AMOUNT = "1"
     				TT = "add_1_rail_level_tt"
