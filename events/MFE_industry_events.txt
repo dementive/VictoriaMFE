@@ -38,7 +38,11 @@ mfe_industry_events.1 = {	#Rich industrialist Founds a railway company
 		has_technology_researched = railways
 		NOT = { has_variable = railway_company_showed_up }
 	}
-
+	cancellation_trigger = {
+		NOT = {
+			exists = scope:rich_dude
+		}
+	}
 	immediate = {
 		ig:ig_intelligentsia = {
 			save_scope_as = ig_intelligentsia
@@ -62,9 +66,13 @@ mfe_industry_events.1 = {	#Rich industrialist Founds a railway company
 			ideology = ideology_market_liberal
 			save_scope_as = rich_dude
 		}
+		hidden_effect = {
+			scope:rich_dude = {
+				place_character_in_void = 24
+			}
+		}
 		save_scope_as = root_c
 	}
-
 	option = {	# Allow scope:rich_dude to do as he pleases
 		name = mfe_industry_events.1.a
 		trigger = {

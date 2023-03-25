@@ -8,7 +8,7 @@ get_landscape_picture = {
 				max = 34
 			}
 		}
-		days = 1
+		days = 90
 	}
 }
 get_harbor_picture = {
@@ -20,7 +20,7 @@ get_harbor_picture = {
 				max = 7
 			}
 		}
-		days = 1
+		days = 90
 	}
 }
 get_city_picture = {
@@ -32,6 +32,6 @@ get_city_picture = {
 				max = 6
 			}
 		}
-		days = 1
+		days = 90
 	}
 }

@@ -1,8 +1,8 @@
 from jinja2 import Template
 
 
-class Video():
-	""" Vic3 Event video class """
+class EventImage():
+	""" Victoria 3 Event video and texture class """
 
 	def __init__(self):
 		self.diplo = diplomatic.render()[4:]
@@ -10,6 +10,9 @@ class Video():
 		self.city = city.render()[4:]
 		self.harbors = harbors.render()[4:]
 		self.riot = riot.render()[4:]
+		self.industry = industry.render()[4:]
+
+		self.ironclad = EventVideos["ironclad"]
 		self.africa_animism = EventVideos["africa_animism"]
 		self.africa_city_center = EventVideos["africa_city_center"]
 		self.africa_construction_colony = EventVideos["africa_construction_colony"]
@@ -91,9 +94,11 @@ class Video():
 
 
 class Sound():
-	""" Vic3 Event sound class """
+	""" Victoria 3 Event sound class """
 
 	def __init__(self):
+		self.industry = EventSounds["industry"]
+		self.ironclad = EventSounds["ironclad"]
 		self.harbors = EventSounds["harbors"]
 		self.diplo = EventSounds["diplo"]
 		self.city = EventSounds["city"]
@@ -183,7 +188,7 @@ class Sound():
 
 
 class Icon():
-	""" Vic3 Event icon class """
+	""" Victoria 3 Event icon class """
 
 	def __init__(self):
 		self.default = EventIcons["default"]
@@ -200,9 +205,157 @@ class Icon():
 		self.trade = EventIcons["trade"]
 		self.tutorial = EventIcons["tutorial"]
 		self.book = EventIcons["book"]
+		self.academics = EventIcons["academics"]
+		self.active_peace_deal = EventIcons["active_peace_deal"]
+		self.aristocrats = EventIcons["aristocrats"]
+		self.fabric_roll = EventIcons["fabric_roll"]
+		self.gemstone = EventIcons["gemstone"]
+		self.armillary = EventIcons["armillary"]
+		self.bell = EventIcons["bell"]
+		self.bureaucrats = EventIcons["bureaucrats"]
+		self.capitalists = EventIcons["capitalists"]
+		self.character_busy = EventIcons["character_busy"]
+		self.clergymen = EventIcons["clergymen"]
+		self.clerks = EventIcons["clerks"]
+		self.diplomatic_play = EventIcons["diplomatic_play"]
+		self.economic_dominance = EventIcons["economic_dominance"]
+		self.egalitarian_society = EventIcons["egalitarian_society"]
+		self.engineers = EventIcons["engineers"]
+		self.farmers = EventIcons["farmers"]
+		self.force_recognition = EventIcons["force_recognition"]
+		self.has_no_research = EventIcons["has_no_research"]
+		self.hegemon = EventIcons["hegemon"]
+		self.icon_kill = EventIcons["icon_kill"]
+		self.laborers = EventIcons["laborers"]
+		self.legitimacy = EventIcons["legitimacy"]
+		self.literacy = EventIcons["literacy"]
+		self.machinists = EventIcons["machinists"]
+		self.market_isolated = EventIcons["market_isolated"]
+		self.officers = EventIcons["officers"]
+		self.peasants = EventIcons["peasants"]
+		self.power_projection = EventIcons["power_projection"]
+		self.raid_convoys = EventIcons["raid_convoys"]
+		self.shopkeepers = EventIcons["shopkeepers"]
+		self.slaves = EventIcons["slaves"]
+		self.soldiers = EventIcons["soldiers"]
+		self.standby = EventIcons["standby"]
+		self.supply_low = EventIcons["supply_low"]
+		self.take_colony = EventIcons["take_colony"]
+		self.take_treaty_port = EventIcons["take_treaty_port"]
+		self.tutorial_icon = EventIcons["tutorial_icon"]
+		self.unit_attack = EventIcons["unit_attack"]
+		self.unit_defense = EventIcons["unit_defense"]
+		self.war_reparations = EventIcons["war_reparations"]
+		self.wasted_construction = EventIcons["wasted_construction"]
+		self.academia = EventIcons["academia"]
+		self.aeroplanes = EventIcons["aeroplanes"]
+		self.analytical_philosophy = EventIcons["analytical_philosophy"]
+		self.anarchy = EventIcons["anarchy"]
+		self.army_reserves = EventIcons["army_reserves"]
+		self.automobiles = EventIcons["automobiles"]
+		self.banking = EventIcons["banking"]
+		self.bureaucracy = EventIcons["bureaucracy"]
+		self.canneries = EventIcons["canneries"]
+		self.central_archives = EventIcons["central_archives"]
+		self.combustion_engine = EventIcons["combustion_engine"]
+		self.compression_ignition = EventIcons["compression_ignition"]
+		self.currency_standards = EventIcons["currency_standards"]
+		self.democracy = EventIcons["democracy"]
+		self.enlistment_offices = EventIcons["enlistment_offices"]
+		self.film = EventIcons["film"]
+		self.fine_art = EventIcons["fine_art"]
+		self.food = EventIcons["food"]
+		self.human_rights = EventIcons["human_rights"]
+		self.hydraulic_cranes = EventIcons["hydraulic_cranes"]
+		self.international_diplomacy = EventIcons["international_diplomacy"]
+		self.international_exchange_standards = EventIcons["international_exchange_standards"]
+		self.international_trade = EventIcons["international_trade"]
+		self.labor_movement = EventIcons["labor_movement"]
+		self.lathe = EventIcons["lathe"]
+		self.law_enforcement = EventIcons["law_enforcement"]
+		self.lightbulbs = EventIcons["lightbulbs"]
+		self.line_infantry = EventIcons["line_infantry"]
+		self.literature = EventIcons["literature"]
+		self.locomotives = EventIcons["locomotives"]
+		self.macroeconomics = EventIcons["macroeconomics"]
+		self.manufacturies = EventIcons["manufacturies"]
+		self.mass_propaganda = EventIcons["mass_propaganda"]
+		self.mass_surveillance = EventIcons["mass_surveillance"]
+		self.mechanized_farming = EventIcons["mechanized_farming"]
+		self.military_aviation = EventIcons["military_aviation"]
+		self.military_statistics = EventIcons["military_statistics"]
+		self.nationalism = EventIcons["nationalism"]
+		self.navigation = EventIcons["navigation"]
+		self.paddle_steamer = EventIcons["paddle_steamer"]
+		self.pan_nationalism = EventIcons["pan_nationalism"]
+		self.paper = EventIcons["paper"]
+		self.philosophical_pragmatism = EventIcons["philosophical_pragmatism"]
+		self.political_agitation = EventIcons["political_agitation"]
+		self.postal_savings = EventIcons["postal_savings"]
+		self.power_of_the_purse = EventIcons["power_of_the_purse"]
+		self.prospecting_tech = EventIcons["prospecting_tech"]
+		self.psychoanalysis = EventIcons["psychoanalysis"]
+		self.pumpjacks = EventIcons["pumpjacks"]
+		self.radio = EventIcons["radio"]
+		self.railways = EventIcons["railways"]
+		self.rationalism = EventIcons["rationalism"]
+		self.realism = EventIcons["realism"]
+		self.sea_lane_strategies = EventIcons["sea_lane_strategies"]
+		self.shift_work = EventIcons["shift_work"]
+		self.socialism = EventIcons["socialism"]
+		self.standing_army = EventIcons["standing_army"]
+		self.steam_donkey = EventIcons["steam_donkey"]
+		self.steelworking = EventIcons["steelworking"]
+		self.stock_exchanges = EventIcons["stock_exchanges"]
+		self.tools = EventIcons["tools"]
+		self.urbanization = EventIcons["urbanization"]
+		self.zeppelins = EventIcons["zeppelins"]
+		self.clippers = EventIcons["clippers"]
+		self.drydock = EventIcons["drydock"]
+		self.electrical_capacitors = EventIcons["electrical_capacitors"]
+		self.electrical_generation = EventIcons["electrical_generation"]
+		self.ironclads = EventIcons["ironclads"]
+		self.man_o_wars = EventIcons["man_o_wars"]
+		self.oil = EventIcons["oil"]
+		self.opium = EventIcons["opium"]
+		self.paddle_steamer = EventIcons["paddle_steamer"]
+		self.porcelain = EventIcons["porcelain"]
+		self.psychiatry = EventIcons["psychiatry"]
+		self.rubber = EventIcons["rubber"]
+		self.screw_frigate = EventIcons["screw_frigate"]
+		self.shaft_mining = EventIcons["shaft_mining"]
+		self.shell_gun = EventIcons["shell_gun"]
+		self.steamers = EventIcons["steamers"]
+		self.steel_railway_cars = EventIcons["steel_railway_cars"]
+		self.telephones = EventIcons["telephones"]
+		self.transportation = EventIcons["transportation"]
+		self.war_propaganda = EventIcons["war_propaganda"]
+		self.wargaming = EventIcons["wargaming"]
+		self.watertube_boiler = EventIcons["watertube_boiler"]
+		self.wine = EventIcons["wine"]
+		self.ammunition = EventIcons["ammunition"]
+		self.artillery = EventIcons["artillery"]
+		self.breech_loading_artillery = EventIcons["breech_loading_artillery"]
+		self.dreadnought = EventIcons["dreadnought"]
+		self.military_drill = EventIcons["military_drill"]
+		self.destroyers = EventIcons["destroyers"]
+		self.mobile_armor = EventIcons["mobile_armor"]
+		self.monitor_tech = EventIcons["monitor_tech"]
+		self.luxury_clothes = EventIcons["luxury_clothes"]
 
 	def get(self, name: str):
 		return EventIcons[name]
+
+
+class GuiWindow():
+	""" Victoria 3 Event Gui window"""
+
+	def __init__(self):
+		self.char_1_tab = GuiWindows["char_1_tab"]
+		self.char_1_lord = GuiWindows["char_1_lord"]
+		self.char_1_propaganda = GuiWindows["char_1_propaganda"]
+		self.char_2 = GuiWindows["char_2"]
+		self.big_icon = GuiWindows["big_icon"]
 
 
 EventIcons = {
@@ -219,10 +372,150 @@ EventIcons = {
 	"skull": "gfx/interface/icons/event_icons/event_skull.dds",
 	"trade": "gfx/interface/icons/event_icons/event_trade.dds",
 	"tutorial": "gfx/interface/icons/event_icons/tutorial_icon.dds",
-	"book": "gfx/interface/icons/event_icons/tutorial_icon.dds"
+	"book": "gfx/interface/icons/event_icons/tutorial_icon.dds",
+	"academics": "gfx/event_icons/academics.dds",
+	"active_peace_deal": "gfx/event_icons/active_peace_deal.dds",
+	"aristocrats": "gfx/event_icons/aristocrats.dds",
+	"fabric_roll": "gfx/event_icons/fabric_roll.dds",
+	"gemstone": "gfx/event_icons/gemstone.dds",
+	"armillary": "gfx/event_icons/armillary.dds",
+	"bell": "gfx/event_icons/bell.dds",
+	"bureaucrats": "gfx/event_icons/bureaucrats.dds",
+	"capitalists": "gfx/event_icons/capitalists.dds",
+	"character_busy": "gfx/event_icons/character_busy.dds",
+	"clergymen": "gfx/event_icons/clergymen.dds",
+	"clerks": "gfx/event_icons/clerks.dds",
+	"diplomatic_play": "gfx/event_icons/diplomatic_play.dds",
+	"economic_dominance": "gfx/event_icons/economic_dominance.dds",
+	"egalitarian_society": "gfx/event_icons/egalitarian_society.dds",
+	"engineers": "gfx/event_icons/engineers.dds",
+	"farmers": "gfx/event_icons/farmers.dds",
+	"force_recognition": "gfx/event_icons/force_recognition.dds",
+	"has_no_research": "gfx/event_icons/has_no_research.dds",
+	"hegemon": "gfx/event_icons/hegemon.dds",
+	"icon_kill": "gfx/event_icons/icon_kill.dds",
+	"laborers": "gfx/event_icons/laborers.dds",
+	"legitimacy": "gfx/event_icons/legitimacy.dds",
+	"literacy": "gfx/event_icons/literacy.dds",
+	"machinists": "gfx/event_icons/machinists.dds",
+	"market_isolated": "gfx/event_icons/market_isolated.dds",
+	"officers": "gfx/event_icons/officers.dds",
+	"peasants": "gfx/event_icons/peasants.dds",
+	"power_projection": "gfx/event_icons/power_projection.dds",
+	"raid_convoys": "gfx/event_icons/raid_convoys.dds",
+	"shopkeepers": "gfx/event_icons/shopkeepers.dds",
+	"slaves": "gfx/event_icons/slaves.dds",
+	"soldiers": "gfx/event_icons/soldiers.dds",
+	"standby": "gfx/event_icons/standby.dds",
+	"supply_low": "gfx/event_icons/supply_low.dds",
+	"take_colony": "gfx/event_icons/take_colony.dds",
+	"take_treaty_port": "gfx/event_icons/take_treaty_port.dds",
+	"tutorial_icon": "gfx/event_icons/tutorial_icon.dds",
+	"unit_attack": "gfx/event_icons/unit_attack.dds",
+	"unit_defense": "gfx/event_icons/unit_defense.dds",
+	"war_reparations": "gfx/event_icons/war_reparations.dds",
+	"wasted_construction": "gfx/event_icons/wasted_construction.dds",
+	"academia": "gfx/event_icons/academia.dds",
+	"aeroplanes": "gfx/event_icons/aeroplanes.dds",
+	"analytical_philosophy": "gfx/event_icons/analytical_philosophy.dds",
+	"anarchy": "gfx/event_icons/anarchy.dds",
+	"army_reserves": "gfx/event_icons/army_reserves.dds",
+	"automobiles": "gfx/event_icons/automobiles.dds",
+	"banking": "gfx/event_icons/banking.dds",
+	"bureaucracy": "gfx/event_icons/bureaucracy.dds",
+	"canneries": "gfx/event_icons/canneries.dds",
+	"central_archives": "gfx/event_icons/central_archives.dds",
+	"combustion_engine": "gfx/event_icons/combustion_engine.dds",
+	"compression_ignition": "gfx/event_icons/compression_ignition.dds",
+	"currency_standards": "gfx/event_icons/currency_standards.dds",
+	"democracy": "gfx/event_icons/democracy.dds",
+	"enlistment_offices": "gfx/event_icons/enlistment_offices.dds",
+	"film": "gfx/event_icons/film.dds",
+	"fine_art": "gfx/event_icons/fine_art.dds",
+	"food": "gfx/event_icons/food.dds",
+	"human_rights": "gfx/event_icons/human_rights.dds",
+	"hydraulic_cranes": "gfx/event_icons/hydraulic_cranes.dds",
+	"international_diplomacy": "gfx/event_icons/international_diplomacy.dds",
+	"international_exchange_standards": "gfx/event_icons/international_exchange_standards.dds",
+	"international_trade": "gfx/event_icons/international_trade.dds",
+	"labor_movement": "gfx/event_icons/labor_movement.dds",
+	"lathe": "gfx/event_icons/lathe.dds",
+	"law_enforcement": "gfx/event_icons/law_enforcement.dds",
+	"lightbulbs": "gfx/event_icons/lightbulbs.dds",
+	"line_infantry": "gfx/event_icons/line_infantry.dds",
+	"literature": "gfx/event_icons/literature.dds",
+	"locomotives": "gfx/event_icons/locomotives.dds",
+	"macroeconomics": "gfx/event_icons/macroeconomics.dds",
+	"manufacturies": "gfx/event_icons/manufacturies.dds",
+	"mass_propaganda": "gfx/event_icons/mass_propaganda.dds",
+	"mass_surveillance": "gfx/event_icons/mass_surveillance.dds",
+	"mechanized_farming": "gfx/event_icons/mechanized_farming.dds",
+	"military_aviation": "gfx/event_icons/military_aviation.dds",
+	"military_statistics": "gfx/event_icons/military_statistics.dds",
+	"nationalism": "gfx/event_icons/nationalism.dds",
+	"navigation": "gfx/event_icons/navigation.dds",
+	"paddle_steamer": "gfx/event_icons/paddle_steamer.dds",
+	"pan_nationalism": "gfx/event_icons/pan_nationalism.dds",
+	"paper": "gfx/event_icons/paper.dds",
+	"philosophical_pragmatism": "gfx/event_icons/philosophical_pragmatism.dds",
+	"political_agitation": "gfx/event_icons/political_agitation.dds",
+	"postal_savings": "gfx/event_icons/postal_savings.dds",
+	"power_of_the_purse": "gfx/event_icons/power_of_the_purse.dds",
+	"prospecting_tech": "gfx/event_icons/prospecting_tech.dds",
+	"psychoanalysis": "gfx/event_icons/psychoanalysis.dds",
+	"pumpjacks": "gfx/event_icons/pumpjacks.dds",
+	"radio": "gfx/event_icons/radio.dds",
+	"railways": "gfx/event_icons/railways.dds",
+	"rationalism": "gfx/event_icons/rationalism.dds",
+	"realism": "gfx/event_icons/realism.dds",
+	"sea_lane_strategies": "gfx/event_icons/sea_lane_strategies.dds",
+	"shift_work": "gfx/event_icons/shift_work.dds",
+	"socialism": "gfx/event_icons/socialism.dds",
+	"standing_army": "gfx/event_icons/standing_army.dds",
+	"steam_donkey": "gfx/event_icons/steam_donkey.dds",
+	"steelworking": "gfx/event_icons/steelworking.dds",
+	"stock_exchanges": "gfx/event_icons/stock_exchanges.dds",
+	"tools": "gfx/event_icons/tools.dds",
+	"urbanization": "gfx/event_icons/urbanization.dds",
+	"zeppelins": "gfx/event_icons/zeppelins.dds",
+	"clippers": "gfx/event_icons/clippers.dds",
+	"drydock": "gfx/event_icons/drydock.dds",
+	"electrical_capacitors": "gfx/event_icons/electrical_capacitors.dds",
+	"electrical_generation": "gfx/event_icons/electrical_generation.dds",
+	"ironclads": "gfx/event_icons/ironclads.dds",
+	"man_o_wars": "gfx/event_icons/man_o_wars.dds",
+	"oil": "gfx/event_icons/oil.dds",
+	"opium": "gfx/event_icons/opium.dds",
+	"paddle_steamer": "gfx/event_icons/paddle_steamer.dds",
+	"porcelain": "gfx/event_icons/porcelain.dds",
+	"psychiatry": "gfx/event_icons/psychiatry.dds",
+	"rubber": "gfx/event_icons/rubber.dds",
+	"screw_frigate": "gfx/event_icons/screw_frigate.dds",
+	"shaft_mining": "gfx/event_icons/shaft_mining.dds",
+	"shell_gun": "gfx/event_icons/shell_gun.dds",
+	"steamers": "gfx/event_icons/steamers.dds",
+	"steel_railway_cars": "gfx/event_icons/steel_railway_cars.dds",
+	"telephones": "gfx/event_icons/telephones.dds",
+	"transportation": "gfx/event_icons/transportation.dds",
+	"war_propaganda": "gfx/event_icons/war_propaganda.dds",
+	"wargaming": "gfx/event_icons/wargaming.dds",
+	"watertube_boiler": "gfx/event_icons/watertube_boiler.dds",
+	"wine": "gfx/event_icons/wine.dds",
+	"ammunition": "gfx/event_icons/ammunition.dds",
+	"artillery": "gfx/event_icons/artillery.dds",
+	"breech_loading_artillery": "gfx/event_icons/breech_loading_artillery.dds",
+	"dreadnought": "gfx/event_icons/dreadnought.dds",
+	"military_drill": "gfx/event_icons/military_drill.dds",
+	"destroyers": "gfx/event_icons/destroyers.dds",
+	"mobile_armor": "gfx/event_icons/mobile_armor.dds",
+	"monitor_tech": "gfx/event_icons/monitor_tech.dds",
+	"luxury_clothes": "gfx/event_icons/luxury_clothes.dds",
 }
 
+
 EventSounds = {
+	"industry": "event:/SFX/Events/europenorthamerica/london_center",
+	"ironclad": "event:/SFX/Events/unspecific/steam_ship",
 	"harbors": "event:/SFX/Events/unspecific/steam_ship",
 	"diplo": "event:/SFX/Events/southamerica/aristocrats",
 	"city": "event:/SFX/Events/africa/city_center",
@@ -309,6 +602,7 @@ EventSounds = {
 }
 
 EventVideos = {
+	"ironclad": "event_image = {\n\t\ttexture = \"gfx/event_pictures/paintings/harbors/The_Paying_out_Machinery_in_the_Stern_of_the_Great_Eastern.dds\"\n\t}",
 	"africa_animism": "event_image = {\n\t\tvideo = \"gfx/event_pictures/africa_animism.bk2\"\n\t}",
 	"africa_city_center": "event_image = {\n\t\tvideo = \"gfx/event_pictures/africa_city_center.bk2\"\n\t}",
 	"africa_construction_colony": "event_image = {\n\t\tvideo = \"gfx/event_pictures/africa_construction_colony.bk2\"\n\t}",
@@ -388,10 +682,10 @@ EventVideos = {
 }
 
 GuiWindows = {
-	"1char_tab": "event_window_1char_tabloid",
-	"1char_lord": "event_window_1char_lord_kitchener",
-	"1char_propaganda": "event_window_1char_propaganda",
-	"2char": "event_window_2char",
+	"char_1_tab": "event_window_1char_tabloid",
+	"char_1_lord": "event_window_1char_lord_kitchener",
+	"char_1_propaganda": "event_window_1char_propaganda",
+	"char_2": "event_window_2char",
 	"big_icon": "event_window_big_icon_center",
 }
 
@@ -435,11 +729,9 @@ event_image = { trigger = { var:picture = 1 } texture = "gfx/event_pictures/pain
 diplomatic = Template('''pdx
 event_image = {
 		trigger = {
-			ruler.religion = {
-				OR = {
-					this = sunni
-					this = shiite
-				}
+			OR = {
+				religion = rel:sunni
+				religion = rel:shiite
 			}
 		}
 		video = "gfx/event_pictures/middleeast_upperclass_party.bk2"
@@ -460,13 +752,33 @@ event_image = {
 	event_image = { trigger = { ruler.culture = { has_culture_graphics = asian } } video = "gfx/event_pictures/asia_politician_parliament_motion.bk2" }
 	event_image = { trigger = { ruler.culture = { has_culture_graphics = european } } video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2" }
 	event_image = { trigger = { ruler.culture = { has_culture_graphics = mideast_indian } } video = "gfx/event_pictures/asia_politician_parliament_motion.bk2" }
+	event_image = {
+		# Default
+		trigger = {
+			NOR = {
+				OR = {
+					religion = rel:sunni
+					religion = rel:shiite
+				}
+				ruler.culture = {
+					OR = {
+						has_culture_graphics = african
+						has_culture_graphics = asian
+						has_culture_graphics = european
+						has_culture_graphics = mideast_indian
+					}
+				}
+			}
+		}
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+	}
 ''')
 
 city = Template('''pdx
 event_image = { trigger = { var:picture = 1 } texture = "gfx/event_pictures/paintings/cities/An_Overshot_Mill_in_Wales_James_Ward.dds" }
 	event_image = { trigger = { var:picture = 2 } texture = "gfx/event_pictures/paintings/cities/Cole_Thomas_View_of_Florence_from_San_Miniato_1837.dds" }
 	event_image = { trigger = { var:picture = 3 } texture = "gfx/event_pictures/paintings/cities/The_945_Accommodation.dds" }
-	event_image = { trigger = { var:picture = 4 } texture = "gfx/event_pictures/paintings/cities/Thomas_Cole_Architects_Dream.dds" }
+	event_image = { trigger = { var:picture = 4 } texture = "gfx/event_pictures/paintings/cities/Thomas_Malton_the_Younger_High_Street_Oxford.dds" }
 	event_image = { trigger = { var:picture = 5 } texture = "gfx/event_pictures/paintings/cities/Thomas_Malton_the_Younger_High_Street_Oxford.dds" }
 	event_image = { trigger = { var:picture = 6 } texture = "gfx/event_pictures/paintings/cities/Venise_La_Piazetta.dds" }
 ''')
@@ -484,11 +796,9 @@ event_image = { trigger = { var:picture = 1 } texture = "gfx/event_pictures/pain
 riot = Template('''pdx
 event_image = {
 		trigger = {
-			ruler.religion = {
-				OR = {
-					this = sunni
-					this = shiite
-				}
+			OR = {
+				religion = rel:sunni
+				religion = rel:shiite
 			}
 		}
 		video = "gfx/event_pictures/middleeast_courtroom_upheaval.bk2"
@@ -505,8 +815,166 @@ event_image = {
 		}
 		video = "gfx/event_pictures/southamerica_war_civilians.bk2"
 	}
-	event_image = { trigger = { ruler.culture = { has_culture_graphics = african } } video = "gfx/event_pictures/africa_public_protest.bk2" }
+	event_image = {
+		trigger = {
+			ruler.culture = { has_culture_graphics = african } 
+		}
+		video = "gfx/event_pictures/africa_public_protest.bk2"
+	}
 	event_image = { trigger = { ruler.culture = { has_culture_graphics = asian } } video = "gfx/event_pictures/asia_union_leader.bk2" }
 	event_image = { trigger = { ruler.culture = { has_culture_graphics = european } } video = "gfx/event_pictures/europenorthamerica_springtime_of_nations.bk2" }
 	event_image = { trigger = { ruler.culture = { has_culture_graphics = mideast_indian } } video = "gfx/event_pictures/asia_sepoy_mutiny.bk2" }
+	event_image = {
+		# Default
+		trigger = {
+			NOR = {
+				OR = {
+					religion = rel:sunni
+					religion = rel:shiite
+				}
+				ruler.culture = {
+					OR = {
+						has_culture_graphics = african
+						has_culture_graphics = asian
+						has_culture_graphics = european
+						has_culture_graphics = mideast_indian
+					}
+				}
+			}
+		}
+		video = "gfx/event_pictures/unspecific_vandalized_storefront.bk2"
+	}
+''')
+
+industry = Template('''pdx
+event_image = {
+		trigger = {
+			OR = {
+				religion = rel:sunni
+				religion = rel:shiite
+			}
+		}
+		video = "gfx/event_pictures/middleeast_engineer_blueprint.bk2"
+	}
+	event_image = {
+		trigger = {
+			ruler.culture = {
+				OR = {
+					has_discrimination_trait = iberian_culture_group
+					has_discrimination_trait = lusophone
+					has_discrimination_trait = hispanophone
+				}
+			}
+		}
+		video = "gfx/event_pictures/southamerica_factory_opening.bk2"
+	}
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = african } } video = "gfx/event_pictures/africa_construction_colony.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = asian } } video = "gfx/event_pictures/asia_farmers_market.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = european } } video = "gfx/event_pictures/europenorthamerica_london_center.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = mideast_indian } } video = "gfx/event_pictures/asia_farmers_market.bk2" }
+	event_image = {
+		# Default
+		trigger = {
+			NOR = {
+				OR = {
+					religion = rel:sunni
+					religion = rel:shiite
+				}
+				ruler.culture = {
+					OR = {
+						has_culture_graphics = african
+						has_culture_graphics = asian
+						has_culture_graphics = european
+						has_culture_graphics = mideast_indian
+					}
+				}
+			}
+		}
+		video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+	}
+''')
+
+religion = Template('''pdx
+event_image = {
+		trigger = {
+			religion = rel:jewish
+		}
+		video = "gfx/event_pictures/europenorthamerica_judaism.bk2"
+	}
+	event_image = {
+		trigger = {
+			OR = {
+				religion = rel:protestant
+				religion = rel:catholic
+				religion = rel:orthodox
+				religion = rel:oriental_orthodox
+			}
+		}
+		video = "gfx/event_pictures/southamerica_christianity.bk2"
+	}
+	event_image = {
+		trigger = {
+			OR = {
+				religion = rel:hindu
+				religion = rel:sikh
+			}
+		}
+		video = "gfx/event_pictures/asia_hinduism_sikhism.bk2"
+	}
+	event_image = {
+		trigger = {
+			religion = rel:shinto
+		}
+		video = "gfx/event_pictures/asia_confucianism_shinto.bk2"
+	}
+	event_image = {
+		trigger = {
+			ruler.culture = {
+				has_discrimination_trait = indigenous_american_heritage
+			}
+		}
+		video = "gfx/event_pictures/europenorthamerica_native_american.bk2"
+	}
+	event_image = {
+		trigger = {
+			OR = {
+				religion = rel:mahayana
+				religion = rel:gelugpa
+				religion = rel:theravada
+			}
+		}
+		video = "gfx/event_pictures/asia_buddhism.bk2"
+	}
+	event_image = {
+		trigger = {
+			OR = {
+				religion = rel:sunni
+				religion = rel:shiite
+			}
+		}
+		video = "gfx/event_pictures/middleeast_islam.bk2"
+	}
+	event_image = {
+		trigger = {
+			NOR = {
+				religion = rel:jewish
+				religion = rel:protestant
+				religion = rel:catholic
+				religion = rel:orthodox
+				religion = rel:oriental_orthodox
+				religion = rel:mahayana
+				religion = rel:gelugpa
+				religion = rel:theravada
+				religion = rel:shinto
+				religion = rel:hindu
+				religion = rel:sikh
+				religion = rel:sunni
+				religion = rel:shiite
+				ruler.culture = {
+					has_discrimination_trait = indigenous_american_heritage
+				}
+			}
+		}
+		video = "gfx/event_pictures/africa_animism.bk2"
+	}
 ''')

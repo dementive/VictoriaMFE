@@ -1,0 +1,12 @@
+﻿namespace = MFE_errors
+
+MFE_errors.1 = {
+    type = country_event
+    hidden = yes
+    trigger = {
+		exists = var:picture    
+    }
+    immediate = {
+    	set_variable = picture
+    }
+}

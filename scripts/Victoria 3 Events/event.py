@@ -39,7 +39,7 @@ event = Template('''pdx{% if blank is not defined %}{% set blank = "" %}{% endif
 
 
 class Event():
-	""" A Victoria 3 event"""
+	"""Victoria 3 event"""
 
 	def __init__(self,
 		header="",
@@ -70,6 +70,7 @@ class Event():
 		option2="",
 		after=""):
 
+		self.header = header
 		self.event = event.render(
 			header=header,
 			namespace=namespace,
@@ -102,7 +103,7 @@ class Event():
 
 
 class EventFile():
-	""" A Victoria 3 event file"""
+	""" Victoria 3 event file"""
 
 	def __init__(self, *args):
 		self.file = ""
@@ -111,7 +112,7 @@ class EventFile():
 
 	def make_file(self, args):
 		for i, j in enumerate(args):
-			if i == 0: j = f"# Generated file, dont change manually.\n\nnamespace = {self.namespace}"
+			if i == 0: j = f"# Generated file, dont change manually or changes will be lost.\n\nnamespace = {self.namespace}"
 			self.file += j + "\n"
 		self.write()
 

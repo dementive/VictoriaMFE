@@ -1,4 +1,19 @@
-﻿has_ammo_pm = {
+﻿mine_is_using_explosives = {
+	OR = {
+		has_active_production_method = pm_nitroglycerin_building_coal_mine
+		has_active_production_method = pm_dynamite_building_coal_mine
+		has_active_production_method = pm_nitroglycerin_building_iron_mine
+		has_active_production_method = pm_dynamite_building_iron_mine
+		has_active_production_method = pm_nitroglycerin_building_lead_mine
+		has_active_production_method = pm_dynamite_building_lead_mine
+		has_active_production_method = pm_nitroglycerin_building_sulfur_mine
+		has_active_production_method = pm_dynamite_building_sulfur_mine
+		has_active_production_method = pm_nitroglycerin_building_gold_mine
+		has_active_production_method = pm_dynamite_building_gold_mine
+	}
+}
+
+has_ammo_pm = {
 	OR = {
 		has_active_production_method = pm_percussion_caps
 		has_active_production_method = pm_explosive_shells

@@ -6,23 +6,28 @@ translator = deepl.Translator("API_KEY")
 
 
 def main(dirfrom, dirto, langfrom, langto):
-    for filename in [x for x in os.listdir(dirfrom) if x.endswith(".yml")]:
-        localization = {}
-        f = os.path.join(dirfrom, filename)
-        with open(f, "r") as file:
-            for line in file:
-                r = re.search("(.*:?0?\s)\"(.+)\"", line)
-                if r:
-                    localization[r[1]] = r[2]
-                    filename = file.name.rpartition("\\")[2]
-                    filename = filename.replace(langfrom, langto)
-            new_f = os.path.join(dirto, filename.replace(langfrom, langto))
-            with open(new_f, "w") as newfile:
-                newfile.write(f"l_{langto}:\n\n")
-                translation_list = list(localization.values())
-                result = translator.translate_text(translation_list, target_lang="FR")
-                for j in result:
-                    newfile.write(i + "\"" + j.text + "\"" + "\n")
+	text = []
+	for filename in [x for x in os.listdir(dirfrom) if x.endswith(".yml")]:
+		localization = {}
+		f = os.path.join(dirfrom, filename)
+		with open(f, "r") as file:
+			for line in file:
+				r = re.search("(.*:?0?\s)\"(.+)\"", line)
+				if r:
+					localization[r[1]] = r[2] + "\n"
+					filename = file.name.rpartition("\\")[2]
+					filename = filename.replace(langfrom, langto)
+			new_f = os.path.join(dirto, filename.replace(langfrom, langto))
+			#with open(new_f, "w") as newfile:
+				#newfile.write(f"l_{langto}:\n\n")
+			translation_list = list(localization.values())
+			text = text + ["\n------------------\n"] + translation_list
+				# result = translator.translate_text(translation_list, target_lang="FR")
+				# for j in result:
+				# 	newfile.write(i + "\"" + j.text + "\"" + "\n")
+	with open("text.txt", "w") as f:
+		for i in text:
+			f.write(i)
 
 
 if __name__ == '__main__':

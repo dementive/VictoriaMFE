@@ -1,25 +1,21 @@
 from jinja2 import Template
 from event import Event, EventFile
-import data
+from data import EventImage, Sound, Icon, GuiWindow
 
 namespace = "MFE_trade_good_events"
-textures = """pdx
-	video = "gfx/event_pictures/europenorthamerica_rich_and_poor.bk2"
-	icon = "gfx/interface/icons/event_icons/event_military.dds"
-	on_opened_soundeffect = "event:/SFX/Events/unspecific/vandalized_storefront"
-"""
-video = data.Video()
-sound = data.Sound()
-icon = data.Icon()
+video = EventImage()
+sound = Sound()
+icon = Icon()
+gui = GuiWindow()
 
 ev1 = Event(
-	header="Bullets for [active_war.GetName]",
+	header="Bullets for [SCOPE.sW('active_war').GetName]",
 	namespace=namespace,
 	eventid="1",
 	placement="scope:munitions_state",
 	minor_left_icon="g:ammunition",
 	minor_right_icon="g:ammunition",
-	icon="gfx/interface/icons/event_icons/event_military.dds",
+	icon=icon.ammunition,
 	cooldown="long",
 	trigger=Template('''pdx
 	trigger = {
@@ -50,21 +46,20 @@ ev1 = Event(
 			state = {
 				save_scope_as = munitions_state
 			}
-			scope:active_war
 		}
 	}
 ''').render()[3:],
 )
 
 ev2 = Event(
-	header="[ally.GetName] is short on bullets for [active_war.GetName]",
+	header="[SCOPE.sC('ally').GetName] is short on bullets for [SCOPE.sW('active_war').GetName]",
 	namespace=namespace,
 	eventid="2",
 	minor_left_icon="ruler",
 	placement="scope:ammo_state",
 	minor_right_icon="scope:ally.ruler",
-	icon="gfx/interface/icons/event_icons/event_military.dds",
-	gui_window=data.GuiWindows["big_icon"],
+	icon=icon.ammunition,
+	gui_window=gui.big_icon,
 	event_image=video.diplo,
 	on_opened_soundeffect=sound.get("diplo"),
 	cooldown="long",
@@ -103,14 +98,14 @@ ev2 = Event(
 )
 
 ev3 = Event(
-	header="[ally.GetName] is short on artillery for [active_war.GetName]",
+	header="[SCOPE.sC('ally').GetName] is short on artillery for [SCOPE.sW('active_war').GetName]",
 	namespace=namespace,
 	eventid="3",
 	placement="scope:artillery_state",
 	minor_left_icon="ruler",
 	minor_right_icon="scope:ally.ruler",
-	icon="gfx/interface/icons/event_icons/event_military.dds",
-	gui_window=data.GuiWindows["big_icon"],
+	icon=icon.shell_gun,
+	gui_window=gui.big_icon,
 	event_image=video.diplo,
 	on_opened_soundeffect=sound.get("diplo"),
 	cooldown="long",
@@ -151,11 +146,11 @@ ev3 = Event(
 )
 
 ev4 = Event(
-	header="Materials for Artillery Shells dissapear from the factory in [arms_state.GetName]...",
+	header="Materials for Artillery Shells dissapear from the factory in [SCOPE.sS('arms_state').GetName]...",
 	namespace=namespace,
 	eventid="4",
 	placement="scope:artillery_state",
-	icon="gfx/interface/icons/event_icons/event_military.dds",
+	icon=icon.artillery,
 	event_image=video.get("unspecific_vandalized_storefront"),
 	on_opened_soundeffect=sound.get("unspecific_vandalized_storefront"),
 	cooldown="very_long",
@@ -190,12 +185,12 @@ ev4 = Event(
 )
 
 ev5 = Event(
-	header="Farms in [arable_state] having a great season",
+	header="Farms in [SCOPE.sS('arable_state').GetName] having a great season",
 	namespace=namespace,
 	eventid="5",
 	placement="scope:arable_state",
-	icon="gfx/interface/icons/event_icons/event_military.dds",
-	gui_window=data.GuiWindows["big_icon"],
+	icon=icon.peasants,
+	gui_window=gui.big_icon,
 	event_image=video.landscape,
 	on_opened_soundeffect=sound.get("landscape"),
 	cooldown="long",
@@ -230,11 +225,11 @@ ev5 = Event(
 )
 
 ev6 = Event(
-	header="Madman at the Tank Factory in [tank_state.GetName]",
+	header="Madman at the Tank Factory in [SCOPE.sS('tank_state').GetName]",
 	namespace=namespace,
 	eventid="6",
 	placement="scope:tank_state",
-	icon="gfx/interface/icons/event_icons/event_fire.dds",
+	icon=icon.mobile_armor,
 	minor_left_icon="g:tanks",
 	minor_right_icon="g:tanks",
 	event_image=video.get("unspecific_devastation"),
@@ -266,11 +261,11 @@ ev6 = Event(
 )
 
 ev7 = Event(
-	header="Private Planes bring Rich Investors in [plane_state.GetName]",
+	header="Private Planes bring Rich Investors in [SCOPE.sS('plane_state').GetName]",
 	namespace=namespace,
 	eventid="7",
 	placement="scope:plane_state",
-	icon="gfx/interface/icons/event_icons/event_trade.dds",
+	icon=icon.aeroplanes,
 	event_image=video.get("unspecific_airplane"),
 	on_opened_soundeffect=sound.get("unspecific_airplane"),
 	cooldown="long",
@@ -300,13 +295,14 @@ ev7 = Event(
 )
 
 ev8 = Event(
-	header="Poor quality iron in the boats of [ironclad_state.GetName]",
+	header="Poor quality iron in the boats of [SCOPE.sS('ironclad_state').GetName]",
 	namespace=namespace,
 	eventid="8",
 	placement="scope:ironclad_state",
-	icon="gfx/interface/icons/event_icons/event_trade.dds",
-	event_image=video.harbors,
-	on_opened_soundeffect=sound.harbors,
+	icon=icon.scales,
+	event_image=video.ironclad,
+	gui_window=gui.big_icon,
+	on_opened_soundeffect=sound.ironclad,
 	cooldown="long",
 	trigger=Template('''pdx
 	trigger = {
@@ -335,7 +331,7 @@ ev8 = Event(
 )
 
 ev9 = Event(
-	header="Grain shortage in [grain_state.GetName] is causing trouble",
+	header="Grain shortage in [SCOPE.sS('grain_state').GetName] is causing trouble",
 	namespace=namespace,
 	eventid="9",
 	placement="scope:ironclad_state",
@@ -373,20 +369,21 @@ ev9 = Event(
 )
 
 ev10 = Event(
-	header="The fish in [fish_state.GetName] is far too fishy",
+	header="The fish in [SCOPE.sS('fish_state').GetName] is far too fishy",
 	namespace=namespace,
 	eventid="10",
 	placement="scope:fish_state",
-	icon="gfx/interface/icons/event_icons/event_skull.dds",
+	icon=icon.human_rights,
 	minor_left_icon="g:fish",
 	minor_right_icon="g:fish",
 	event_image=video.harbors,
+	gui_window=gui.big_icon,
 	on_opened_soundeffect=sound.harbors,
 	cooldown="very_long",
 	trigger=Template('''pdx
 	trigger = {
 		any_scope_building = {
-			this = b:building_fishing_wharf
+			is_building_type = building_fishing_wharf
 			level >= 4
 		}
 	}
@@ -396,7 +393,7 @@ ev10 = Event(
 		get_harbor_picture = yes
 		random_scope_building = {
 			limit = {
-				this = b:building_fishing_wharf
+				is_building_type = building_fishing_wharf
 				level >= 4
 			}
 			state = {
@@ -408,11 +405,11 @@ ev10 = Event(
 )
 
 ev11 = Event(
-	header="Man O Wars in [ship_state.GetName] are ready for war",
+	header="Man O Wars in [SCOPE.sS('ship_state').GetName] are ready for war",
 	namespace=namespace,
 	eventid="11",
 	placement="scope:ship_state",
-	icon="gfx/interface/icons/event_icons/event_trade.dds",
+	icon=icon.man_o_wars,
 	event_image=video.get("unspecific_vandalized_storefront"),
 	on_opened_soundeffect=sound.get("unspecific_vandalized_storefront"),
 	cooldown="very_long",
@@ -441,20 +438,20 @@ ev11 = Event(
 )
 
 ev12 = Event(
-	header="Fine fabrics of [fabric_state.GetName]",
+	header="Fine fabrics of [SCOPE.sS('fabric_state').GetName]",
 	namespace=namespace,
 	eventid="12",
 	placement="scope:fabric_state",
-	icon="gfx/interface/icons/event_icons/event_trade.dds",
+	icon=icon.economic_dominance,
 	event_image=video.landscape,
-	gui_window="big_icon",
+	gui_window=gui.big_icon,
 	on_opened_soundeffect=sound.get("landscape"),
 	cooldown="long",
 	trigger=Template('''pdx
 	trigger = {
 		any_scope_building = {
 			has_good_fabric_pm = yes
-			level >= 3
+			level >= 7
 		}
 	}
 	''').render()[3:],
@@ -464,7 +461,7 @@ ev12 = Event(
 		random_scope_building = {
 			limit = {
 				has_good_fabric_pm = yes
-				level >= 3
+				level >= 7
 			}
 			state = {
 				save_scope_as = fabric_state
@@ -475,11 +472,11 @@ ev12 = Event(
 )
 
 ev13 = Event(
-	header="Fire in the sawmills of [sawmill_fire_state.GetName]",
+	header="Fire in the sawmills of [SCOPE.sS('sawmill_fire_state').GetName]",
 	namespace=namespace,
 	eventid="13",
 	placement="scope:sawmill_fire_state",
-	icon="gfx/interface/icons/event_icons/event_fire.dds",
+	icon=icon.fire,
 	event_image=video.get("unspecific_fire"),
 	on_opened_soundeffect=sound.get("unspecific_fire"),
 	cooldown="very_long",
@@ -507,11 +504,11 @@ ev13 = Event(
 )
 
 ev14 = Event(
-	header="Hardwood in [hardwood_state.GetName] is extremely hard",
+	header="Hardwood in [SCOPE.sS('hardwood_state').GetName] is extremely hard",
 	namespace=namespace,
 	eventid="14",
 	placement="scope:hardwood_state",
-	icon="gfx/interface/icons/event_icons/event_trade.dds",
+	icon=icon.unit_attack,
 	event_image=video.get("europenorthamerica_gold_prospectors"),
 	on_opened_soundeffect=sound.get("europenorthamerica_gold_prospectors"),
 	cooldown="very_long",
@@ -539,11 +536,11 @@ ev14 = Event(
 )
 
 ev15 = Event(
-	header="Entire Grocery chain robbed in grand organized crime in [grocery_state.GetName]",
+	header="Entire Grocery chain robbed in grand organized crime in [SCOPE.sS('grocery_state').GetName]",
 	namespace=namespace,
 	eventid="15",
 	placement="scope:grocery_state",
-	icon=icon.skull,
+	icon=icon.supply_low,
 	event_image=video.get("unspecific_vandalized_storefront"),
 	on_opened_soundeffect=sound.get("unspecific_vandalized_storefront"),
 	cooldown="very_long",
@@ -576,11 +573,11 @@ ev15 = Event(
 )
 
 ev16 = Event(
-	header="People in [clothes_state.GetName] can't afford to wear clothes",
+	header="People in [SCOPE.sS('clothes_state').GetName] can't afford to wear clothes",
 	namespace=namespace,
 	eventid="16",
 	placement="scope:clothes_state",
-	icon=icon.protest,
+	icon=icon.anarchy,
 	event_image=video.europenorthamerica_rich_and_poor,
 	on_opened_soundeffect=sound.europenorthamerica_rich_and_poor,
 	cooldown="very_long",
@@ -615,7 +612,7 @@ ev16 = Event(
 )
 
 ev17 = Event(
-	header="[Player.GetRuler.GetName] dies after sitting on chair while visiting the furniture factory in [furniture_state.GetName]",
+	header="[SCOPE.GetRootScope.GetCountry.GetRuler.GetFullName] dies after sitting on chair while visiting the furniture factory in [SCOPE.sS('furniture_state').GetName]",
 	namespace=namespace,
 	eventid="17",
 	placement="scope:furniture_state",
@@ -625,31 +622,29 @@ ev17 = Event(
 	cooldown="very_long",
 	weight_multiplier=Template('''pdx
 	weight_multiplier = {
-		base = 1
-		if = {
-			limit = {
-				ruler = {
-					has_trait = cautious
-				}
+		base = -1
+		modifier = {
+			factor = -100
+			ruler = {
+				has_trait = cautious
 			}
-			add = -100
 		}
-		if = {
-			limit = {
-				ruler = {
-					has_trait = reckless
-				}
+		modifier = {
+			factor = 2
+			ruler = {
+				has_trait = reckless
 			}
-			add = 1
 		}
 	}
-	'''),
+	''').render()[3:],
 	trigger=Template('''pdx
 	trigger = {
 		capital = {
-			has_building = building_furniture_manufacturies
-			poor_building_trigger = yes
-			level >= 1
+			exists = b:building_furniture_manufacturies
+			b:building_furniture_manufacturies = {
+				poor_building_trigger = yes
+				level >= 1
+			}
 		}
 	}
 	''').render()[3:],
@@ -663,29 +658,28 @@ ev17 = Event(
 )
 
 ev18 = Event(
-	header="Extreme production of paper in [paper_state.GetName] awes the world",
+	header="Extreme production of paper in [SCOPE.sS('paper_state').GetName] awes the world",
 	namespace=namespace,
 	eventid="18",
 	placement="scope:paper_state",
-	icon=icon.map,
+	icon=icon.literature,
 	event_image=video.southamerica_factory_opening,
 	on_opened_soundeffect=sound.southamerica_factory_opening,
 	trigger=Template('''pdx
 	trigger = {
 		NOT = { has_variable = paper_world_event_happened }
 		any_scope_building = {
-			this = b:building_paper_mills
+			is_building_type = building_paper_mills
 			level >= 30
 		}
 	}
 	''').render()[3:],
 	immediate=Template('''pdx
 	immediate = {
-		get_city_picture = yes
 		set_variable = paper_world_event_happened
 		random_scope_building = {
 			limit = {
-				this = b:building_paper_mills
+				is_building_type = building_paper_mills
 				level >= 30
 			}
 			save_scope_as = huge_paper_factory
@@ -697,9 +691,264 @@ ev18 = Event(
 ''').render()[3:],
 )
 
+ev19 = Event(
+	header="The disappearing stars of [SCOPE.sS('power_state').GetName]",
+	namespace=namespace,
+	eventid="19",
+	placement="scope:power_state",
+	icon=icon.lightbulbs,
+	event_image=video.city,
+	on_opened_soundeffect=sound.city,
+	gui_window=gui.big_icon,
+	trigger=Template('''pdx
+	trigger = {
+		NOT = { has_variable = electricity_stars_event_happened }
+		any_scope_building = {
+			is_building_type = building_power_plant
+			level >= 5
+		}
+	}
+	''').render()[3:],
+	immediate=Template('''pdx
+	immediate = {
+		get_city_picture = yes
+		set_variable = electricity_stars_event_happened
+		random_scope_building = {
+			limit = {
+				is_building_type = building_power_plant
+				level >= 5
+			}
+			save_scope_as = power_plant
+			state = {
+				save_scope_as = power_state
+			}
+		}
+	}
+''').render()[3:],
+)
+
+ev20 = Event(
+	header="Huge explosion in sulfur mines in [SCOPE.sS('sulfur_state').GetName] destroys the mine and kills workers",
+	namespace=namespace,
+	eventid="20",
+	placement="scope:sulfur_state",
+	icon=icon.raid_convoys,
+	event_image=video.industry,
+	on_opened_soundeffect=sound.industry,
+	cooldown="very_long",
+	trigger=Template('''pdx
+	trigger = {
+		any_scope_building = {
+			is_building_type = building_sulfur_mine
+			mine_is_using_explosives = yes
+			level >= 2
+			level < 10
+		}
+	}
+	''').render()[3:],
+	immediate=Template('''pdx
+	immediate = {
+		random_scope_building = {
+			limit = {
+				is_building_type = building_sulfur_mine
+				mine_is_using_explosives = yes
+				level >= 2
+				level < 10
+			}
+			state = {
+				save_scope_as = sulfur_state
+				remove_building = building_sulfur_mine
+			}
+		}
+	}
+''').render()[3:],
+)
+
+ev21 = Event(
+	header="Huge explosion in lead mines in [SCOPE.sS('lead_state').GetName] destroys the mine and kills workers",
+	namespace=namespace,
+	eventid="21",
+	placement="scope:lead_state",
+	icon=icon.skull,
+	event_image=video.industry,
+	on_opened_soundeffect=sound.industry,
+	cooldown="very_long",
+	trigger=Template('''pdx
+	trigger = {
+		any_scope_building = {
+			is_building_type = building_lead_mine
+			mine_is_using_explosives = yes
+			level >= 2
+			level < 8
+		}
+	}
+	''').render()[3:],
+	immediate=Template('''pdx
+	immediate = {
+		random_scope_building = {
+			limit = {
+				is_building_type = building_lead_mine
+				mine_is_using_explosives = yes
+				level >= 2
+				level < 8
+			}
+			state = {
+				save_scope_as = lead_state
+				remove_building = building_sulfur_mine
+			}
+		}
+	}
+''').render()[3:],
+)
+
+ev22 = Event(
+	header="Lead from the mines in [SCOPE.sS('lead_state').GetName] has shown up in the water",
+	namespace=namespace,
+	eventid="22",
+	placement="scope:lead_state",
+	icon=icon.icon_kill,
+	gui_window=gui.big_icon,
+	event_image=video.landscape,
+	on_opened_soundeffect=sound.landscape,
+	cooldown="very_long",
+	trigger=Template('''pdx
+	trigger = {
+		any_scope_building = {
+			is_building_type = building_lead_mine
+			level >= 8
+		}
+	}
+	''').render()[3:],
+	immediate=Template('''pdx
+	immediate = {
+		get_landscape_picture = yes
+		random_scope_building = {
+			limit = {
+				is_building_type = building_lead_mine
+				level >= 8
+			}
+			state = {
+				save_scope_as = lead_state
+			}
+		}
+	}
+''').render()[3:],
+)
+
+ev23 = Event(
+	header="The beginning of a new age...led by rubber",
+	namespace=namespace,
+	eventid="23",
+	placement="scope:rubber_state",
+	icon=icon.rubber,
+	gui_window=gui.big_icon,
+	event_image=video.landscape,
+	minor_left_icon="g:rubber",
+	minor_right_icon="g:rubber",
+	on_opened_soundeffect=sound.landscape,
+	trigger=Template('''pdx
+	trigger = {
+		NOT = { has_variable = rubber_boom_started_var }
+		year < 1870
+		any_scope_building = {
+			is_building_type = building_rubber_plantation
+			level >= 3
+		}
+	}
+	''').render()[3:],
+	immediate=Template('''pdx
+	immediate = {
+		get_landscape_picture = yes
+		set_variable = rubber_boom_started_var
+		random_scope_building = {
+			limit = {
+				is_building_type = building_rubber_plantation
+				level >= 3
+			}
+			state = {
+				save_scope_as = rubber_state
+			}
+		}
+	}
+''').render()[3:],
+)
+
+ev24 = Event(
+	header="Black Gold of [SCOPE.sS('oil_state').GetName]",
+	namespace=namespace,
+	eventid="24",
+	placement="scope:oil_state",
+	icon=icon.oil,
+	event_image=video.middleeast_oil_derricks,
+	minor_left_icon="g:oil",
+	minor_right_icon="g:oil",
+	on_opened_soundeffect=sound.middleeast_oil_derricks,
+	cooldown="very_long",
+	trigger=Template('''pdx
+	trigger = {
+		any_scope_building = {
+			is_building_type = building_oil_rig
+			level >= 5
+		}
+	}
+	''').render()[3:],
+	immediate=Template('''pdx
+	immediate = {
+		random_scope_building = {
+			limit = {
+				is_building_type = building_oil_rig
+				level >= 5
+			}
+			state = {
+				save_scope_as = oil_state
+			}
+		}
+	}
+''').render()[3:],
+)
+
+ev25 = Event(
+	header="Steel Factory Destroying communities of [SCOPE.sS('steel_state').GetName]",
+	namespace=namespace,
+	eventid="25",
+	placement="scope:steel_state",
+	icon=icon.manufacturies,
+	event_image=video.industry,
+	on_opened_soundeffect=sound.industry,
+	cooldown="very_long",
+	trigger=Template('''pdx
+	trigger = {
+		any_scope_building = {
+			rich_building_trigger = yes
+			is_building_type = building_steel_mills
+			level >= 5
+		}
+	}
+	''').render()[3:],
+	immediate=Template('''pdx
+	immediate = {
+		random_scope_building = {
+			limit = {
+				rich_building_trigger = yes
+				is_building_type = building_steel_mills
+				level >= 5
+			}
+			state = {
+				save_scope_as = steel_state
+			}
+		}
+	}
+''').render()[3:],
+)
+
 if __name__ == '__main__':
 	MFE_trade_goods = EventFile(
 		namespace, ev1.event, ev2.event, ev3.event, ev4.event,
 		ev5.event, ev6.event, ev7.event, ev8.event, ev9.event,
 		ev10.event, ev11.event, ev12.event, ev13.event, ev14.event,
-		ev15.event, ev16.event, ev17.event, ev18.event)
+		ev15.event, ev16.event, ev17.event, ev18.event, ev19.event,
+		ev20.event, ev21.event, ev22.event, ev23.event, ev24.event, ev25.event)
+
+	# events = [ev1, ev2, ev3, ev4, ev5, ev6, ev7, ev8, ev9, ev10, ev11, ev12, ev13, ev14, ev15, ev16, ev17, ev18, ev19, ev20, ev21, ev22, ev23, ev24, ev25]
+	# for i in events:
+	# 	print(i.header)
