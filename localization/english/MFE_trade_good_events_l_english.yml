@@ -1,64 +1,98 @@
 ﻿l_english:
 
+  # Scopes:
+  # active_war = currrent war
+  # munitions_building = munitions plant event is about
+  # munitions_state = state that has munitions plant in it
   MFE_trade_good_events.1.t:0 "Bullets for [SCOPE.sW('active_war').GetName]"
   MFE_trade_good_events.1.d:0 ""
   MFE_trade_good_events.1.f:0 ""
-  MFE_trade_good_events.1.a:0 ""
-  MFE_trade_good_events.1.b:0 ""
+  MFE_trade_good_events.1.a:0 "Just in time for the war"
 
+  # Scopes:
+  # active_war = currrent war
+  # ally = Country you are in an alliance with and fighting in war together
+  # ammo_building = munitions plant in root country
+  # ammo_state = state that has munitions plant in it
+  # ally_ammo_building = poor munitions plant in ally country
+  # ally_ammo_state = state that has allies munitions plant in it
   MFE_trade_good_events.2.t:0 "[SCOPE.sC('ally').GetName] is short on bullets for [SCOPE.sW('active_war').GetName]"
   MFE_trade_good_events.2.d:0 ""
   MFE_trade_good_events.2.f:0 ""
-  MFE_trade_good_events.2.a:0 ""
-  MFE_trade_good_events.2.b:0 ""
+  MFE_trade_good_events.2.a:0 "We can spare a few bullets"
+  MFE_trade_good_events.2.b:0 "How are we going to shoot our enemies without bullets?!"
 
+  # Scopes:
+  # active_war = currrent war
+  # ally = Country you are in an alliance with and fighting in war together
+  # artillery_building = munitions plant in root country
+  # artillery_state = state that has munitions plant in it
+  # ally_artillery_building = poor munitions plant in ally country
+  # ally_artillery_state = state that has allies munitions plant in it
   MFE_trade_good_events.3.t:0 "[SCOPE.sC('ally').GetName] is short on artillery for [SCOPE.sW('active_war').GetName]"
   MFE_trade_good_events.3.d:0 ""
   MFE_trade_good_events.3.f:0 ""
-  MFE_trade_good_events.3.a:0 ""
-  MFE_trade_good_events.3.b:0 ""
+  MFE_trade_good_events.3.a:0 "We can spare a few artillery pieces"
+  MFE_trade_good_events.3.b:0 "How will we blow up our enemies without artillery?!"
 
+  # Scopes:
+  # arms_state = State that got artillery stolen from it
   MFE_trade_good_events.4.t:0 "Materials for Artillery Shells dissapear from the factory in [SCOPE.sS('arms_state').GetName]..."
   MFE_trade_good_events.4.d:0 ""
   MFE_trade_good_events.4.f:0 ""
-  MFE_trade_good_events.4.a:0 ""
-  MFE_trade_good_events.4.b:0 ""
+  MFE_trade_good_events.4.a:0 "Hopefully they did not fall into the wrong hands..."
 
+  # Scopes:
+  # arable_state = State that is getting farming boon
   MFE_trade_good_events.5.t:0 "Farms in [SCOPE.sS('arable_state').GetName] having a great season"
   MFE_trade_good_events.5.d:0 ""
   MFE_trade_good_events.5.f:0 ""
-  MFE_trade_good_events.5.a:0 ""
-  MFE_trade_good_events.5.b:0 ""
+  MFE_trade_good_events.5.a:0 "There couldn't have been a better time"
 
+  # Scopes:
+  # tank_state = State that just had tank tragedy
   MFE_trade_good_events.6.t:0 "Madman at the Tank Factory in [SCOPE.sS('tank_state').GetName]"
   MFE_trade_good_events.6.d:0 ""
   MFE_trade_good_events.6.f:0 ""
-  MFE_trade_good_events.6.a:0 ""
-  MFE_trade_good_events.6.b:0 ""
+  MFE_trade_good_events.6.a:0 "Hopefully they get over it"
+  MFE_trade_good_events.6.b:0 "Give them anything they need this is just awful..."
 
+  # Scopes:
+  # plane_state = State with thriving plane industry
   MFE_trade_good_events.7.t:0 "Private Planes bring Rich Investors in [SCOPE.sS('plane_state').GetName]"
   MFE_trade_good_events.7.d:0 ""
   MFE_trade_good_events.7.f:0 ""
-  MFE_trade_good_events.7.a:0 ""
-  MFE_trade_good_events.7.b:0 ""
+  MFE_trade_good_events.7.a:0 "It's a great time to live in [SCOPE.GetRootScope.GetCountry.GetName]"
 
+  # Scopes:
+  # ironclad_state = State with bad quality iron
+  # ironclad_building = Ironclad producing building with bad iron
   MFE_trade_good_events.8.t:0 "Poor quality iron in the boats of [SCOPE.sS('ironclad_state').GetName]"
   MFE_trade_good_events.8.d:0 ""
   MFE_trade_good_events.8.f:0 ""
-  MFE_trade_good_events.8.a:0 ""
-  MFE_trade_good_events.8.b:0 ""
+  MFE_trade_good_events.8.a:0 "Hopefully the iron gets better"
 
+  # Scopes:
+  # grain_state = State that is going through a grain shortage
   MFE_trade_good_events.9.t:0 "Grain shortage in [SCOPE.sS('grain_state').GetName] is causing trouble"
   MFE_trade_good_events.9.d:0 ""
   MFE_trade_good_events.9.f:0 ""
-  MFE_trade_good_events.9.a:0 ""
-  MFE_trade_good_events.9.b:0 ""
+  MFE_trade_good_events.9.a:0 "Do they really need food to live?"
+  MFE_trade_good_events.9.b:0 "Redirect some funds to [SCOPE.sS('grain_state').GetName]"
+  MFE_trade_good_events.9.c:0 "Last I checked there was plenty of cake to eat in the shops of [SCOPE.sS('grain_state').GetName]"
 
+  # Scopes:
+  # fish_state = State with fishy fish
+  # fish_building = Building producing the fishy fish
   MFE_trade_good_events.10.t:0 "The fish in [SCOPE.sS('fish_state').GetName] is far too fishy"
   MFE_trade_good_events.10.d:0 ""
   MFE_trade_good_events.10.f:0 ""
-  MFE_trade_good_events.10.a:0 ""
-  MFE_trade_good_events.10.b:0 ""
+  MFE_trade_good_events.10.a:0 "How can fish be too fishy?"
+
+
+
+
+
 
   MFE_trade_good_events.11.t:0 "Man O Wars in [SCOPE.sS('ship_state').GetName] are ready for war"
   MFE_trade_good_events.11.d:0 ""

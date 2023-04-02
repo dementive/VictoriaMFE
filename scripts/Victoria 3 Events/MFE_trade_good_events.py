@@ -564,6 +564,7 @@ ev9 = Event(
 	cooldown="long",
 	trigger=Template('''pdx
 	trigger = {
+		market.mg:grain = { market_goods_has_goods_shortage = yes }
 		any_scope_building = {
 			has_grain_pm = yes
 			cash_reserves_ratio > 0.25
