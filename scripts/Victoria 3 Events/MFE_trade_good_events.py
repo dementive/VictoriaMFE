@@ -29,7 +29,7 @@ ev1 = Event(
 			level >= 5
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
 	immediate=Template('''pdx
 	immediate = {
 		random_scope_war = {
@@ -48,7 +48,20 @@ ev1 = Event(
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
+	option=Template('''pdx
+	option = {
+		name = {{namespace}}.1.a
+		default_option = yes
+		# Just in time for the war
+		scope:munitions_building = {
+			add_modifier = {
+				name = MFE_lots_of_bullets_mod
+				months = normal_modifier_time
+			}
+		}
+	}
+	''').render(namespace=namespace)[3:],
 )
 
 ev2 = Event(
@@ -59,7 +72,6 @@ ev2 = Event(
 	placement="scope:ammo_state",
 	minor_right_icon="scope:ally.ruler",
 	icon=icon.ammunition,
-	gui_window=gui.big_icon,
 	event_image=video.diplo,
 	on_opened_soundeffect=sound.get("diplo"),
 	cooldown="long",
@@ -78,7 +90,7 @@ ev2 = Event(
 			level >= 5
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
 	immediate=Template('''pdx
 	immediate = {
 		ally_in_war_short_on_goods_effect = {
@@ -91,10 +103,71 @@ ev2 = Event(
 				rich_building_trigger = yes
 				level >= 5
 			}
-			save_scope_as = ammo_state
+			save_scope_as = ammo_building
+			state = { save_scope_as = ammo_state }
+		}
+		scope:ally = {
+			random_scope_building = {
+				limit = {
+					has_ammo_pm = yes
+					is_building_type = building_munition_plants
+				}
+				save_scope_as = ally_ammo_building
+				state = { save_scope_as = ally_ammo_state }
+			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
+	option=Template('''pdx
+	option = {
+		name = {{namespace}}.2.a
+		default_option = yes
+		# We can spare a few bullets
+		set_obligation = {
+			actor = scope:ally
+			target = root
+		}
+		scope:ammo_building = {
+			add_modifier = {
+				name = MFE_sending_ally_bullets_mod
+				months = normal_modifier_time
+			}
+		}
+		scope:ally_ammo_building = {
+			add_modifier = {
+				name = MFE_ally_sent_bullets_mod
+				months = normal_modifier_time
+			}
+		}
+		scope:ally = {
+			create_trade_route = {
+				goods = ammunition
+				level = 1
+				direction = import
+				target = root.market
+			}
+			#create_trade_route = {
+			#	goods = ammunition
+			#	level = 1
+			#	import = yes
+			#	origin = scope:ammo_state.state_region
+			#	target = scope:ally_ammo_state.state_region
+			#}
+		}
+	}
+	''').render(namespace=namespace)[3:],
+	option2=Template('''pdx
+	option = {
+		name = {{namespace}}.2.b
+		# How are we going to shoot our enemies without bullets?!
+		scope:ally = {
+			change_relations = {
+				country = root
+				value = -25
+			}
+		}
+	}
+	''').render(namespace=namespace)[3:],
 )
 
 ev3 = Event(
@@ -137,16 +210,70 @@ ev3 = Event(
 				rich_building_trigger = yes
 				level >= 5
 			}
+			save_scope_as = artillery_building
 			state = {
 				save_scope_as = artillery_state
 			}
 		}
+		scope:ally = {
+			random_scope_building = {
+				limit = {
+					has_artillery_pm = yes
+					is_building_type = building_arms_industry
+				}
+				save_scope_as = ally_artillery_building
+				state = { save_scope_as = ally_artillery_state }
+			}
+		}
 	}
-''').render()[3:],
+	''').render()[3:],
+	option=Template('''pdx
+	option = {
+		name = {{namespace}}.3.a
+		default_option = yes
+		# We can spare a few artillery pieces
+		set_obligation = {
+			actor = scope:ally
+			target = root
+		}
+		scope:artillery_building = {
+			add_modifier = {
+				name = MFE_sending_ally_artillery_mod
+				months = normal_modifier_time
+			}
+		}
+		scope:ally_artillery_building = {
+			add_modifier = {
+				name = MFE_ally_sent_artillery_mod
+				months = normal_modifier_time
+			}
+		}
+		scope:ally = {
+			create_trade_route = {
+				goods = artillery
+				level = 1
+				direction = import
+				target = root.market
+			}
+		}
+	}
+	''').render(namespace=namespace)[3:],
+	option2=Template('''pdx
+	option = {
+		name = {{namespace}}.3.b
+		# How will we blow up our enemies without artillery?!
+		scope:ally = {
+			change_relations = {
+				country = root
+				value = -25
+			}
+		}
+	}
+	''').render(namespace=namespace)[3:],
 )
 
 ev4 = Event(
-	header="Materials for Artillery Shells dissapear from the factory in [SCOPE.sS('arms_state').GetName]...",
+	header="Materials for Artillery Shells dissapear from the factory in [SCOPE.sS('arms_state').GetName]",
 	namespace=namespace,
 	eventid="4",
 	placement="scope:artillery_state",
@@ -181,7 +308,20 @@ ev4 = Event(
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
+	option=Template('''pdx
+	option = {
+		name = {{namespace}}.4.a
+		default_option = yes
+		# Hopefully they did not fall into the wrong hands...
+		scope:artillery_state = {
+			add_modifier = {
+				name = MFE_artillery_stolen_from_state_mod
+				months = normal_modifier_time
+			}
+		}
+	}
+	''').render(namespace=namespace)[3:],
 )
 
 ev5 = Event(
@@ -196,6 +336,7 @@ ev5 = Event(
 	cooldown="long",
 	trigger=Template('''pdx
 	trigger = {
+		has_food_shortage = yes
 		any_scope_building = {
 			state = {
 				arable_land > 100
@@ -211,8 +352,9 @@ ev5 = Event(
 		random_scope_building = {
 			limit = {
 				state = {
-					arable_land > 100
+					arable_land > 75
 				}
+				is_farm = yes
 				rich_building_trigger = yes
 				level >= 10
 			}
@@ -221,7 +363,27 @@ ev5 = Event(
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
+	option=Template('''pdx
+	option = {
+		name = {{namespace}}.5.a
+		default_option = yes
+		# There couldn't have been a better time
+		scope:arable_state = {
+			ordered_scope_building = {
+				limit = {
+					is_farm = yes
+				}
+				order_by = level
+				max = 3
+				add_modifier = {
+					name = MFE_propering_farms_mod
+					months = normal_modifier_time
+				}
+			}
+		}
+	}
+	''').render(namespace=namespace)[3:],
 )
 
 ev6 = Event(
@@ -234,13 +396,15 @@ ev6 = Event(
 	minor_right_icon="g:tanks",
 	event_image=video.get("unspecific_devastation"),
 	on_opened_soundeffect=sound.get("unspecific_destruction"),
-	cooldown="long",
+	cooldown="very_long",
 	trigger=Template('''pdx
 	trigger = {
 		any_scope_building = {
+			is_building_type = building_war_machine_industry
 			has_active_production_method = pm_tank_production
 			occupancy >= 0.5
-			level >= 5
+			level >= 1
+			level < 7
 		}
 	}
 	''').render()[3:],
@@ -248,16 +412,50 @@ ev6 = Event(
 	immediate = {
 		random_scope_building = {
 			limit = {
+				is_building_type = building_war_machine_industry
 				has_active_production_method = pm_tank_production
 				occupancy >= 0.5
-				level >= 5
+				level >= 1
+				level < 7
 			}
 			state = {
 				save_scope_as = tank_state
 			}
 		}
+		scope:tank_state = {
+			remove_building = building_war_machine_industry
+		}
 	}
-''').render()[3:],
+	''').render()[3:],
+	option=Template('''pdx
+	option = {
+		name = {{namespace}}.6.a
+		default_option = yes
+		# Hopefully they get over it
+		scope:tank_state = {
+			add_modifier = {
+				name = MFE_tank_factory_destruction_mod
+				duration = normal_modifier_time
+			}
+		}
+	}
+	''').render(namespace=namespace)[3:],
+	option2=Template('''pdx
+	option = {
+		name = {{namespace}}.6.b
+		# Give them anything they need this is just awful...
+		scope:tank_state = {
+			add_modifier = {
+				name = MFE_tank_factory_destruction_aid_sent_mod
+				duration = normal_modifier_time
+			}
+		}
+		add_modifier = {
+			name = MFE_sent_tank_destruction_aid_mod
+			days = 365
+		}
+	}
+	''').render(namespace=namespace)[3:],
 )
 
 ev7 = Event(
@@ -291,7 +489,20 @@ ev7 = Event(
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
+	option=Template('''pdx
+	option = {
+		name = {{namespace}}.7.a
+		default_option = yes
+		# It's a great time to live in [SCOPE.GetRootScope.GetCountry.GetName]
+		scope:plane_state = {
+			add_modifier = {
+				name = MFE_plane_investors_state_mod
+				duration = normal_modifier_time
+			}
+		}
+	}
+	''').render(namespace=namespace)[3:],
 )
 
 ev8 = Event(
@@ -309,7 +520,6 @@ ev8 = Event(
 		any_scope_building = {
 			has_ironclad_pm = yes
 			poor_building_trigger = yes
-			level >= 3
 		}
 	}
 	''').render()[3:],
@@ -320,21 +530,34 @@ ev8 = Event(
 			limit = {
 				has_ironclad_pm = yes
 				poor_building_trigger = yes
-				level >= 3
 			}
+			save_scope_as = ironclad_building
 			state = {
 				save_scope_as = ironclad_state
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
+	option=Template('''pdx
+	option = {
+		name = {{namespace}}.8.a
+		default_option = yes
+		# Hopefully the iron gets better
+		scope:ironclad_building = {
+			add_modifier = {
+				name = MFE_ironclad_badiron_mod
+				duration = normal_modifier_time
+			}
+		}
+	}
+	''').render(namespace=namespace)[3:],
 )
 
 ev9 = Event(
 	header="Grain shortage in [SCOPE.sS('grain_state').GetName] is causing trouble",
 	namespace=namespace,
 	eventid="9",
-	placement="scope:ironclad_state",
+	placement="scope:grain_state",
 	icon=icon.trade,
 	event_image=video.get("unspecific_vandalized_storefront"),
 	on_opened_soundeffect=sound.get("unspecific_vandalized_storefront"),
@@ -365,7 +588,52 @@ ev9 = Event(
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
+	option=Template('''pdx
+	option = {
+		name = {{namespace}}.9.a
+		default_option = yes
+		# Do they really need food to live?
+		scope:grain_state = {
+			add_modifier = {
+				name = MFE_starving_state_mod
+				duration = normal_modifier_time
+			}
+		}
+	}
+	option = {
+		name = {{namespace}}.9.b
+		# Redirect some funds to [SCOPE.sS('grain_state').GetName]
+		scope:grain_state = {
+			add_modifier = {
+				name = MFE_starving_state_aid_sent_mod
+				duration = normal_modifier_time
+			}
+		}
+		add_modifier = {
+			name = MFE_aiding_starving_state_mod
+			duration = normal_modifier_time
+		}
+	}
+	option = {
+		name = {{namespace}}.9.c
+		# Last I checked there was plenty of cake to eat in the shops of [SCOPE.sS('grain_state').GetName]
+		trigger = {
+			ruler = {
+				OR = {
+					has_trait = wrathful
+					has_trait = cruel
+				}
+			}
+		}
+		scope:grain_state = {
+			add_modifier = {
+				name = MFE_low_food_cake_mod
+				duration = normal_modifier_time
+			}
+		}
+	}
+	''').render(namespace=namespace)[3:],
 )
 
 ev10 = Event(
@@ -396,12 +664,26 @@ ev10 = Event(
 				is_building_type = building_fishing_wharf
 				level >= 4
 			}
+			save_scope_as = fish_building
 			state = {
 				save_scope_as = fish_state
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
+	option=Template('''pdx
+	option = {
+		name = {{namespace}}.10.a
+		default_option = yes
+		# How can fish be too fishy?
+		scope:fish_building = {
+			add_modifier = {
+				name = MFE_very_fishy_fish_mod
+				duration = long_modifier_time
+			}
+		}
+	}
+	''').render(namespace=namespace)[3:],
 )
 
 ev11 = Event(
@@ -434,7 +716,7 @@ ev11 = Event(
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
 )
 
 ev12 = Event(
@@ -468,7 +750,7 @@ ev12 = Event(
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
 )
 
 ev13 = Event(
@@ -500,7 +782,7 @@ ev13 = Event(
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
 )
 
 ev14 = Event(
@@ -532,7 +814,7 @@ ev14 = Event(
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
 )
 
 ev15 = Event(
@@ -569,7 +851,7 @@ ev15 = Event(
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
 )
 
 ev16 = Event(
@@ -608,7 +890,7 @@ ev16 = Event(
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
 )
 
 ev17 = Event(
@@ -654,7 +936,7 @@ ev17 = Event(
 			save_scope_as = furniture_state
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
 )
 
 ev18 = Event(
@@ -688,7 +970,7 @@ ev18 = Event(
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
 )
 
 ev19 = Event(
@@ -724,7 +1006,7 @@ ev19 = Event(
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
 )
 
 ev20 = Event(
@@ -761,7 +1043,7 @@ ev20 = Event(
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
 )
 
 ev21 = Event(
@@ -798,7 +1080,7 @@ ev21 = Event(
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
 )
 
 ev22 = Event(
@@ -870,7 +1152,7 @@ ev23 = Event(
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
 )
 
 ev24 = Event(
@@ -904,7 +1186,7 @@ ev24 = Event(
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
 )
 
 ev25 = Event(
@@ -938,7 +1220,7 @@ ev25 = Event(
 			}
 		}
 	}
-''').render()[3:],
+	''').render()[3:],
 )
 
 if __name__ == '__main__':

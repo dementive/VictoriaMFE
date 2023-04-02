@@ -14,3 +14,24 @@
 		}
 	}
 }
+
+has_food_shortage = {
+	market = {
+		OR = {
+			mg:grain = { market_goods_has_goods_shortage = yes }
+			mg:fish = { market_goods_has_goods_shortage = yes }
+			mg:meat = { market_goods_has_goods_shortage = yes }
+		}
+	}
+}
+
+is_farm = {
+	OR = {
+		is_building_type = rye_farm
+		is_building_type = wheat_farm
+		is_building_type = rice_farm
+		is_building_type = maize_farm
+		is_building_type = millet_farm
+		is_building_type = cattle_ranch
+	}
+}
