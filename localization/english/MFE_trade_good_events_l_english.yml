@@ -52,7 +52,7 @@
   # Scopes:
   # tank_state = State that just had tank tragedy
   MFE_trade_good_events.6.t: "Madman At The Tank Factory"
-  MFE_trade_good_events.6.d: "The local newspapers are filled with terrible headlines from [SCOPE.sS('tank_state').GetName] - a madman started a fire in a tank factory that caused massive explosions, killing dozens in [SCOPE.sS('tank_state').GetCapital.GetName]."
+  MFE_trade_good_events.6.d: "The local newspapers are filled with terrible headlines from [SCOPE.sS('tank_state').GetName] - a madman somehow commandeered a tank and went on a murderous rampage, destroying an entire village and killing dozens of innocents before being stopped by the police."
   MFE_trade_good_events.6.f: "'No one knows why this senseless tragedy has happened, and we will never find out the reason'"
   MFE_trade_good_events.6.a: "We grieve with them, but cannot help in any way"
   MFE_trade_good_events.6.b: "Give them anything they need - this is just awful..."
