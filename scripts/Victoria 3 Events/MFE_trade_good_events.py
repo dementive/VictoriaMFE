@@ -712,12 +712,26 @@ ev11 = Event(
 				has_manowar_pm = yes
 				level >= 3
 			}
+			save_scope_as = man_o_war_building
 			state = {
 				save_scope_as = ship_state
 			}
 		}
 	}
 	''').render()[3:],
+	option=Template('''pdx
+	option = {
+		name = {{namespace}}.11.a
+		default_option = yes
+		# Our opposition certainly does not desire war
+		scope:man_o_war_building = {
+			add_modifier = {
+				name = MFE_manowar_war_mod
+				duration = long_modifier_time
+			}
+		}
+	}
+	''').render(namespace=namespace)[3:],
 )
 
 ev12 = Event(
@@ -729,7 +743,7 @@ ev12 = Event(
 	event_image=video.landscape,
 	gui_window=gui.big_icon,
 	on_opened_soundeffect=sound.get("landscape"),
-	cooldown="long",
+	cooldown="very_long",
 	trigger=Template('''pdx
 	trigger = {
 		any_scope_building = {
@@ -752,6 +766,30 @@ ev12 = Event(
 		}
 	}
 	''').render()[3:],
+	option=Template('''pdx
+	option = {
+		name = {{namespace}}.12.a
+		# The people of [SCOPE.sS('fabric_state').GetName] deserve all the praise
+		default_option = yes
+		scope:fabric_state = {
+			add_modifier = {
+				name = MFE_fine_fabrics_state_mod
+				duration = long_modifier_time
+			}
+		}
+	}
+	option = {
+		name = {{namespace}}.12.b
+		trigger = {
+			NOT = { has_modifier = MFE_finest_fabrics_mod }
+		}
+		# They couldn't have done it without [SCOPE.GetRootScope.GetCountry.GetRuler.GetPrimaryRoleTitle][Nbsp][SCOPE.GetRootScope.GetCountry.GetRuler.GetFullName]
+		add_modifier = {
+			name = MFE_finest_fabrics_mod
+			duration = -1
+		}
+	}
+	''').render(namespace=namespace)[3:],
 )
 
 ev13 = Event(
@@ -778,12 +816,46 @@ ev13 = Event(
 				has_active_production_method = pm_saw_mills
 				level >= 5
 			}
+			save_scope_as = sawmill_fire_building
 			state = {
 				save_scope_as = sawmill_fire_state
 			}
 		}
 	}
 	''').render()[3:],
+	option=Template('''pdx
+	option = {
+		name = {{namespace}}.13.a
+		default_option = yes
+		# Send some cash im sure that will heal the burn
+		scope:sawmill_fire_state = {
+			add_modifier = {
+				name = MFE_state_sawmill_burned_down_aid_sent_mod
+				duration = long_modifier_time
+			}
+		}
+		add_modifier = {
+			name = MFE_send_cash_to_burning_sawmill_mod
+			duration = short_modifier_time
+		}
+	}
+	option = {
+		name = {{namespace}}.13.b
+		# Did they expect the wood to not burn???
+		scope:sawmill_fire_state = {
+			add_modifier = {
+				name = MFE_state_sawmill_burned_down_mod
+				duration = normal_modifier_time
+			}
+		}
+		scope:sawmill_fire_building = {
+			add_modifier = {
+				name = MFE_building_sawmill_burned_down_mod
+				duration = normal_modifier_time
+			}
+		}
+	}
+	''').render(namespace=namespace)[3:],
 )
 
 ev14 = Event(
@@ -810,12 +882,26 @@ ev14 = Event(
 				has_active_production_method = pm_hardwood
 				level >= 5
 			}
+			save_scope_as = hardwood_building
 			state = {
 				save_scope_as = hardwood_state
 			}
 		}
 	}
 	''').render()[3:],
+	option=Template('''pdx
+	option = {
+		name = {{namespace}}.11.a
+		default_option = yes
+		# How is that even possible?!
+		scope:hardwood_building = {
+			add_modifier = {
+				name = MFE_very_hard_wood_mod
+				duration = long_modifier_time
+			}
+		}
+	}
+	''').render(namespace=namespace)[3:],
 )
 
 ev15 = Event(
