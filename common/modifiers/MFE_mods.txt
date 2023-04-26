@@ -6,7 +6,7 @@ supported_railway_company_disapproval = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
 	interest_group_approval_add = -5
 }
-
+  
 rail_company_state_mod = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
 	state_urbanization_add = 10
@@ -365,4 +365,43 @@ MFE_low_food_cake_mod = {
 MFE_very_fishy_fish_mod = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
 	building_fishing_wharf_throughput_mult = 0.15
+}
+
+MFE_manowar_war_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	building_shipyards_throughput_mult = 0.15
+}
+
+MFE_fine_fabrics_state_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	state_standard_of_living_add = 2
+	state_migration_pull_mult = 0.15
+}
+MFE_finest_fabrics_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	country_prestige_add = 5
+}
+
+MFE_state_sawmill_burned_down_aid_sent_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
+	state_mortality_mult = 0.05
+}
+MFE_send_cash_to_burning_sawmill_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_tax_income_add = -1000
+}
+MFE_state_sawmill_burned_down_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
+	state_mortality_mult = 0.1
+	state_standard_of_living_add = -1
+}
+MFE_building_sawmill_burned_down_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
+	building_logging_camp_throughput_mult = -0.15
+}
+
+MFE_very_hard_wood_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	building_logging_camp_throughput_mult = 0.2
+	building_production_mult = 0.05
 }
