@@ -245,6 +245,7 @@ add_building_level = {
 	}
 }
 
+
 ally_in_war_short_on_goods_effect = {
 	random_scope_war = {
 		save_scope_as = active_war
