@@ -558,7 +558,7 @@ MFE_trade_good_events.6 = {
 		scope:tank_state = {
 			add_modifier = {
 				name = MFE_tank_factory_destruction_mod
-				duration = normal_modifier_time
+				months = normal_modifier_time
 			}
 		}
 	}
