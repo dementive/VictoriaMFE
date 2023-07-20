@@ -613,7 +613,7 @@ MFE_trade_good_events.7 = {
 		scope:plane_state = {
 			add_modifier = {
 				name = MFE_plane_investors_state_mod
-				duration = normal_modifier_time
+				months = normal_modifier_time
 			}
 		}
 	}
@@ -666,7 +666,7 @@ MFE_trade_good_events.8 = {
 		scope:ironclad_building = {
 			add_modifier = {
 				name = MFE_ironclad_badiron_mod
-				duration = normal_modifier_time
+				months = normal_modifier_time
 			}
 		}
 	}
@@ -722,7 +722,7 @@ MFE_trade_good_events.9 = {
 		scope:grain_state = {
 			add_modifier = {
 				name = MFE_starving_state_mod
-				duration = normal_modifier_time
+				months = normal_modifier_time
 			}
 		}
 	}
@@ -732,12 +732,12 @@ MFE_trade_good_events.9 = {
 		scope:grain_state = {
 			add_modifier = {
 				name = MFE_starving_state_aid_sent_mod
-				duration = normal_modifier_time
+				months = normal_modifier_time
 			}
 		}
 		add_modifier = {
 			name = MFE_aiding_starving_state_mod
-			duration = normal_modifier_time
+			months = normal_modifier_time
 		}
 	}
 	option = {
@@ -754,7 +754,7 @@ MFE_trade_good_events.9 = {
 		scope:grain_state = {
 			add_modifier = {
 				name = MFE_low_food_cake_mod
-				duration = normal_modifier_time
+				months = normal_modifier_time
 			}
 		}
 	}
@@ -813,7 +813,7 @@ MFE_trade_good_events.10 = {
 		scope:fish_building = {
 			add_modifier = {
 				name = MFE_very_fishy_fish_mod
-				duration = long_modifier_time
+				months = long_modifier_time
 			}
 		}
 	}

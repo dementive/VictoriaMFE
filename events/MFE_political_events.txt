@@ -152,13 +152,8 @@ MFE_political_events.2 = {
 		scope:harassing_party = {
 			add_momentum = momentum_small
 		}
-		random_scope_state = {
-			limit = {
-				is_incorporated = yes
-			}
-			add_radicals = {
-				value = medium_radicals
-			}
+		add_radicals = {
+			value = medium_radicals
 		}
 	}
 }
@@ -302,7 +297,7 @@ MFE_political_events.4 = {
 			}
 		}
 		scope:workers_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				value = medium_radicals
 			}
 		}
@@ -377,7 +372,7 @@ MFE_political_events.5 = {
 		name = MFE_political_events.5.a
 		default_option = yes
 		scope:conflict_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				value = large_radicals
 			}
 		}
@@ -457,7 +452,7 @@ MFE_political_events.6 = {
 			}
 		}
 		scope:random_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				value = large_radicals
 			}
 		}
@@ -600,8 +595,7 @@ MFE_political_events.8 = {
 				}
 			}
 			save_scope_as = striking_warehouse_state
-
-			add_radicals = {
+			add_radicals_in_state = {
 				value = medium_radicals
 			}
 		}
@@ -710,7 +704,7 @@ MFE_political_events.9 = {
 			}
 		}
 		scope:university_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				pop_type = academics
 				value = very_large_radicals
 			}
@@ -835,7 +829,7 @@ MFE_political_events.11 = {
 	option = {  # If they want food they can buy it!
 		name = MFE_political_events.11.b
 		scope:bread_riot_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				strata = poor
 				value = large_radicals
 			}
@@ -901,7 +895,7 @@ MFE_political_events.12 = {
 	option = {
 		name = MFE_political_events.12.b
 		scope:bread_queue_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				strata = poor
 				value = large_radicals
 			}
@@ -979,7 +973,7 @@ MFE_political_events.13 = {
 		name = MFE_political_events.13.a
 		default_option = yes
 		scope:neighbor_neighbor_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				value = large_radicals
 			}
 		}
@@ -1058,7 +1052,7 @@ MFE_political_events.14 = {
 				name = state_buissness_supported_mod
 				months = long_modifier_time
 			}
-			add_radicals = {
+			add_radicals_in_state = {
 				pop_type = laborers
 				value = medium_radicals
 			}
@@ -1149,7 +1143,7 @@ MFE_political_events.15 = {
 	option = { # We don't need the extra soldiers
 		name = MFE_political_events.15.b
 		scope:conscription_state = {
-			add_loyalists = {
+			add_loyalists_in_state = {
 				value = 0.15
 			}
 		}
@@ -1244,7 +1238,7 @@ MFE_political_events.16 = {
 			}
 		}
 		scope:religious_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				value = medium_radicals
 				pop_type = clergymen
 			}
@@ -1658,7 +1652,7 @@ MFE_political_events.22 = {
 			}
 		}
 		any_interest_group = {
-			has_ideology = ideology_laissez_faire
+			has_ideology = ideology:ideology_laissez_faire
 		}
 		has_law = law_type:law_laissez_faire
 	}
@@ -1677,7 +1671,7 @@ MFE_political_events.22 = {
 		}
 		random_interest_group = {
 			limit = {
-				has_ideology = ideology_laissez_faire
+				has_ideology = ideology:ideology_laissez_faire
 				NOT = { this = scope:conservative_ig }
 			}
 			save_scope_as = free_trade_ig
@@ -1741,18 +1735,18 @@ MFE_political_events.23 = {
 		any_interest_group = {
 			is_in_government = yes
 			OR = {
-				has_ideology = ideology_pro_slavery
+				has_ideology = ideology:ideology_pro_slavery
 				leader = {
-					has_ideology = ideology_slaver
+					has_ideology = ideology:ideology_slaver
 				}
 			}
 		}
 		any_interest_group = {
 			is_in_government = yes
 			OR = {
-				has_ideology = ideology_anti_slavery
+				has_ideology = ideology:ideology_anti_slavery
 				leader = {
-					has_ideology = ideology_abolitionist
+					has_ideology = ideology:ideology_abolitionist
 				}
 			}
 		}
@@ -1763,9 +1757,9 @@ MFE_political_events.23 = {
 			limit = {
 				is_in_government = yes
 				OR = {
-					has_ideology = ideology_anti_slavery
+					has_ideology = ideology:ideology_anti_slavery
 					leader = {
-						has_ideology = ideology_abolitionist
+						has_ideology = ideology:ideology_abolitionist
 					}
 				}
 			}
@@ -1775,9 +1769,9 @@ MFE_political_events.23 = {
 			limit = {
 				is_in_government = yes
 				OR = {
-					has_ideology = ideology_pro_slavery
+					has_ideology = ideology:ideology_pro_slavery
 					leader = {
-						has_ideology = ideology_slaver
+						has_ideology = ideology:ideology_slaver
 					}
 				}
 			}
@@ -1846,7 +1840,7 @@ MFE_political_events.24 = {
 			has_law = law_type:law_universal_suffrage
 		}
 		any_interest_group = {
-			leader = { has_ideology = ideology_reformer }
+			leader = { has_ideology = ideology:ideology_reformer}
 		}
 		any_interest_group = {
 			OR = {
@@ -1857,8 +1851,8 @@ MFE_political_events.24 = {
 				is_interest_group_type = ig_industrialists
 			}
 			NOR = {
-				leader = { has_ideology = ideology_reformer }
-				leader = { has_ideology = ideology_feminist }
+				leader = { has_ideology = ideology:ideology_reformer}
+				leader = { has_ideology = ideology:ideology_feminist}
 			}
 		}
 	}
@@ -1876,65 +1870,65 @@ MFE_political_events.24 = {
 					if = {
 						limit = {
 							ig:ig_rural_folk = {
-								leader = { has_ideology = ideology_feminist }
+								leader = { has_ideology = ideology:ideology_feminist}
 							}
 						}
 						add = -1
 					}
 				}
-				ig:ig_rural_folk = { leader = { set_ideology = ideology_feminist } }
+				ig:ig_rural_folk = { leader = { set_ideology = ideology:ideology_feminist } }
 			}
 			1 = {
 				modifier = {
 					if = {
 						limit = {
 							ig:ig_trade_unions = {
-								leader = { has_ideology = ideology_feminist }
+								leader = { has_ideology = ideology:ideology_feminist}
 							}
 						}
 						add = -1
 					}
 				}
-				ig:ig_trade_unions = { leader = { set_ideology = ideology_feminist } }
+				ig:ig_trade_unions = { leader = { set_ideology = ideology:ideology_feminist } }
 			}
 			1 = {
 				modifier = {
 					if = {
 						limit = {
 							ig:ig_petty_bourgeoisie = {
-								leader = { has_ideology = ideology_feminist }
+								leader = { has_ideology = ideology:ideology_feminist}
 							}
 						}
 						add = -1
 					}
 				}
-				ig:ig_petty_bourgeoisie = { leader = { set_ideology = ideology_feminist } }
+				ig:ig_petty_bourgeoisie = { leader = { set_ideology = ideology:ideology_feminist } }
 			}
 			1 = {
 				modifier = {
 					if = {
 						limit = {
 							ig:ig_industrialists = {
-								leader = { has_ideology = ideology_feminist }
+								leader = { has_ideology = ideology:ideology_feminist}
 							}
 						}
 						add = -1
 					}
 				}
-				ig:ig_industrialists = { leader = { set_ideology = ideology_feminist } }
+				ig:ig_industrialists = { leader = { set_ideology = ideology:ideology_feminist } }
 			}
 			1 = {
 				modifier = {
 					if = {
 						limit = {
 							ig:ig_intelligentsia = {
-								leader = { has_ideology = ideology_feminist }
+								leader = { has_ideology = ideology:ideology_feminist}
 							}
 						}
 						add = -1
 					}
 				}
-				ig:ig_intelligentsia = { leader = { set_ideology = ideology_feminist } }
+				ig:ig_intelligentsia = { leader = { set_ideology = ideology:ideology_feminist } }
 			}
 		}
 	}
@@ -1946,65 +1940,65 @@ MFE_political_events.24 = {
 					if = {
 						limit = {
 							ig:ig_rural_folk = {
-								leader = { has_ideology = ideology_reformer }
+								leader = { has_ideology = ideology:ideology_reformer}
 							}
 						}
 						add = -1
 					}
 				}
-				ig:ig_rural_folk = { leader = { set_ideology = ideology_reformer } }
+				ig:ig_rural_folk = { leader = { set_ideology = ideology:ideology_reformer } }
 			}
 			1 = {
 				modifier = {
 					if = {
 						limit = {
 							ig:ig_trade_unions = {
-								leader = { has_ideology = ideology_reformer }
+								leader = { has_ideology = ideology:ideology_reformer}
 							}
 						}
 						add = -1
 					}
 				}
-				ig:ig_trade_unions = { leader = { set_ideology = ideology_reformer } }
+				ig:ig_trade_unions = { leader = { set_ideology = ideology:ideology_reformer } }
 			}
 			1 = {
 				modifier = {
 					if = {
 						limit = {
 							ig:ig_petty_bourgeoisie = {
-								leader = { has_ideology = ideology_reformer }
+								leader = { has_ideology = ideology:ideology_reformer}
 							}
 						}
 						add = -1
 					}
 				}
-				ig:ig_petty_bourgeoisie = { leader = { set_ideology = ideology_reformer } }
+				ig:ig_petty_bourgeoisie = { leader = { set_ideology = ideology:ideology_reformer } }
 			}
 			1 = {
 				modifier = {
 					if = {
 						limit = {
 							ig:ig_industrialists = {
-								leader = { has_ideology = ideology_reformer }
+								leader = { has_ideology = ideology:ideology_reformer}
 							}
 						}
 						add = -1
 					}
 				}
-				ig:ig_industrialists = { leader = { set_ideology = ideology_reformer } }
+				ig:ig_industrialists = { leader = { set_ideology = ideology:ideology_reformer } }
 			}
 			1 = {
 				modifier = {
 					if = {
 						limit = {
 							ig:ig_intelligentsia = {
-								leader = { has_ideology = ideology_reformer }
+								leader = { has_ideology = ideology:ideology_reformer}
 							}
 						}
 						add = -1
 					}
 				}
-				ig:ig_intelligentsia = { leader = { set_ideology = ideology_reformer } }
+				ig:ig_intelligentsia = { leader = { set_ideology = ideology:ideology_reformer } }
 			}
 		}
 	}
@@ -2033,7 +2027,7 @@ MFE_political_events.25 = {
 	trigger = {
 		NOT = { has_variable = womens_rights_demanded }
 		any_interest_group = {
-			leader = { has_ideology = ideology_feminist }
+			leader = { has_ideology = ideology:ideology_feminist}
 		}
 		NOT = { has_law = law_type:law_womens_suffrage }
 		OR = {
@@ -2060,7 +2054,7 @@ MFE_political_events.25 = {
 		random_scope_character = {
 			limit = {
 				this = interest_group.leader
-				has_ideology = ideology_feminist
+				has_ideology = ideology:ideology_feminist
 			}
 			save_scope_as = suffrage_leader
 		}
@@ -2071,7 +2065,7 @@ MFE_political_events.25 = {
 		default_option = yes
 		every_interest_group = {
 			limit = {
-				leader = { has_ideology = ideology_feminist }
+				leader = { has_ideology = ideology:ideology_feminist}
 			}
 			add_modifier = {
 				name = successful_protest
@@ -2083,7 +2077,7 @@ MFE_political_events.25 = {
 		name = MFE_political_events.25.b
 		every_interest_group = {
 			limit = {
-				leader = { has_ideology = ideology_feminist }
+				leader = { has_ideology = ideology:ideology_feminist}
 			}
 			add_modifier = {
 				name = arrested_protesters

@@ -53,7 +53,7 @@ MFE_workplace_events.1 = {
 		name = MFE_workplace_events.1.a
 		default_option = yes
 		scope:mine_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				strata = poor
 				value = medium_radicals
 			}
@@ -68,7 +68,7 @@ MFE_workplace_events.1 = {
 	option = {  # This outrageous abuse of the common man cannot continue!
 		name = MFE_workplace_events.1.b
 		scope:mine_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				strata = rich
 				value = medium_radicals
 			}
@@ -83,7 +83,7 @@ MFE_workplace_events.1 = {
 	option = {  # We should have never started mining to begin with
 		name = MFE_workplace_events.1.c
 		scope:mine_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				strata = middle
 				value = medium_radicals
 			}
@@ -156,7 +156,7 @@ MFE_workplace_events.2 = {
 		custom_tooltip = MFE_workplace_events.2.tt
 		hidden_effect = {
 			scope:mining_state = {
-				add_radicals = {
+				add_radicals_in_state = {
 					value = small_radicals
 				}
 			}
@@ -292,7 +292,7 @@ MFE_workplace_events.4 = {
 		name = MFE_workplace_events.4.a
 		default_option = yes
 		scope:tea_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				value = small_radicals
 			}
 			add_modifier = {
@@ -370,7 +370,7 @@ MFE_workplace_events.5 = {
 		name = MFE_workplace_events.5.a
 		default_option = yes
 		scope:canning_state = {
-			add_radicals = { value = small_radicals }
+			add_radicals_in_state = { value = small_radicals }
 		}
 	}
 	option = {  # Im sure we can find some people to eat that goop!
@@ -460,7 +460,7 @@ MFE_workplace_events.6 = {
 			state_region = {
 				add_devastation = 15
 			}
-			add_radicals = {
+			add_radicals_in_state = {
 				value = small_radicals
 			}
 			add_modifier = {
@@ -475,7 +475,7 @@ MFE_workplace_events.6 = {
 			state_region = {
 				add_devastation = 15
 			}
-			add_radicals = {
+			add_radicals_in_state = {
 				value = small_radicals
 			}
 			add_modifier = {
@@ -500,7 +500,7 @@ MFE_workplace_events.6 = {
 			}
 		}
 		scope:bovine_state = {
-			add_loyalists = {
+			add_loyalists_in_state = {
 				value = large_radicals
 			}
 			ordered_neighbouring_state = {
@@ -608,7 +608,7 @@ MFE_workplace_events.7 = {
 		name = MFE_workplace_events.7.a
 		default_option = yes
 		scope:silk_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				strata = poor
 				value = medium_radicals
 			}
@@ -726,7 +726,7 @@ MFE_workplace_events.8 = {
 			state_region = {
 				add_devastation = 20
 			}
-			add_radicals = {
+			add_radicals_in_state = {
 				value = large_radicals
 			}
 		}
@@ -783,7 +783,7 @@ MFE_workplace_events.9 = {
 		name = MFE_workplace_events.9.a
 		default_option = yes
 		scope:iron_tragedy_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				strata = poor
 				value = medium_radicals
 			}
@@ -798,7 +798,7 @@ MFE_workplace_events.9 = {
 	option = {	# Support the workers in any way we can
 		name = MFE_workplace_events.9.b
 		scope:iron_tragedy_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				strata = rich
 				value = medium_radicals
 			}
@@ -814,7 +814,7 @@ MFE_workplace_events.9 = {
 	option = {	# Why can't we go back to simpler times in the fields
 		name = MFE_workplace_events.9.c
 		scope:iron_tragedy_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				strata = middle
 				value = medium_radicals
 			}
@@ -942,7 +942,7 @@ MFE_workplace_events.11 = {
 		name = MFE_workplace_events.11.a
 		default_option = yes
 		scope:steamer_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				strata = poor
 				value = medium_radicals
 			}
@@ -957,7 +957,7 @@ MFE_workplace_events.11 = {
 	option = {
 		name = MFE_workplace_events.11.b
 		scope:steamer_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				strata = rich
 				value = medium_radicals
 			}
@@ -972,7 +972,7 @@ MFE_workplace_events.11 = {
 	option = {
 		name = MFE_workplace_events.11.c
 		scope:steamer_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				strata = middle
 				value = medium_radicals
 			}
@@ -1037,7 +1037,7 @@ MFE_workplace_events.12 = {
 				name = modifier_state_dyeworks_accident
 				months = long_modifier_time
 			}
-			add_radicals = {
+			add_radicals_in_state = {
 				pop_type = laborers
 				value = medium_radicals
 			}
@@ -1152,7 +1152,7 @@ MFE_workplace_events.13 = {
 		name = MFE_workplace_events.13.a
 		default_option = yes
 		scope:oil_state = {
-			add_radicals = {
+			add_radicals_in_state = {
 				strata = poor
 				value = medium_radicals
 			}
@@ -1407,7 +1407,7 @@ MFE_workplace_events.16 = {
 			state_region = {
 				add_devastation = 25
 			}
-			add_radicals = {
+			add_radicals_in_state = {
 				value = large_radicals
 			}
 			remove_building = building_chemical_plants
@@ -1527,7 +1527,7 @@ MFE_workplace_events.18 = {
         		name = fertilizer_factory_supported_mod
         		months = long_modifier_time
         	}
-        	add_radicals = {
+        	add_radicals_in_state = {
         		value = small_radicals
         	}
         }
@@ -1617,7 +1617,7 @@ MFE_workplace_events.19 = {
         		name = naval_school_mod
         		months = long_modifier_time
         	}
-        	add_loyalists = {
+        	add_loyalists_in_state = {
         		value = medium_radicals
         	}
         }
@@ -1678,7 +1678,7 @@ MFE_workplace_events.20 = {
         name = MFE_workplace_events.20.a
         default_option = yes
         scope:radio_state = {
-        	add_radicals = {
+        	add_radicals_in_state = {
         		value = medium_radicals
         	}
         }
@@ -1690,7 +1690,7 @@ MFE_workplace_events.20 = {
         	months = long_modifier_time
         }
         scope:radio_state = {
-        	add_loyalists = {
+        	add_loyalists_in_state = {
         		value = medium_radicals
         	}
         }
