@@ -1,0 +1,17 @@
+﻿SIA = { # Siam
+	dynamic_country_name = { # Siamese Empire
+		name = dyn_c_empire_of_siam
+		adjective = dyn_c_empire_of_siam_adj
+		
+		is_main_tag_only = yes
+		priority = 25
+		
+		trigger = {
+			exists = scope:actor
+			scope:actor = { 
+				has_variable = SIA_siam_empire_declared
+				has_law = law_type:law_monarchy 
+			}
+		}
+	}
+}

@@ -10,7 +10,7 @@ MFE_trade_good_events.1 = {
 	desc = "MFE_trade_good_events.1.d"
 	flavor = "MFE_trade_good_events.1.f"
 	duration = 3
-	icon = "gfx/event_icons/ammunition.dds"
+	icon = "gfx/interface/icons/event_icons/ammunition.dds"
 	minor_left_icon = g:ammunition
 	minor_right_icon = g:ammunition
 	
@@ -73,7 +73,7 @@ MFE_trade_good_events.2 = {
 	desc = "MFE_trade_good_events.2.d"
 	flavor = "MFE_trade_good_events.2.f"
 	duration = 3
-	icon = "gfx/event_icons/ammunition.dds"
+	icon = "gfx/interface/icons/event_icons/ammunition.dds"
 	minor_left_icon = ruler
 	minor_right_icon = scope:ally.ruler
 	event_image = {
@@ -98,9 +98,9 @@ MFE_trade_good_events.2 = {
 		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
 	}
 	event_image = { trigger = { ruler.culture = { has_culture_graphics = african } } video = "gfx/event_pictures/africa_diplomats_negotiating.bk2" }
-	event_image = { trigger = { ruler.culture = { has_culture_graphics = asian } } video = "gfx/event_pictures/asia_politician_parliament_motion.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = east_asian } } video = "gfx/event_pictures/asia_politician_parliament_motion.bk2" }
 	event_image = { trigger = { ruler.culture = { has_culture_graphics = european } } video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2" }
-	event_image = { trigger = { ruler.culture = { has_culture_graphics = mideast_indian } } video = "gfx/event_pictures/asia_politician_parliament_motion.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = south_asian } } video = "gfx/event_pictures/asia_politician_parliament_motion.bk2" }
 	event_image = {
 		# Default
 		trigger = {
@@ -112,9 +112,9 @@ MFE_trade_good_events.2 = {
 				ruler.culture = {
 					OR = {
 						has_culture_graphics = african
-						has_culture_graphics = asian
+						has_culture_graphics = east_asian
 						has_culture_graphics = european
-						has_culture_graphics = mideast_indian
+						has_culture_graphics = south_asian
 					}
 				}
 			}
@@ -206,6 +206,11 @@ MFE_trade_good_events.2 = {
 	
 	option = {
 		name = MFE_trade_good_events.2.b
+		#How are we going to shoot our enemies without bullets?!
+		change_relations = {
+			country = scope:ally
+			value = -20
+		}
 	}
 }
 
@@ -217,7 +222,7 @@ MFE_trade_good_events.3 = {
 	desc = "MFE_trade_good_events.3.d"
 	flavor = "MFE_trade_good_events.3.f"
 	duration = 3
-	icon = "gfx/event_icons/shell_gun.dds"
+	icon = "gfx/interface/icons/event_icons/shell_gun.dds"
 	minor_left_icon = ruler
 	minor_right_icon = scope:ally.ruler
 	event_image = {
@@ -242,9 +247,9 @@ MFE_trade_good_events.3 = {
 		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
 	}
 	event_image = { trigger = { ruler.culture = { has_culture_graphics = african } } video = "gfx/event_pictures/africa_diplomats_negotiating.bk2" }
-	event_image = { trigger = { ruler.culture = { has_culture_graphics = asian } } video = "gfx/event_pictures/asia_politician_parliament_motion.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = east_asian } } video = "gfx/event_pictures/asia_politician_parliament_motion.bk2" }
 	event_image = { trigger = { ruler.culture = { has_culture_graphics = european } } video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2" }
-	event_image = { trigger = { ruler.culture = { has_culture_graphics = mideast_indian } } video = "gfx/event_pictures/asia_politician_parliament_motion.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = south_asian } } video = "gfx/event_pictures/asia_politician_parliament_motion.bk2" }
 	event_image = {
 		# Default
 		trigger = {
@@ -256,9 +261,9 @@ MFE_trade_good_events.3 = {
 				ruler.culture = {
 					OR = {
 						has_culture_graphics = african
-						has_culture_graphics = asian
+						has_culture_graphics = east_asian
 						has_culture_graphics = european
-						has_culture_graphics = mideast_indian
+						has_culture_graphics = south_asian
 					}
 				}
 			}
@@ -278,8 +283,7 @@ MFE_trade_good_events.3 = {
 			market_goods_has_goods_shortage = no
 		}
 		any_scope_building = {
-			has_artillery_pm = yes
-			is_building_type = building_arms_industry
+			is_building_type = building_artillery_foundries
 			rich_building_trigger = yes
 			level >= 5
 		}
@@ -291,8 +295,7 @@ MFE_trade_good_events.3 = {
 		}
 		random_scope_building = {
 			limit = {
-				has_artillery_pm = yes
-				is_building_type = building_arms_industry
+				is_building_type = building_artillery_foundries
 				rich_building_trigger = yes
 				level >= 5
 			}
@@ -304,8 +307,7 @@ MFE_trade_good_events.3 = {
 		scope:ally = {
 			random_scope_building = {
 				limit = {
-					has_artillery_pm = yes
-					is_building_type = building_arms_industry
+					is_building_type = building_artillery_foundries
 				}
 				save_scope_as = ally_artillery_building
 				state = { save_scope_as = ally_artillery_state }
@@ -345,6 +347,11 @@ MFE_trade_good_events.3 = {
 	
 	option = {
 		name = MFE_trade_good_events.3.b
+		#Our own stockpiles are too low, I'm afraid
+		change_relations = {
+			country = scope:ally
+			value = -20
+		}
 	}
 }
 
@@ -356,7 +363,7 @@ MFE_trade_good_events.4 = {
 	desc = "MFE_trade_good_events.4.d"
 	flavor = "MFE_trade_good_events.4.f"
 	duration = 3
-	icon = "gfx/event_icons/artillery.dds"
+	icon = "gfx/interface/icons/event_icons/artillery.dds"
 	event_image = {
 		video = "gfx/event_pictures/unspecific_vandalized_storefront.bk2"
 	}
@@ -370,8 +377,7 @@ MFE_trade_good_events.4 = {
 			market_goods_has_goods_shortage = no
 		}
 		any_scope_building = {
-			has_artillery_pm = yes
-			is_building_type = building_arms_industry
+			is_building_type = building_artillery_foundries
 			average_building_trigger = yes
 			level >= 5
 		}
@@ -380,8 +386,7 @@ MFE_trade_good_events.4 = {
 	immediate = {
 		random_scope_building = {
 			limit = {
-				has_artillery_pm = yes
-				is_building_type = building_arms_industry
+				is_building_type = building_artillery_foundries
 				average_building_trigger = yes
 				level >= 5
 			}
@@ -413,7 +418,7 @@ MFE_trade_good_events.5 = {
 	desc = "MFE_trade_good_events.5.d"
 	flavor = "MFE_trade_good_events.5.f"
 	duration = 3
-	icon = "gfx/event_icons/peasants.dds"
+	icon = "gfx/interface/icons/event_icons/peasants.dds"
 	event_image = { trigger = { var:picture = 1 } texture = "gfx/event_pictures/paintings/landscapes/Albert_Bierstadt_A_Storm_in_the_Rocky_Mountains_Mt_Rosalie.dds" }
 	event_image = { trigger = { var:picture = 2 } texture = "gfx/event_pictures/paintings/landscapes/Albert_Bierstadt_Puget_Sound_on_the_Pacific_Coast.dds" }
 	event_image = { trigger = { var:picture = 3 } texture = "gfx/event_pictures/paintings/landscapes/Albert_Bierstadt_Valley_of_the_Yosemite.dds" }
@@ -510,7 +515,7 @@ MFE_trade_good_events.6 = {
 	desc = "MFE_trade_good_events.6.d"
 	flavor = "MFE_trade_good_events.6.f"
 	duration = 3
-	icon = "gfx/event_icons/mobile_armor.dds"
+	icon = "gfx/interface/icons/event_icons/mobile_armor.dds"
 	minor_left_icon = g:tanks
 	minor_right_icon = g:tanks
 	event_image = {
@@ -559,10 +564,34 @@ MFE_trade_good_events.6 = {
 				months = normal_modifier_time
 			}
 		}
+
+		ai_chance = {
+			base = 1
+		}
 	}
 	
 	option = {
 		name = MFE_trade_good_events.6.b
+		scope:tank_state = {
+			add_modifier = {
+				name = MFE_tank_factory_destruction_aid_sent_mod
+				months = normal_modifier_time
+			}
+		}
+		add_modifier = {
+			name = MFE_sent_tank_destruction_aid_mod
+			months = normal_modifier_time
+		}
+
+		ai_chance = {
+			base = 0
+			modifier = {
+				trigger = {
+					weekly_net_fixed_income > 2000
+				}
+				add = 2
+			}
+		}
 	}
 }
 
@@ -574,7 +603,7 @@ MFE_trade_good_events.7 = {
 	desc = "MFE_trade_good_events.7.d"
 	flavor = "MFE_trade_good_events.7.f"
 	duration = 3
-	icon = "gfx/event_icons/aeroplanes.dds"
+	icon = "gfx/interface/icons/event_icons/aeroplanes.dds"
 	event_image = {
 		video = "gfx/event_pictures/unspecific_airPlane.bk2"
 	}
@@ -766,7 +795,7 @@ MFE_trade_good_events.10 = {
 	desc = "MFE_trade_good_events.10.d"
 	flavor = "MFE_trade_good_events.10.f"
 	duration = 3
-	icon = "gfx/event_icons/human_rights.dds"
+	icon = "gfx/interface/icons/event_icons/human_rights.dds"
 	minor_left_icon = g:fish
 	minor_right_icon = g:fish
 	event_image = { trigger = { var:picture = 1 } texture = "gfx/event_pictures/paintings/harbors/Fitz_Henry_Lane_Castine_Harbor_and_Town.dds" }
@@ -824,7 +853,7 @@ MFE_trade_good_events.11 = {
 	desc = "MFE_trade_good_events.11.d"
 	flavor = "MFE_trade_good_events.11.f"
 	duration = 3
-	icon = "gfx/event_icons/man_o_wars.dds"
+	icon = "gfx/interface/icons/event_icons/man_o_wars.dds"
 	event_image = {
 		video = "gfx/event_pictures/unspecific_vandalized_storefront.bk2"
 	}
@@ -856,6 +885,30 @@ MFE_trade_good_events.11 = {
 	option = {
 		name = MFE_trade_good_events.11.a
 		default_option = yes
+		scope:ship_state = {
+			add_modifier = {
+				name = MFE_manowar_war_mod
+				months = normal_modifier_time
+			}
+		}
+	}
+
+	option = {
+		name = MFE_trade_good_events.11.b
+		trigger = {
+			any_scope_building = {
+				is_building_type = building_vineyard_plantation
+			}
+		}
+		every_scope_building = {
+			limit = {
+				is_building_type = building_vineyard_plantation
+			}
+			add_modifier = {
+				name = MFE_champagne_for_ships
+				months = normal_modifier_time
+			}
+		}
 	}
 }
 
@@ -867,7 +920,7 @@ MFE_trade_good_events.12 = {
 	desc = "MFE_trade_good_events.12.d"
 	flavor = "MFE_trade_good_events.12.f"
 	duration = 3
-	icon = "gfx/event_icons/economic_dominance.dds"
+	icon = "gfx/interface/icons/event_icons/economic_dominance.dds"
 	event_image = { trigger = { var:picture = 1 } texture = "gfx/event_pictures/paintings/landscapes/Albert_Bierstadt_A_Storm_in_the_Rocky_Mountains_Mt_Rosalie.dds" }
 	event_image = { trigger = { var:picture = 2 } texture = "gfx/event_pictures/paintings/landscapes/Albert_Bierstadt_Puget_Sound_on_the_Pacific_Coast.dds" }
 	event_image = { trigger = { var:picture = 3 } texture = "gfx/event_pictures/paintings/landscapes/Albert_Bierstadt_Valley_of_the_Yosemite.dds" }
@@ -930,6 +983,22 @@ MFE_trade_good_events.12 = {
 	option = {
 		name = MFE_trade_good_events.12.a
 		default_option = yes
+		scope:fabric_state = {
+			add_modifier = {
+				name = MFE_fine_fabrics_state_mod
+				months = normal_modifier_time
+			}
+		}
+	}
+
+	option = {
+		name = MFE_trade_good_events.12.b
+		scope:fabric_state = {
+			add_modifier = {
+				name = MFE_finest_fabrics_mod
+				months = normal_modifier_time
+			}
+		}
 	}
 }
 
@@ -963,6 +1032,7 @@ MFE_trade_good_events.13 = {
 				has_active_production_method = pm_saw_mills
 				level >= 5
 			}
+			save_scope_as = sawmill_fire_building
 			state = {
 				save_scope_as = sawmill_fire_state
 			}
@@ -972,6 +1042,44 @@ MFE_trade_good_events.13 = {
 	option = {
 		name = MFE_trade_good_events.13.a
 		default_option = yes
+		scope:sawmill_fire_state = {
+			add_modifier = {
+				name = MFE_state_sawmill_burned_down_mod
+				months = normal_modifier_time
+			}
+		}
+		scope:sawmill_fire_building = {
+			add_modifier = {
+				name = MFE_building_sawmill_burned_down_mod
+				months = normal_modifier_time
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = {
+		name = MFE_trade_good_events.13.b
+		scope:sawmill_fire_state = {
+			add_modifier = {
+				name = MFE_state_sawmill_burned_down_aid_sent_mod
+				months = normal_modifier_time
+			}
+		}
+		add_modifier = {
+			name = MFE_send_cash_to_burning_sawmill_mod
+			months = normal_modifier_time
+		}
+		ai_chance = {
+			base = 0
+			modifier = {
+				trigger = {
+					weekly_net_fixed_income > 2000
+				}
+				add = 2
+			}
+		}
 	}
 }
 
@@ -983,7 +1091,7 @@ MFE_trade_good_events.14 = {
 	desc = "MFE_trade_good_events.14.d"
 	flavor = "MFE_trade_good_events.14.f"
 	duration = 3
-	icon = "gfx/event_icons/unit_attack.dds"
+	icon = "gfx/interface/icons/event_icons/unit_attack.dds"
 	event_image = {
 		video = "gfx/event_pictures/europenorthamerica_gold_prospectors.bk2"
 	}
@@ -1014,6 +1122,40 @@ MFE_trade_good_events.14 = {
 	option = {
 		name = MFE_trade_good_events.14.a
 		default_option = yes
+		scope:hardwood_state = {
+			add_modifier = {
+				name = MFE_very_hard_wood_mod
+				months = normal_modifier_time
+			}
+		}
+	}
+
+	option = {
+		name = MFE_trade_good_events.14.b
+		default_option = yes
+		trigger = {
+			any_scope_building = {
+				level >= 3
+				is_building_type = building_tooling_workshops
+			}
+		}
+		random_scope_state = {
+			limit = {
+				any_scope_building = {
+					level >= 3
+					is_building_type = building_tooling_workshops
+				}
+			}
+			random_scope_building = {
+				limit = {
+					is_building_type = building_tooling_workshops
+				}
+				add_modifier = {
+					name = MFE_great_instruments_mod
+					months = normal_modifier_time
+				}
+			}
+		}
 	}
 }
 
@@ -1025,7 +1167,7 @@ MFE_trade_good_events.15 = {
 	desc = "MFE_trade_good_events.15.d"
 	flavor = "MFE_trade_good_events.15.f"
 	duration = 3
-	icon = "gfx/event_icons/supply_low.dds"
+	icon = "gfx/interface/icons/event_icons/supply_low.dds"
 	event_image = {
 		video = "gfx/event_pictures/unspecific_vandalized_storefront.bk2"
 	}
@@ -1061,6 +1203,26 @@ MFE_trade_good_events.15 = {
 	option = {
 		name = MFE_trade_good_events.15.a
 		default_option = yes
+		scope:grocery_state = {
+			add_radicals_in_state = {
+				value = small_radicals
+				strata = poor
+			}
+		}
+	}
+
+	option = {
+		name = MFE_trade_good_events.15.b
+		add_modifier = {
+			name = MFE_food_subsidies_mod
+			months = normal_modifier_time
+		}
+		scope:grocery_state = {
+			add_loyalists_in_state = {
+				value = small_radicals
+				strata = poor
+			}
+		}
 	}
 }
 
@@ -1072,7 +1234,7 @@ MFE_trade_good_events.16 = {
 	desc = "MFE_trade_good_events.16.d"
 	flavor = "MFE_trade_good_events.16.f"
 	duration = 3
-	icon = "gfx/event_icons/anarchy.dds"
+	icon = "gfx/interface/icons/event_icons/anarchy.dds"
 	event_image = {
 		video = "gfx/event_pictures/europenorthamerica_rich_and_poor.bk2"
 	}
@@ -1110,6 +1272,17 @@ MFE_trade_good_events.16 = {
 	option = {
 		name = MFE_trade_good_events.16.a
 		default_option = yes
+		scope:clothes_state = {
+			add_modifier = {
+				name = MFE_threadbare_state_of_affairs_mod
+				months = normal_modifier_time
+			}
+		}
+	}
+
+	option = {
+		name = MFE_trade_good_events.16.b
+		add_treasury = -100000
 	}
 }
 
@@ -1165,6 +1338,23 @@ MFE_trade_good_events.17 = {
 	option = {
 		name = MFE_trade_good_events.17.a
 		default_option = yes
+		ruler = {
+			kill_character = yes
+		}
+		add_radicals = {
+			value = 0.02
+		}
+	}
+
+	option = {
+		name = MFE_trade_good_events.17.b
+		ruler = {
+			kill_character = yes
+		}
+		add_radicals = {
+			value = 0.01
+		}
+		add_treasury = -1000
 	}
 }
 
@@ -1176,7 +1366,7 @@ MFE_trade_good_events.18 = {
 	desc = "MFE_trade_good_events.18.d"
 	flavor = "MFE_trade_good_events.18.f"
 	duration = 3
-	icon = "gfx/event_icons/literature.dds"
+	icon = "gfx/interface/icons/event_icons/literature.dds"
 	event_image = {
 		video = "gfx/event_pictures/southamerica_factory_opening.bk2"
 	}
@@ -1209,6 +1399,17 @@ MFE_trade_good_events.18 = {
 	option = {
 		name = MFE_trade_good_events.18.a
 		default_option = yes
+		add_treasury = 100000
+	}
+
+	option = {
+		name = MFE_trade_good_events.18.b
+		scope:paper_state = {
+			add_modifier = {
+				name = MFE_paper_flood_mod
+				months = normal_modifier_time
+			}
+		}
 	}
 }
 
@@ -1220,7 +1421,7 @@ MFE_trade_good_events.19 = {
 	desc = "MFE_trade_good_events.19.d"
 	flavor = "MFE_trade_good_events.19.f"
 	duration = 3
-	icon = "gfx/event_icons/lightbulbs.dds"
+	icon = "gfx/interface/icons/event_icons/lightbulbs.dds"
 	event_image = { trigger = { var:picture = 1 } texture = "gfx/event_pictures/paintings/cities/An_Overshot_Mill_in_Wales_James_Ward.dds" }
 	event_image = { trigger = { var:picture = 2 } texture = "gfx/event_pictures/paintings/cities/Cole_Thomas_View_of_Florence_from_San_Miniato_1837.dds" }
 	event_image = { trigger = { var:picture = 3 } texture = "gfx/event_pictures/paintings/cities/The_945_Accommodation.dds" }
@@ -1257,6 +1458,28 @@ MFE_trade_good_events.19 = {
 	option = {
 		name = MFE_trade_good_events.19.a
 		default_option = yes
+		ig:ig_intelligentsia = {
+			add_modifier = {
+				name = MFE_stars_gone_mod
+				months = normal_modifier_time
+			}
+		}
+		ig:ig_petty_bourgeoisie = {
+			add_modifier = {
+				name = MFE_stars_gone_mod
+				months = normal_modifier_time
+			}
+		}
+	}
+
+	option = {
+		name = MFE_trade_good_events.19.b
+		ig:ig_industrialists = {
+			add_modifier = {
+				name = MFE_march_of_progress_stopped_mod
+				months = normal_modifier_time
+			}
+		}
 	}
 }
 
@@ -1268,7 +1491,7 @@ MFE_trade_good_events.20 = {
 	desc = "MFE_trade_good_events.20.d"
 	flavor = "MFE_trade_good_events.20.f"
 	duration = 3
-	icon = "gfx/event_icons/raid_convoys.dds"
+	icon = "gfx/interface/icons/event_icons/raid_convoys.dds"
 	event_image = {
 		trigger = {
 			OR = {
@@ -1290,10 +1513,10 @@ MFE_trade_good_events.20 = {
 		}
 		video = "gfx/event_pictures/southamerica_factory_opening.bk2"
 	}
-	event_image = { trigger = { ruler.culture = { has_culture_graphics = african } } video = "gfx/event_pictures/africa_construction_colony.bk2" }
-	event_image = { trigger = { ruler.culture = { has_culture_graphics = asian } } video = "gfx/event_pictures/asia_farmers_market.bk2" }
-	event_image = { trigger = { ruler.culture = { has_culture_graphics = european } } video = "gfx/event_pictures/europenorthamerica_london_center.bk2" }
-	event_image = { trigger = { ruler.culture = { has_culture_graphics = mideast_indian } } video = "gfx/event_pictures/asia_farmers_market.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = african } } video = "gfx/event_pictures/africa_diplomats_negotiating.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = east_asian } } video = "gfx/event_pictures/asia_politician_parliament_motion.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = european } } video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = south_asian } } video = "gfx/event_pictures/asia_politician_parliament_motion.bk2" }
 	event_image = {
 		# Default
 		trigger = {
@@ -1305,14 +1528,14 @@ MFE_trade_good_events.20 = {
 				ruler.culture = {
 					OR = {
 						has_culture_graphics = african
-						has_culture_graphics = asian
+						has_culture_graphics = east_asian
 						has_culture_graphics = european
-						has_culture_graphics = mideast_indian
+						has_culture_graphics = south_asian
 					}
 				}
 			}
 		}
-		video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
 	}
 	
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
@@ -1346,6 +1569,30 @@ MFE_trade_good_events.20 = {
 	option = {
 		name = MFE_trade_good_events.20.a
 		default_option = yes
+		scope:sulfur_state = {
+			add_modifier = {
+				name = MFE_sulfur_accident_mod
+				months = normal_modifier_time
+			}
+			add_radicals_in_state = {
+				pop_type = capitalists
+				value = medium_radicals
+			}
+		}
+	}
+
+	option = {
+		name = MFE_trade_good_events.20.a
+		scope:sulfur_state = {
+			add_modifier = {
+				name = MFE_sulfur_accident_mod
+				months = normal_modifier_time
+			}
+			add_radicals_in_state = {
+				pop_type = laborers
+				value = medium_radicals
+			}
+		}
 	}
 }
 
@@ -1379,10 +1626,10 @@ MFE_trade_good_events.21 = {
 		}
 		video = "gfx/event_pictures/southamerica_factory_opening.bk2"
 	}
-	event_image = { trigger = { ruler.culture = { has_culture_graphics = african } } video = "gfx/event_pictures/africa_construction_colony.bk2" }
-	event_image = { trigger = { ruler.culture = { has_culture_graphics = asian } } video = "gfx/event_pictures/asia_farmers_market.bk2" }
-	event_image = { trigger = { ruler.culture = { has_culture_graphics = european } } video = "gfx/event_pictures/europenorthamerica_london_center.bk2" }
-	event_image = { trigger = { ruler.culture = { has_culture_graphics = mideast_indian } } video = "gfx/event_pictures/asia_farmers_market.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = african } } video = "gfx/event_pictures/africa_diplomats_negotiating.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = east_asian } } video = "gfx/event_pictures/asia_politician_parliament_motion.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = european } } video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = south_asian } } video = "gfx/event_pictures/asia_politician_parliament_motion.bk2" }
 	event_image = {
 		# Default
 		trigger = {
@@ -1394,14 +1641,14 @@ MFE_trade_good_events.21 = {
 				ruler.culture = {
 					OR = {
 						has_culture_graphics = african
-						has_culture_graphics = asian
+						has_culture_graphics = east_asian
 						has_culture_graphics = european
-						has_culture_graphics = mideast_indian
+						has_culture_graphics = south_asian
 					}
 				}
 			}
 		}
-		video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
 	}
 	
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
@@ -1427,7 +1674,7 @@ MFE_trade_good_events.21 = {
 			}
 			state = {
 				save_scope_as = lead_state
-				remove_building = building_sulfur_mine
+				remove_building = building_lead_mine
 			}
 		}
 	}
@@ -1435,6 +1682,30 @@ MFE_trade_good_events.21 = {
 	option = {
 		name = MFE_trade_good_events.21.a
 		default_option = yes
+		scope:lead_state = {
+			add_modifier = {
+				name = MFE_lead_accident_mod
+				months = normal_modifier_time
+			}
+			add_radicals_in_state = {
+				pop_type = capitalists
+				value = medium_radicals
+			}
+		}
+	}
+
+	option = {
+		name = MFE_trade_good_events.21.b
+		scope:lead_state = {
+			add_modifier = {
+				name = MFE_lead_accident_mod
+				months = normal_modifier_time
+			}
+			add_radicals_in_state = {
+				pop_type = laborers
+				value = medium_radicals
+			}
+		}
 	}
 }
 
@@ -1446,7 +1717,7 @@ MFE_trade_good_events.22 = {
 	desc = "MFE_trade_good_events.22.d"
 	flavor = "MFE_trade_good_events.22.f"
 	duration = 3
-	icon = "gfx/event_icons/icon_kill.dds"
+	icon = "gfx/interface/icons/event_icons/icon_kill.dds"
 	event_image = { trigger = { var:picture = 1 } texture = "gfx/event_pictures/paintings/landscapes/Albert_Bierstadt_A_Storm_in_the_Rocky_Mountains_Mt_Rosalie.dds" }
 	event_image = { trigger = { var:picture = 2 } texture = "gfx/event_pictures/paintings/landscapes/Albert_Bierstadt_Puget_Sound_on_the_Pacific_Coast.dds" }
 	event_image = { trigger = { var:picture = 3 } texture = "gfx/event_pictures/paintings/landscapes/Albert_Bierstadt_Valley_of_the_Yosemite.dds" }
@@ -1505,9 +1776,26 @@ MFE_trade_good_events.22 = {
 			}
 		}
 	}
+
 	option = {
 		name = MFE_trade_good_events.22.a
 		default_option = yes
+		scope:lead_state = {
+			add_radicals = {
+				value = 0.2
+			}
+		}
+	}
+
+	option = {
+		name = MFE_trade_good_events.22.b
+		ruler = {
+			random_list = {
+				50 = {}
+				45 = { add_trait = sickly }
+				5 = { kill_character = yes }
+			}
+		}
 	}
 }
 
@@ -1519,7 +1807,7 @@ MFE_trade_good_events.23 = {
 	desc = "MFE_trade_good_events.23.d"
 	flavor = "MFE_trade_good_events.23.f"
 	duration = 3
-	icon = "gfx/event_icons/rubber.dds"
+	icon = "gfx/interface/icons/event_icons/rubber.dds"
 	minor_left_icon = g:rubber
 	minor_right_icon = g:rubber
 	event_image = { trigger = { var:picture = 1 } texture = "gfx/event_pictures/paintings/landscapes/Albert_Bierstadt_A_Storm_in_the_Rocky_Mountains_Mt_Rosalie.dds" }
@@ -1586,6 +1874,22 @@ MFE_trade_good_events.23 = {
 	option = {
 		name = MFE_trade_good_events.23.a
 		default_option = yes
+		scope:rubber_state = {
+			add_modifier = {
+				name = MFE_in_a_rubber_world_mod
+				months = normal_modifier_time
+			}
+		}
+	}
+
+	option = {
+		name = MFE_trade_good_events.23.b
+		scope:rubber_state = {
+			add_modifier = {
+				name = MFE_more_rubber_mod
+				months = normal_modifier_time
+			}
+		}
 	}
 }
 
@@ -1597,7 +1901,7 @@ MFE_trade_good_events.24 = {
 	desc = "MFE_trade_good_events.24.d"
 	flavor = "MFE_trade_good_events.24.f"
 	duration = 3
-	icon = "gfx/event_icons/oil.dds"
+	icon = "gfx/interface/icons/event_icons/oil.dds"
 	minor_left_icon = g:oil
 	minor_right_icon = g:oil
 	event_image = {
@@ -1630,6 +1934,17 @@ MFE_trade_good_events.24 = {
 	option = {
 		name = MFE_trade_good_events.24.a
 		default_option = yes
+		scope:rubber_state = {
+			add_modifier = {
+				name = MFE_more_oil_mod
+				months = normal_modifier_time
+			}
+		}
+	}
+
+	option = {
+		name = MFE_trade_good_events.24.b
+		add_treasury = 2000000
 	}
 }
 
@@ -1641,7 +1956,7 @@ MFE_trade_good_events.25 = {
 	desc = "MFE_trade_good_events.25.d"
 	flavor = "MFE_trade_good_events.25.f"
 	duration = 3
-	icon = "gfx/event_icons/manufacturies.dds"
+	icon = "gfx/interface/icons/event_icons/manufacturies.dds"
 	event_image = {
 		trigger = {
 			OR = {
@@ -1663,10 +1978,10 @@ MFE_trade_good_events.25 = {
 		}
 		video = "gfx/event_pictures/southamerica_factory_opening.bk2"
 	}
-	event_image = { trigger = { ruler.culture = { has_culture_graphics = african } } video = "gfx/event_pictures/africa_construction_colony.bk2" }
-	event_image = { trigger = { ruler.culture = { has_culture_graphics = asian } } video = "gfx/event_pictures/asia_farmers_market.bk2" }
-	event_image = { trigger = { ruler.culture = { has_culture_graphics = european } } video = "gfx/event_pictures/europenorthamerica_london_center.bk2" }
-	event_image = { trigger = { ruler.culture = { has_culture_graphics = mideast_indian } } video = "gfx/event_pictures/asia_farmers_market.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = african } } video = "gfx/event_pictures/africa_diplomats_negotiating.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = east_asian } } video = "gfx/event_pictures/asia_politician_parliament_motion.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = european } } video = "gfx/event_pictures/europenorthamerica_capitalists_meeting.bk2" }
+	event_image = { trigger = { ruler.culture = { has_culture_graphics = south_asian } } video = "gfx/event_pictures/asia_politician_parliament_motion.bk2" }
 	event_image = {
 		# Default
 		trigger = {
@@ -1678,14 +1993,14 @@ MFE_trade_good_events.25 = {
 				ruler.culture = {
 					OR = {
 						has_culture_graphics = african
-						has_culture_graphics = asian
+						has_culture_graphics = east_asian
 						has_culture_graphics = european
-						has_culture_graphics = mideast_indian
+						has_culture_graphics = south_asian
 					}
 				}
 			}
 		}
-		video = "gfx/event_pictures/unspecific_gears_pistons.bk2"
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
 	}
 	
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
@@ -1716,5 +2031,21 @@ MFE_trade_good_events.25 = {
 	option = {
 		name = MFE_trade_good_events.25.a
 		default_option = yes
+		scope:steel_state = {
+			add_radicals_in_state = {
+				value = large_radicals
+				interest_group = ig:ig_trade_unions
+			}
+		}
+	}
+
+	option = {
+		name = MFE_trade_good_events.25.b
+		scope:steel_state = {
+			add_modifier = {
+				name = MFE_shorter_shifts_steel_mod
+				months = normal_modifier_time
+			}
+		}
 	}
 }

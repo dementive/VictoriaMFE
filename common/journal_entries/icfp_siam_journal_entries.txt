@@ -1,0 +1,112 @@
+﻿icfp_siamese_consolidation = {
+	# root = the owner of the Journal Entry (country scope)
+	# scope:journal_entry = this Journal Entry (journalentry scope)
+	# scope:target = target value, with which this Journal Entry was added using `add_journal_entry` effect
+
+	group = je_group_internal_affairs
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	complete = {
+		any_subject_or_below = {
+			count = all
+			capital.region = sr:region_indochina
+			relations:root >= 40
+		}
+	}
+
+	on_complete = {
+		# Siamese Consolidation event
+		custom_tooltip = icfp_siam_1_tt
+		trigger_event = icfp_siam.1
+	}
+
+}
+
+icfp_siamese_isolation = {
+	group = je_group_internal_affairs
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	complete = {
+		NOT = { has_law = law_type:law_isolationism }
+	}
+
+	on_complete = {
+		# Siamese Isolation event
+		trigger_event = icfp_siam.2
+	}
+
+
+}
+
+icfp_siamese_development = {
+	group = je_group_internal_affairs
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+	complete = {
+		#  have 10 logging camps, 3 iron mines, 1k+ sell orders of grain, and at least 5 total manufacturing buildings
+		custom_tooltip = {
+			text = icfp_siamese_development_logs_tt
+			icfp_logging_camps_needed >= 10
+		}
+		custom_tooltip = {
+			text = icfp_siamese_development_mines_tt
+			icfp_iron_mines_needed >= 3
+		}
+		custom_tooltip = {
+			text = icfp_siamese_development_manufacturing_tt
+			icfp_manufacturing_needed >= 5
+		}
+		market = {
+			mg:grain = {
+				market_goods_buy_orders >= 1000
+			}
+		}
+	}
+
+	on_complete = {
+		# Siamese Isolation event
+		trigger_event = icfp_siam.3
+	}
+
+}
+
+icfp_siamese_golden_age = {
+	group = je_group_internal_affairs
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+	complete = {
+
+        custom_tooltip = {
+        	text = icfp_siamese_consolidation_completed_tt
+        	NOT = {
+				has_journal_entry = icfp_siamese_consolidation
+        	}
+        }
+        custom_tooltip = {
+        	text = icfp_siamese_isolation_completed_tt
+        	NOT = {
+				has_journal_entry = icfp_siamese_isolation
+        	}
+        }
+        custom_tooltip = {
+        	text = icfp_siamese_development_completed_tt
+        	NOT = {
+				has_journal_entry = icfp_siamese_development
+        	}
+        }
+		# 3 Universities
+		custom_tooltip = {
+			text = icfp_siamese_golden_age_university_tt
+			icfp_universities_needed >= 3
+		}
+		gdp >=5000000
+	}
+
+	on_complete = {
+		add_modifier = {
+			name = icfp_siamese_golden_age_mod
+			months = 305
+		}
+	}
+
+}

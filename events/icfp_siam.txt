@@ -1,0 +1,131 @@
+﻿namespace = icfp_siam
+
+# Siamese Consolidation
+icfp_siam.1 = {
+    type = country_event
+    placement = root
+    title = icfp_siam.1.t
+    desc = icfp_siam.1.d
+    flavor = icfp_siam.1.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/asia_buddhism.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/asia/buddhism"
+
+    option = {      
+        name = icfp_siam.1.a
+        every_subject_or_below = {
+        	limit = {
+        		capital.region = sr:region_indochina
+        		is_subject_of = root
+        		relations:root >= 35
+        	}
+        	root = {
+        		random = {
+        			chance = 75
+        			annex_with_incorporation = prev
+        		}
+        	}
+        }
+        add_modifier = {
+        	name = icfp_siam_unity_mod
+        	months = 120
+        }
+    }
+}
+
+icfp_siam.2 = {
+    type = country_event
+    placement = root
+    title = icfp_siam.2.t
+    desc = icfp_siam.2.d
+    flavor = icfp_siam.2.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/asia_buddhism.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/asia/buddhism"
+
+    option = {      
+        name = icfp_siam.2.a
+        add_modifier = {
+        	name = icfp_siam_isolation_removed_mod
+        	months = 120
+        }
+    }
+}
+
+icfp_siam.3 = {
+    type = country_event
+    placement = root
+    title = icfp_siam.3.t
+    desc = icfp_siam.3.d
+    flavor = icfp_siam.3.f
+    
+    duration = 3
+
+    event_image = {
+        video = "gfx/event_pictures/asia_buddhism.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/asia/buddhism"
+
+    option = {      
+        name = icfp_siam.3.a
+        add_modifier = {
+        	name = icfp_siam_development_mod
+        	months = 120
+        }
+    }
+}
+
+icfp_siam.4 = {
+    type = country_event
+    placement = root
+    title = icfp_siam.4.t
+    desc = icfp_siam.4.d
+    flavor = icfp_siam.4.f
+
+    duration = 3
+
+    event_image = {
+        video = "votp_monarch_holding_court"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+    icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    immediate = {
+        ruler = {
+            save_scope_as = siam_emperor_scope
+        }
+    }
+
+    option = {
+        name = icfp_siam.4.a
+        default_option = yes
+        set_variable = SIA_siam_empire_declared
+        custom_tooltip = SIA_siam_empire_tooltip
+        add_modifier = {
+            name = modifier_siam_empire
+            months = long_modifier_time
+        }
+    }
+}

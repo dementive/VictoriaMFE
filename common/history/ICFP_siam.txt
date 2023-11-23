@@ -1,0 +1,24 @@
+﻿COUNTRIES = {
+	c:SIA = {
+
+		add_technology_researched = urban_planning
+		add_technology_researched = mandatory_service
+
+		add_journal_entry = { type = icfp_siamese_consolidation } # have 3x all vassals total gdp and vassals have more than 30 opinion, annex vassals for free
+		add_journal_entry = { type = icfp_siamese_isolation } # remove isolationism
+		add_journal_entry = { type = icfp_siamese_development } # have 10 logging camps, 3 iron mines, 1.5k+ buy orders of grain, and at least 5 total manufacturing buildings
+		add_journal_entry = { type = icfp_siamese_golden_age } # Complete the other 3 journals and have at least 6 million gdp
+
+		# Vanilla effects:
+		#effect_starting_technology_tier_4_tech = yes
+		#effect_starting_politics_traditional = yes
+		#activate_law = law_type:law_isolationism	
+		#activate_law = law_type:law_debt_slavery
+
+
+		#ig:ig_landowners = {
+		#	add_ruling_interest_group = yes
+		#}
+
+	}
+}
