@@ -1,0 +1,36 @@
+﻿icfp_siam_unity_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	country_authority_add = 25
+	country_prestige_add = 25
+}
+
+icfp_siam_isolation_removed_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	interest_group_ig_industrialists_pop_attraction_mult = 0.1
+	interest_group_ig_intelligentsia_pop_attraction_mult = 0.1
+	country_trade_route_competitiveness_mult = 0.25
+}
+
+icfp_siam_development_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	building_group_bg_manufacturing_throughput_add = 0.1
+	country_production_tech_spread_mult = 0.1
+	interest_group_ig_industrialists_pop_attraction_mult = 0.1
+}
+
+icfp_siamese_golden_age_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_lightbulb_positive.dds
+	state_education_access_add = 0.10
+	state_pop_qualifications_mult = 0.10
+	country_tech_research_speed_mult = 0.15
+}
+
+modifier_siam_empire = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_prestige_mult = 0.25
+}
+
+SIA_rice_of_bangkok_mod = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	building_rice_farm_throughput_add = 0.1
+}

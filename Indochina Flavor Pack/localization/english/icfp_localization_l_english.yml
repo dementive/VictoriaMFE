@@ -1,0 +1,62 @@
+﻿l_english:
+
+ # Journals
+ icfp_siamese_consolidation:0 "Siamese Consolidation"
+ icfp_siamese_consolidation_reason:0 "A splintered kingdom cannot survive in these tumultuous, with enough persuasion our many subjects could likely be convinced to integrate with our great nation."
+ icfp_siamese_isolation:0 "Siamese Isolation"
+ icfp_siamese_isolation_reason:0 "For centuries Siam has been isolated from the world politically and economically, this has been a reason for our great prosperity in the past but as times change so must the ways of our nation. Many argue continuing this policy of isolation will only lead to the ruin of our glorious kingdom."
+ icfp_siamese_development:0 "Siamese Development"
+ icfp_siamese_development_reason:0 "The world around us is quickly changing many of our western neighbors now possess resources beyond what was thought possible. It is clear that now more than ever the development of Siamese lands is all we can do to preserve our great nation from destruction at the hands of invading foreigners."
+ icfp_siamese_golden_age:0 "Siamese Golden Age"
+ icfp_siamese_golden_age_reason:0 "The unity of the Siamese people has proven a strong deterrent from western aggression but we still lag behind due to what many intellectuals are now calling backwards policies. Large scale reforms of our economy, government, and society as a whole are certainly needed to stay afloat in the sea of imperialist aggression we find ourselves in."
+
+ icfp_siam_1_tt:0 "All of our Indochinese subjects will consider annexation..."
+ icfp_siamese_development_logs_tt:0 "Have at least #B 10#! levels of logging camps ([SCOPE.ScriptValue('icfp_logging_camps_needed')|0B] / #B 10#!)."
+ icfp_siamese_development_mines_tt:0 "Have at least #B 3#! levels of iron mines ([SCOPE.ScriptValue('icfp_iron_mines_needed')|0B] / #B 3#!)."
+ icfp_siamese_development_manufacturing_tt:0 "Have at least #B 5#! levels of buildings in $bg_manufacturing$ ([SCOPE.ScriptValue('icfp_manufacturing_needed')|0B] / #B 5#!)."
+ icfp_siamese_golden_age_university_tt:0 "Have at least #B 3#! levels of universities ([SCOPE.ScriptValue('icfp_universities_needed')|0B] / #B 3#!)."
+ icfp_siamese_consolidation_completed_tt:0 "Has completed #B $icfp_siamese_consolidation$#!."
+ icfp_siamese_isolation_completed_tt:0 "Has completed #B $icfp_siamese_isolation$#!."
+ icfp_siamese_development_completed_tt:0 "Has completed #B $icfp_siamese_development$#!."
+
+ # Events
+ icfp_siam.1.t:0 "Siamese Consolidation"
+ icfp_siam.1.d:0 "The time has come to bring all of our subjects directly into the kingdom so we can all prosper together."
+ icfp_siam.1.f:0 "We see no reason to hold on to our autonomy any longer my lord. The time has come for our people to join with Siam for the good of one another. With enemies on every side unity is the best thing for our people at this time..."
+ icfp_siam.1.a:0 "This is but one step of the long journey ahead..."
+
+ icfp_siam.2.t:0 "Siamese Isolationism"
+ icfp_siam.2.d:0 "With the encroachment of the westerners hastening faster than we thought was possible it is clear that the isolationist policies of the past simply will not work going forward."
+ icfp_siam.2.f:0 "The threat of western 'civilization' spreading to our honorable people is great but staying isolated no doubt would have lead to the ruin of Siam."
+ icfp_siam.2.a:0 "The world will know the glory of Siam!"
+
+ icfp_siam.3.t:0 "Development of Siam"
+ icfp_siam.3.d:0 "Once a land of farmers and traders, Siam is now a beacon of industrial progress. Our people are no longer bound by the chains of the past, but are instead embracing the future"
+ icfp_siam.3.f:0 "The future belongs to those who believe in progress."
+ icfp_siam.3.a:0 "Siam will thrive!"
+
+ icfp_siam.4.t: "The Siamese Era"
+ icfp_siam.4.d: "At the newly-constructed shrine of Bangkok, the newly-crowned Emperor [SCOPE.sCharacter('siam_emperor_scope').GetFullName] has declared the end of the era of [ROOT.GetCountry.GetName], and the foundation of a new Empire of Siam."
+ icfp_siam.4.f: "Decades of whispers, years of plans, and months of preparation all came to this moment: a grand rebirth of the spirit of the people. Amidst the fireworks, fine silks and folk songs of home, the few foreign dignitaries to entertain the ceremony raised their cups with tacit acknowledgement and acrid glares."
+ icfp_siam.4.a: "A bright and glorious day."
+
+ # Decisions
+ SIA_clearing_the_jungle:0 "Clearing the Jungle"
+ SIA_clearing_the_jungle_desc:0 "Clearing the Indochinese jungle to make way for industry would not only help develop the area but also benefit our nation as a whole."
+ SIA_declare_siamese_empire:0 "Empire of Siam"
+ SIA_declare_siamese_empire_desc:0 "The Siamese people have come a long way and should be respected as a nation with power that cannot be surpassed with ease."
+ SIA_rice_farms_of_bangkok:0 "Rice Farms of Bangkok"
+ SIA_rice_farms_of_bangkok_desc:0 "The floodplains of Bangkok lie on some of the most fertile land in the world and have the potential for huge amounts of rice yields if proper care is taken of the land."
+
+ SIA_siam_empire_tooltip: "This country will be known as the #bold Empire of Siam#!"
+ dyn_c_empire_of_siam:0 "Empire of Siam"
+ dyn_c_empire_of_siam_adj:0 "Siamese"
+
+ # Modifiers
+ icfp_siam_unity_mod:0 "Siamese Unity"
+ icfp_siam_development_mod:0 "Development of Siam"
+ icfp_siam_isolation_removed_mod:0 "Opened Society"
+ icfp_siamese_golden_age_mod:0 "Siamese Golden Age"
+ state_trait_indochinese_forest_icfp_developed:0 "Developed Indochinese Forests"
+ modifier_siam_empire:0 "Empire of Siam"
+ SIA_rice_of_bangkok_mod:0 "Rice of Bangkok"

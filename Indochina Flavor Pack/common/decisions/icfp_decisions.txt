@@ -1,0 +1,103 @@
+﻿SIA_rice_farms_of_bangkok = {
+	is_shown = {
+		c:SIA ?= THIS
+		NOT = {
+			has_variable = siam_rice_taken
+		}
+	}
+
+	possible = {
+		p:x99A1C0.state = {
+			any_scope_building = {
+				level >= 10
+				is_building_type = building_rice_farm
+			}
+		}
+	}
+
+	when_taken = {
+		p:x99A1C0.state = {
+			add_modifier = {
+				name = SIA_rice_of_bangkok_mod
+			}
+		}
+		set_variable = siam_rice_taken
+	}
+
+	ai_chance = {
+		base = 10
+	}
+}
+
+SIA_clearing_the_jungle = {
+	is_shown = {
+		c:SIA ?= THIS
+		NOT = {
+			has_variable = siam_jungle_taken
+		}
+	}
+
+	possible = {
+		p:x3E70A9.state = {
+			any_scope_building = {
+				level >= 5
+				is_building_type = building_logging_camp
+			}
+		}
+		p:x37DC38.state = {
+			any_scope_building = {
+				level >= 5
+				is_building_type = building_logging_camp
+			}
+		}
+	}
+
+	when_taken = {
+		p:x3E70A9.state.state_region = {
+			remove_state_trait = state_trait_indochinese_forest
+			add_state_trait = state_trait_indochinese_forest_icfp_developed
+		}
+		p:x37DC38.state.state_region = {
+			remove_state_trait = state_trait_indochinese_forest
+			add_state_trait = state_trait_indochinese_forest_icfp_developed
+		}
+		set_variable = siam_jungle_taken
+	}
+
+	ai_chance = {
+		base = 10
+	}
+}
+
+SIA_declare_siamese_empire = {
+	is_shown = {
+		c:SIA ?= THIS
+		has_technology_researched = nationalism
+		NOT = {
+			has_variable = siam_empire_taken
+		}
+	}
+
+	possible = {
+		is_subject = no
+		has_technology_researched = nationalism
+		has_law = law_type:law_monarchy
+
+		c:DAI ?= {
+			is_country_alive = no
+		}
+		c:BUR ?= {
+			is_country_alive = no
+		}
+	}
+
+	when_taken = {
+		custom_tooltip = SIA_siam_empire_tooltip
+		trigger_event = { id = icfp_siam.4 popup = yes }
+		set_variable = siam_empire_taken
+	}
+
+	ai_chance = {
+		base = 10
+	}
+}

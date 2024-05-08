@@ -1,0 +1,39 @@
+﻿icfp_logging_camps_needed = {
+	value = 0
+	every_scope_building = {
+		limit = {
+			is_building_type = building_logging_camp
+		}
+		add = level
+	}
+}
+
+icfp_iron_mines_needed = {
+	value = 0
+	every_scope_building = {
+		limit = {
+			is_building_type = building_iron_mine
+		}
+		add = level
+	}
+}
+
+icfp_manufacturing_needed = {
+	value = 0
+	every_scope_building = {
+		limit = {
+			is_building_group = bg_manufacturing
+		}
+		add = level
+	}
+}
+
+icfp_universities_needed = {
+	value = 0
+	every_scope_building = {
+		limit = {
+			is_building_type = building_university
+		}
+		add = level
+	}
+}
